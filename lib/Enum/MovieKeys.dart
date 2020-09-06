@@ -1,0 +1,44 @@
+
+enum MovieKeys {
+  LANGUAGE,
+  REGION,
+  SORT_BY,
+  CERTIFICATION_COUNTRY,
+  CERTIFICATION,
+  CERTIFICATION_LTE,
+  CERTIFICATION_GTE,
+  INCLUDE_ADULT,
+  INCLUDE_VIDEO,
+  PAGE,
+  PRIMARY_RELEASE_YEAR,
+  PRIMARY_RELEASE_DATE_GTE,
+  PRIMARY_RELEASE_DATE_LTE,
+  RELEASE_DATE_GTE,
+  RELEASE_DATE_LTE,
+  WITH_REALISE_TYPE,
+  YEAR,
+  VOTE_COUNT_GTE,
+  VOTE_COUNT_LTE,
+  VOTE_AVERAGE_GET,
+  VOTE_AVERAGE_LTE,
+  WITH_CAST,
+  WITH_CREW,
+  WITH_PEOPLE,
+  WITH_COMPANIES,
+  WITH_GENRES,
+  WITHOUT_GENRES,
+  WITH_KEYWORDS,
+  WITHOUT_KEYWORDS,
+  WITH_RUNTIME_GTE,
+  WITH_RUNTIME_LTE,
+  WITH_ORIGINAL_LANGUAGE
+}
+
+extension normalize on MovieKeys {
+  String get value {
+    String rawValue = this.toString().toLowerCase().split('.').last;
+    rawValue.replaceAll("_gte", ".gte");
+    rawValue.replaceAll("_lte", ".lte");
+    return rawValue;
+  }
+}
