@@ -1,4 +1,3 @@
-import 'package:easytmdb/Model/KnownFor.dart';
 import 'package:easytmdb/Helper/Utils.dart';
 
 class PeoplePopular {

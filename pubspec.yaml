@@ -1,8 +1,7 @@
 name: easytmdb
 description: easy way to fetch data from THE MOVIE DATABASE
-version: 0.0.1
-author:
-homepage:
+version: 0.1.2
+homepage: https://github.com/myThic-cosmos/easy_tmdb
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

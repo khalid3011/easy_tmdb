@@ -4,11 +4,10 @@ import 'package:easytmdb/Helper/UrlMaker.dart';
 import 'package:easytmdb/Helper/Utils.dart';
 import 'package:easytmdb/Model/Trending/TrendingAll.dart';
 import 'package:easytmdb/Model/Trending/TrendingMovie.dart';
-import 'package:easytmdb/Model/Trending/TrendingPerson.dart';
 import 'package:easytmdb/Model/Trending/TrendingTv.dart';
 import 'package:http/http.dart' as http;
 
-class Trending{
+class Trending {
   Future<TrendingMovie> movieDay() async {
     var response = await http.get(UrlMaker.trendingMovieDay());
 
@@ -41,8 +40,9 @@ class Trending{
         : Utils.error(response);
   }
 
+//upcoming version
 /*
-//TODO run and solve error (solve later)
+// run and solve error (solve later)
   Future<TrendingPerson> personDay() async {
     var response = await http.get(UrlMaker.trendingPersonDay());
 
@@ -51,7 +51,7 @@ class Trending{
         : Utils.error(response);
   }
 
-//TODO run and solve error (solve later)
+//run and solve error (solve later)
   Future<TrendingPerson> personWeek() async {
     var response = await http.get(UrlMaker.trendingPersonWeek());
 

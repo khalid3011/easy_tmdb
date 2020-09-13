@@ -1,4 +1,3 @@
-import 'package:easytmdb/EasyTMDB.dart';
 import 'package:easytmdb/Helper/Utils.dart';
 
 class MoviePopular {
@@ -64,10 +63,11 @@ class MoviePopularResults {
       this.id,
       this.genreIds});
 
-
   MoviePopularResults.fromJson(Map<String, dynamic> json) {
-    this.posterPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], true);
-    this.backdropPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], false);
+    this.posterPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], true);
+    this.backdropPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], false);
     this.originalLanguage = json['original_language'];
     this.originalTitle = json['original_title'];
     this.title = json['title'];

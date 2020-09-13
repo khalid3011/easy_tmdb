@@ -378,7 +378,7 @@ class FindTvEpisodeResults {
     this.name = json['name'];
     this.overview = json['overview'];
     this.productionCode = json['production_code'];
-    this.stillPath = Utils.userConditionalUrl(json['still_path'], null, true);;
+    this.stillPath = Utils.userConditionalUrl(json['still_path'], null, true);
     this.voteAverage = json['vote_average'];
     this.episodeNumber = json['episode_number'];
     this.id = json['id'];

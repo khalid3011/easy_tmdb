@@ -1,7 +1,5 @@
 import 'package:easytmdb/Helper/Utils.dart';
 
-import 'package:easytmdb/Helper/Utils.dart';
-
 class TvTopRated {
   int page;
   int totalResults;

@@ -34,11 +34,13 @@ class Utils {
     return false;
   }
 
-  static String generateTMDBImageUrl(String path, {String size}) =>
-      "http://image.tmdb.org/t/p/" +
-      (size == null ? EasyTMDB.mImageSize : size) +
-      "/" +
-      path;
+  static String generateTMDBImageUrl(String path, {String size}) {
+    String slash = path.startsWith("/") ? "" : "/";
+    return "http://image.tmdb.org/t/p/" +
+        (size == null ? EasyTMDB.mImageSize : size) +
+        slash +
+        path;
+  }
 
   static String userConditionalUrl(
           String posterPath, String backdropPath, bool isPosterPath) =>

@@ -9,11 +9,11 @@ enum MovieSortBy {
 }
 
 extension normalize on MovieSortBy {
-  String get ASC {
-    return this.toString().split('.').last.toLowerCase()+".asc".trim();
+  String get asc {
+    return this.toString().split('.').last.toLowerCase() + ".asc".trim();
   }
 
-  String get DESC {
-    return this.toString().split('.').last.toLowerCase()+".desc".trim();
+  String get desc {
+    return this.toString().split('.').last.toLowerCase() + ".desc".trim();
   }
 }

@@ -34,7 +34,35 @@ class TvLatest {
   List<TvLatestCreatedBy> createdBy;
   List<TvLatestSeasons> seasons;
 
-  TvLatest({this.backdropPath, this.firstAirDate, this.homepage, this.lastAirDate, this.name, this.nextEpisodeToAir, this.originalLanguage, this.originalName, this.overview, this.posterPath, this.status, this.type, this.inProduction, this.id, this.numberOfEpisodes, this.numberOfSeasons, this.popularity, this.voteAverage, this.voteCount, this.lastEpisodeToAir, this.createdBy, this.seasons, this.episodeRunTime, this.genres, this.languages, this.networks, this.originCountry, this.productionCompanies});
+  TvLatest(
+      {this.backdropPath,
+      this.firstAirDate,
+      this.homepage,
+      this.lastAirDate,
+      this.name,
+      this.nextEpisodeToAir,
+      this.originalLanguage,
+      this.originalName,
+      this.overview,
+      this.posterPath,
+      this.status,
+      this.type,
+      this.inProduction,
+      this.id,
+      this.numberOfEpisodes,
+      this.numberOfSeasons,
+      this.popularity,
+      this.voteAverage,
+      this.voteCount,
+      this.lastEpisodeToAir,
+      this.createdBy,
+      this.seasons,
+      this.episodeRunTime,
+      this.genres,
+      this.languages,
+      this.networks,
+      this.originCountry,
+      this.productionCompanies});
 
   TvLatest.fromJson(Map<String, dynamic> json) {
     this.firstAirDate = json['first_air_date'];
@@ -45,8 +73,10 @@ class TvLatest {
     this.originalLanguage = json['original_language'];
     this.originalName = json['original_name'];
     this.overview = json['overview'];
-    this.posterPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], true);
-    this.backdropPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], false);
+    this.posterPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], true);
+    this.backdropPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], false);
     this.status = json['status'];
     this.type = json['type'];
     this.inProduction = json['in_production'];
@@ -56,26 +86,48 @@ class TvLatest {
     this.popularity = json['popularity'];
     this.voteAverage = json['vote_average'];
     this.voteCount = json['vote_count'];
-    this.lastEpisodeToAir = json['last_episode_to_air'] != null ? TvLatestLastEpisodeToAir.fromJson(json['last_episode_to_air']) : null;
-    this.createdBy = (json['created_by'] as List)!=null?(json['created_by'] as List).map((i) => TvLatestCreatedBy.fromJson(i)).toList():null;
-    this.seasons = (json['seasons'] as List)!=null?(json['seasons'] as List).map((i) => TvLatestSeasons.fromJson(i)).toList():null;
-    this.genres = (json['genres'] as List)!=null?(json['genres'] as List).map((i) => TvLatestGenres.fromJson(i)).toList():null;
-    this.networks = (json['networks'] as List)!=null?(json['networks'] as List).map((i) => TvLatestNetworks.fromJson(i)).toList():null;
-    this.productionCompanies = (json['production_companies'] as List)!=null?(json['production_companies'] as List).map((i) => TvLatestProductionCompanies.fromJson(i)).toList():null;
+    this.lastEpisodeToAir = json['last_episode_to_air'] != null
+        ? TvLatestLastEpisodeToAir.fromJson(json['last_episode_to_air'])
+        : null;
+    this.createdBy = (json['created_by'] as List) != null
+        ? (json['created_by'] as List)
+            .map((i) => TvLatestCreatedBy.fromJson(i))
+            .toList()
+        : null;
+    this.seasons = (json['seasons'] as List) != null
+        ? (json['seasons'] as List)
+            .map((i) => TvLatestSeasons.fromJson(i))
+            .toList()
+        : null;
+    this.genres = (json['genres'] as List) != null
+        ? (json['genres'] as List)
+            .map((i) => TvLatestGenres.fromJson(i))
+            .toList()
+        : null;
+    this.networks = (json['networks'] as List) != null
+        ? (json['networks'] as List)
+            .map((i) => TvLatestNetworks.fromJson(i))
+            .toList()
+        : null;
+    this.productionCompanies = (json['production_companies'] as List) != null
+        ? (json['production_companies'] as List)
+            .map((i) => TvLatestProductionCompanies.fromJson(i))
+            .toList()
+        : null;
 
     List<dynamic> episodeRunTimeList = json['episode_run_time'];
     this.episodeRunTime = new List();
-    this.episodeRunTime.addAll(episodeRunTimeList.map((o) => int.parse(o.toString())));
-
+    this
+        .episodeRunTime
+        .addAll(episodeRunTimeList.map((o) => int.parse(o.toString())));
 
     List<dynamic> languagesList = json['languages'];
     this.languages = new List();
     this.languages.addAll(languagesList.map((o) => o.toString()));
 
-
     List<dynamic> originCountryList = json['origin_country'];
     this.originCountry = new List();
-    if(originCountryList != null){
+    if (originCountryList != null) {
       this.originCountry.addAll(originCountryList.map((o) => o.toString()));
     }
   }
@@ -104,32 +156,40 @@ class TvLatest {
     if (this.lastEpisodeToAir != null) {
       data['last_episode_to_air'] = this.lastEpisodeToAir.toJson();
     }
-    data['created_by'] = this.createdBy != null?this.createdBy.map((i) => i.toJson()).toList():null;
-    data['seasons'] = this.seasons != null?this.seasons.map((i) => i.toJson()).toList():null;
+    data['created_by'] = this.createdBy != null
+        ? this.createdBy.map((i) => i.toJson()).toList()
+        : null;
+    data['seasons'] = this.seasons != null
+        ? this.seasons.map((i) => i.toJson()).toList()
+        : null;
     data['episode_run_time'] = this.episodeRunTime;
-    data['genres'] = this.genres != null?this.genres.map((i) => i.toJson()).toList():null;
-    data['networks'] = this.networks != null?this.networks.map((i) => i.toJson()).toList():null;
-    data['production_companies'] = this.productionCompanies != null?this.productionCompanies.map((i) => i.toJson()).toList():null;
+    data['genres'] = this.genres != null
+        ? this.genres.map((i) => i.toJson()).toList()
+        : null;
+    data['networks'] = this.networks != null
+        ? this.networks.map((i) => i.toJson()).toList()
+        : null;
+    data['production_companies'] = this.productionCompanies != null
+        ? this.productionCompanies.map((i) => i.toJson()).toList()
+        : null;
     data['languages'] = this.languages;
     data['origin_country'] = this.originCountry;
     return data;
   }
-
 }
 
-class TvLatestGenres extends Genres{
+class TvLatestGenres extends Genres {
   TvLatestGenres.fromJson(Map<String, dynamic> json) : super.fromJson(json);
 }
 
-class TvLatestNetworks extends Network{
+class TvLatestNetworks extends Network {
   TvLatestNetworks.fromJson(Map<String, dynamic> json) : super.fromJson(json);
 }
 
-class TvLatestProductionCompanies extends ProductionCompanies{
-  TvLatestProductionCompanies.fromJson(Map<String, dynamic> json) : super.fromJson(json);
+class TvLatestProductionCompanies extends ProductionCompanies {
+  TvLatestProductionCompanies.fromJson(Map<String, dynamic> json)
+      : super.fromJson(json);
 }
-
-
 
 class TvLatestLastEpisodeToAir {
   String airDate;
@@ -144,14 +204,25 @@ class TvLatestLastEpisodeToAir {
   var voteAverage;
   int voteCount;
 
-  TvLatestLastEpisodeToAir({this.airDate, this.name, this.overview, this.productionCode, this.stillPath, this.episodeNumber, this.id, this.seasonNumber, this.showId, this.voteAverage, this.voteCount});
+  TvLatestLastEpisodeToAir(
+      {this.airDate,
+      this.name,
+      this.overview,
+      this.productionCode,
+      this.stillPath,
+      this.episodeNumber,
+      this.id,
+      this.seasonNumber,
+      this.showId,
+      this.voteAverage,
+      this.voteCount});
 
   TvLatestLastEpisodeToAir.fromJson(Map<String, dynamic> json) {
     this.airDate = json['air_date'];
     this.name = json['name'];
     this.overview = json['overview'];
     this.productionCode = json['production_code'];
-    this.stillPath = Utils.userConditionalUrl(json['still_path'], null, true);;
+    this.stillPath = Utils.userConditionalUrl(json['still_path'], null, true);
     this.episodeNumber = json['episode_number'];
     this.id = json['id'];
     this.seasonNumber = json['season_number'];
@@ -184,7 +255,8 @@ class TvLatestCreatedBy {
   int id;
   int gender;
 
-  TvLatestCreatedBy({this.creditId, this.name, this.profilePath, this.id, this.gender});
+  TvLatestCreatedBy(
+      {this.creditId, this.name, this.profilePath, this.id, this.gender});
 
   TvLatestCreatedBy.fromJson(Map<String, dynamic> json) {
     this.creditId = json['credit_id'];
@@ -214,13 +286,21 @@ class TvLatestSeasons {
   int id;
   int seasonNumber;
 
-  TvLatestSeasons({this.airDate, this.name, this.overview, this.posterPath, this.episodeCount, this.id, this.seasonNumber});
+  TvLatestSeasons(
+      {this.airDate,
+      this.name,
+      this.overview,
+      this.posterPath,
+      this.episodeCount,
+      this.id,
+      this.seasonNumber});
 
   TvLatestSeasons.fromJson(Map<String, dynamic> json) {
     this.airDate = json['air_date'];
     this.name = json['name'];
     this.overview = json['overview'];
-    this.posterPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], true);
+    this.posterPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], true);
     this.episodeCount = json['episode_count'];
     this.id = json['id'];
     this.seasonNumber = json['season_number'];

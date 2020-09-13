@@ -1,3 +1,4 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - initial release
 
-* TODO: Describe initial release.
+
+## [0.1.2] - genres fetching and image url bug fix. reformat code
