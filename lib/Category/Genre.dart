@@ -23,7 +23,7 @@ class Genre {
   }
 
   ///last update 16-9-2020
-  List<GenreDetails> movieWithourFetch() {
+  List<GenreDetails> movieWithoutFetch() {
     List<GenreDetails> tempList = List();
 
     tempList.add(GenreDetails(id: 28, name: "Action"));
@@ -50,7 +50,7 @@ class Genre {
   }
 
   ///last update 16-9-2020
-  List<GenreDetails> tvWithourFetch() {
+  List<GenreDetails> tvWithoutFetch() {
     List<GenreDetails> tempList = List();
 
     tempList.add(GenreDetails(id: 10759, name: "Action & Adventure"));
