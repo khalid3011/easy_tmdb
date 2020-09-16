@@ -18,5 +18,4 @@ class RequestTokenResponse {
     data['success'] = this.success;
     return data;
   }
-
 }

@@ -14,9 +14,23 @@ class PeopleDetails {
   int gender;
   List<String> alsoKnownAs;
 
-  PeopleDetails({this.birthday, this.knownForDepartment, this.deathday, this.name, this.biography, this.placeOfBirth, this.profilePath, this.imdbId, this.homepage, this.adult, this.popularity, this.id, this.gender, this.alsoKnownAs});
+  PeopleDetails(
+      {this.birthday,
+      this.knownForDepartment,
+      this.deathday,
+      this.name,
+      this.biography,
+      this.placeOfBirth,
+      this.profilePath,
+      this.imdbId,
+      this.homepage,
+      this.adult,
+      this.popularity,
+      this.id,
+      this.gender,
+      this.alsoKnownAs});
 
-  PeopleDetails.fromJson(Map<String, dynamic> json) {    
+  PeopleDetails.fromJson(Map<String, dynamic> json) {
     this.birthday = json['birthday'];
     this.knownForDepartment = json['known_for_department'];
     this.deathday = json['deathday'];
@@ -54,5 +68,4 @@ class PeopleDetails {
     data['also_known_as'] = this.alsoKnownAs;
     return data;
   }
-
 }

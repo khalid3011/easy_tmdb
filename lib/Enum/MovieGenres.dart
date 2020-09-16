@@ -1,6 +1,6 @@
 ///last collect 15/8/20
 ///check new form EasyTMDB.genre()
-enum MovieGenres{
+enum MovieGenres {
   Action,
   Adventure,
   Animation,
@@ -21,7 +21,6 @@ enum MovieGenres{
   War,
   Western
 }
-
 
 extension normalize on MovieGenres {
   String get value {

@@ -10,9 +10,17 @@ class Season {
   int seasonNumber;
   List<SeasonEpisodes> episodes;
 
-  Season({this.uniqueId, this.airDate, this.name, this.overview, this.posterPath, this.id, this.seasonNumber, this.episodes});
+  Season(
+      {this.uniqueId,
+      this.airDate,
+      this.name,
+      this.overview,
+      this.posterPath,
+      this.id,
+      this.seasonNumber,
+      this.episodes});
 
-  Season.fromJson(Map<String, dynamic> json) {    
+  Season.fromJson(Map<String, dynamic> json) {
     this.uniqueId = json['_id'];
     this.airDate = json['air_date'];
     this.name = json['name'];
@@ -20,7 +28,11 @@ class Season {
     this.posterPath = Utils.userConditionalUrl(json['poster_path'], null, true);
     this.id = json['id'];
     this.seasonNumber = json['season_number'];
-    this.episodes = (json['episodes'] as List)!=null?(json['episodes'] as List).map((i) => SeasonEpisodes.fromJson(i)).toList():null;
+    this.episodes = (json['episodes'] as List) != null
+        ? (json['episodes'] as List)
+            .map((i) => SeasonEpisodes.fromJson(i))
+            .toList()
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -32,10 +44,11 @@ class Season {
     data['poster_path'] = this.posterPath;
     data['id'] = this.id;
     data['season_number'] = this.seasonNumber;
-    data['episodes'] = this.episodes != null?this.episodes.map((i) => i.toJson()).toList():null;
+    data['episodes'] = this.episodes != null
+        ? this.episodes.map((i) => i.toJson()).toList()
+        : null;
     return data;
   }
-
 }
 
 class SeasonEpisodes {
@@ -53,7 +66,20 @@ class SeasonEpisodes {
   List<SeasonEpisodesCrew> crew;
   List<SeasonEpisodesGuestStars> guestStars;
 
-  SeasonEpisodes({this.airDate, this.name, this.overview, this.productionCode, this.stillPath, this.voteAverage, this.episodeNumber, this.id, this.seasonNumber, this.showId, this.voteCount, this.crew, this.guestStars});
+  SeasonEpisodes(
+      {this.airDate,
+      this.name,
+      this.overview,
+      this.productionCode,
+      this.stillPath,
+      this.voteAverage,
+      this.episodeNumber,
+      this.id,
+      this.seasonNumber,
+      this.showId,
+      this.voteCount,
+      this.crew,
+      this.guestStars});
 
   SeasonEpisodes.fromJson(Map<String, dynamic> json) {
     this.airDate = json['air_date'];
@@ -67,8 +93,16 @@ class SeasonEpisodes {
     this.seasonNumber = json['season_number'];
     this.showId = json['show_id'];
     this.voteCount = json['vote_count'];
-    this.crew = (json['crew'] as List)!=null?(json['crew'] as List).map((i) => SeasonEpisodesCrew.fromJson(i)).toList():null;
-    this.guestStars = (json['guest_stars'] as List)!=null?(json['guest_stars'] as List).map((i) => SeasonEpisodesGuestStars.fromJson(i)).toList():null;
+    this.crew = (json['crew'] as List) != null
+        ? (json['crew'] as List)
+            .map((i) => SeasonEpisodesCrew.fromJson(i))
+            .toList()
+        : null;
+    this.guestStars = (json['guest_stars'] as List) != null
+        ? (json['guest_stars'] as List)
+            .map((i) => SeasonEpisodesGuestStars.fromJson(i))
+            .toList()
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -84,8 +118,11 @@ class SeasonEpisodes {
     data['season_number'] = this.seasonNumber;
     data['show_id'] = this.showId;
     data['vote_count'] = this.voteCount;
-    data['crew'] = this.crew != null?this.crew.map((i) => i.toJson()).toList():null;
-    data['guest_stars'] = this.guestStars != null?this.guestStars.map((i) => i.toJson()).toList():null;
+    data['crew'] =
+        this.crew != null ? this.crew.map((i) => i.toJson()).toList() : null;
+    data['guest_stars'] = this.guestStars != null
+        ? this.guestStars.map((i) => i.toJson()).toList()
+        : null;
     return data;
   }
 }
@@ -99,7 +136,14 @@ class SeasonEpisodesCrew {
   int id;
   int gender;
 
-  SeasonEpisodesCrew({this.creditId, this.name, this.department, this.job, this.profilePath, this.id, this.gender});
+  SeasonEpisodesCrew(
+      {this.creditId,
+      this.name,
+      this.department,
+      this.job,
+      this.profilePath,
+      this.id,
+      this.gender});
 
   SeasonEpisodesCrew.fromJson(Map<String, dynamic> json) {
     this.creditId = json['credit_id'];
@@ -124,6 +168,7 @@ class SeasonEpisodesCrew {
   }
 }
 
-class SeasonEpisodesGuestStars extends SeasonEpisodesCrew{
-  SeasonEpisodesGuestStars.fromJson(Map<String, dynamic> json) : super.fromJson(json);
+class SeasonEpisodesGuestStars extends SeasonEpisodesCrew {
+  SeasonEpisodesGuestStars.fromJson(Map<String, dynamic> json)
+      : super.fromJson(json);
 }

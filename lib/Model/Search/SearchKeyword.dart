@@ -6,11 +6,15 @@ class SearchKeyword {
 
   SearchKeyword({this.page, this.totalPages, this.totalResults, this.results});
 
-  SearchKeyword.fromJson(Map<String, dynamic> json) {    
+  SearchKeyword.fromJson(Map<String, dynamic> json) {
     this.page = json['page'];
     this.totalPages = json['total_pages'];
     this.totalResults = json['total_results'];
-    this.results = (json['results'] as List)!=null?(json['results'] as List).map((i) => SearchKeywordResults.fromJson(i)).toList():null;
+    this.results = (json['results'] as List) != null
+        ? (json['results'] as List)
+            .map((i) => SearchKeywordResults.fromJson(i))
+            .toList()
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -18,10 +22,11 @@ class SearchKeyword {
     data['page'] = this.page;
     data['total_pages'] = this.totalPages;
     data['total_results'] = this.totalResults;
-    data['results'] = this.results != null?this.results.map((i) => i.toJson()).toList():null;
+    data['results'] = this.results != null
+        ? this.results.map((i) => i.toJson()).toList()
+        : null;
     return data;
   }
-
 }
 
 class SearchKeywordResults {

@@ -9,7 +9,7 @@ class ProductionCompanies {
   ProductionCompanies({this.logoPath, this.name, this.originCountry, this.id});
 
   ProductionCompanies.fromJson(Map<String, dynamic> json) {
-    this.logoPath =  Utils.userConditionalUrl(json['logo_path'], null, true);
+    this.logoPath = Utils.userConditionalUrl(json['logo_path'], null, true);
     this.name = json['name'];
     this.originCountry = json['origin_country'];
     this.id = json['id'];

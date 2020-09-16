@@ -12,7 +12,6 @@
 //  "status_message": "Session denied."
 //}
 
-
 ///success response after create session with login
 //{
 //  "success": true,
@@ -34,9 +33,10 @@ class CreateSessionResponse {
   String sessionId;
   String expiresAt;
 
-  CreateSessionResponse({this.statusMessage, this.success, this.failure, this.statusCode});
+  CreateSessionResponse(
+      {this.statusMessage, this.success, this.failure, this.statusCode});
 
-  CreateSessionResponse.fromJson(Map<String, dynamic> json) {    
+  CreateSessionResponse.fromJson(Map<String, dynamic> json) {
     this.statusMessage = json['status_message'];
     this.success = json['success'];
     this.failure = json['failure'];
@@ -55,5 +55,4 @@ class CreateSessionResponse {
     data['expires_at'] = this.expiresAt;
     return data;
   }
-
 }

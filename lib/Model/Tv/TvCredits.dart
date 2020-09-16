@@ -1,5 +1,5 @@
-
 import 'package:easytmdb/Helper/Utils.dart';
+
 class TvCredits {
   int id;
   List<TvCreditsCast> cast;
@@ -9,24 +9,23 @@ class TvCredits {
 
   TvCredits.fromJson(Map<String, dynamic> json) {
     this.id = json['id'];
-    this.cast =
-    (json['cast'] as List) != null ? (json['cast'] as List).map((i) =>
-        TvCreditsCast.fromJson(i)).toList() : null;
-    this.crew =
-    (json['crew'] as List) != null ? (json['crew'] as List).map((i) =>
-        TvCreditsCrew.fromJson(i)).toList() : null;
+    this.cast = (json['cast'] as List) != null
+        ? (json['cast'] as List).map((i) => TvCreditsCast.fromJson(i)).toList()
+        : null;
+    this.crew = (json['crew'] as List) != null
+        ? (json['crew'] as List).map((i) => TvCreditsCrew.fromJson(i)).toList()
+        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['cast'] =
-    this.cast != null ? this.cast.map((i) => i.toJson()).toList() : null;
+        this.cast != null ? this.cast.map((i) => i.toJson()).toList() : null;
     data['crew'] =
-    this.crew != null ? this.crew.map((i) => i.toJson()).toList() : null;
+        this.crew != null ? this.crew.map((i) => i.toJson()).toList() : null;
     return data;
   }
-
 }
 
 class TvCreditsCast {
@@ -40,14 +39,21 @@ class TvCreditsCast {
   int order;
 
   TvCreditsCast(
-      {this.character, this.creditId, this.name, this.profilePath, this.castId, this.gender, this.id, this.order});
+      {this.character,
+      this.creditId,
+      this.name,
+      this.profilePath,
+      this.castId,
+      this.gender,
+      this.id,
+      this.order});
 
   TvCreditsCast.fromJson(Map<String, dynamic> json) {
     this.character = json['character'];
     this.creditId = json['credit_id'];
     this.name = json['name'];
-    this.profilePath = Utils.userConditionalUrl(
-        json['profile_path'], null, true);
+    this.profilePath =
+        Utils.userConditionalUrl(json['profile_path'], null, true);
     this.castId = json['cast_id'];
     this.gender = json['gender'];
     this.id = json['id'];
@@ -78,15 +84,21 @@ class TvCreditsCrew {
   int id;
 
   TvCreditsCrew(
-      {this.creditId, this.department, this.job, this.name, this.profilePath, this.gender, this.id});
+      {this.creditId,
+      this.department,
+      this.job,
+      this.name,
+      this.profilePath,
+      this.gender,
+      this.id});
 
   TvCreditsCrew.fromJson(Map<String, dynamic> json) {
     this.creditId = json['credit_id'];
     this.department = json['department'];
     this.job = json['job'];
     this.name = json['name'];
-    this.profilePath = Utils.userConditionalUrl(
-        json['profile_path'], null, true);
+    this.profilePath =
+        Utils.userConditionalUrl(json['profile_path'], null, true);
     this.gender = json['gender'];
     this.id = json['id'];
   }

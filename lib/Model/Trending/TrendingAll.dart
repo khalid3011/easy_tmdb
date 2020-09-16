@@ -8,11 +8,15 @@ class TrendingAll {
 
   TrendingAll({this.page, this.totalPages, this.totalResults, this.results});
 
-  TrendingAll.fromJson(Map<String, dynamic> json) {    
+  TrendingAll.fromJson(Map<String, dynamic> json) {
     this.page = json['page'];
     this.totalPages = json['total_pages'];
     this.totalResults = json['total_results'];
-    this.results = (json['results'] as List)!=null?(json['results'] as List).map((i) => TrendingAllRsults.fromJson(i)).toList():null;
+    this.results = (json['results'] as List) != null
+        ? (json['results'] as List)
+            .map((i) => TrendingAllRsults.fromJson(i))
+            .toList()
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -20,10 +24,11 @@ class TrendingAll {
     data['page'] = this.page;
     data['total_pages'] = this.totalPages;
     data['total_results'] = this.totalResults;
-    data['results'] = this.results != null?this.results.map((i) => i.toJson()).toList():null;
+    data['results'] = this.results != null
+        ? this.results.map((i) => i.toJson()).toList()
+        : null;
     return data;
   }
-
 }
 
 class TrendingAllRsults {
@@ -43,15 +48,32 @@ class TrendingAllRsults {
   int voteCount;
   List<int> genreIds;
 
-  TrendingAllRsults({this.title, this.releaseDate, this.originalLanguage, this.originalTitle, this.backdropPath, this.overview, this.posterPath, this.mediaType, this.video, this.adult, this.voteAverage, this.popularity, this.id, this.voteCount, this.genreIds});
+  TrendingAllRsults(
+      {this.title,
+      this.releaseDate,
+      this.originalLanguage,
+      this.originalTitle,
+      this.backdropPath,
+      this.overview,
+      this.posterPath,
+      this.mediaType,
+      this.video,
+      this.adult,
+      this.voteAverage,
+      this.popularity,
+      this.id,
+      this.voteCount,
+      this.genreIds});
 
   TrendingAllRsults.fromJson(Map<String, dynamic> json) {
     this.title = json['title'];
     this.releaseDate = json['release_date'];
     this.originalLanguage = json['original_language'];
     this.originalTitle = json['original_title'];
-    this.posterPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], true);
-    this.backdropPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], false);
+    this.posterPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], true);
+    this.backdropPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], false);
     this.overview = json['overview'];
     this.mediaType = json['media_type'];
     this.video = json['video'];
@@ -63,7 +85,7 @@ class TrendingAllRsults {
 
     List<dynamic> genreIdsList = json['genre_ids'];
     this.genreIds = new List();
-    if(genreIdsList != null){
+    if (genreIdsList != null) {
       this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
   }

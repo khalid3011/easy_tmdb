@@ -58,13 +58,13 @@ class UrlMaker {
   }
 
   static String createSeason() {
-    String path = "/authentication/session/new";
-    return path + _key();
+    String path = "authentication/session/new";
+    return _baseUrl + path + _key();
   }
 
   static String createSeasonWithLogin() {
-    String path = "/authentication/token/validate_with_login";
-    return path + _key();
+    String path = "authentication/token/validate_with_login";
+    return _baseUrl + path + _key();
   }
 
   ///USERS

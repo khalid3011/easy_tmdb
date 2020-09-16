@@ -19,7 +19,24 @@ class Crew {
   int voteCount;
   List<int> genreIds;
 
-  Crew({this.department, this.originalLanguage, this.originalTitle, this.job, this.overview, this.releaseDate, this.title, this.backdropPath, this.posterPath, this.creditId, this.video, this.adult, this.voteAverage, this.popularity, this.id, this.voteCount, this.genreIds});
+  Crew(
+      {this.department,
+      this.originalLanguage,
+      this.originalTitle,
+      this.job,
+      this.overview,
+      this.releaseDate,
+      this.title,
+      this.backdropPath,
+      this.posterPath,
+      this.creditId,
+      this.video,
+      this.adult,
+      this.voteAverage,
+      this.popularity,
+      this.id,
+      this.voteCount,
+      this.genreIds});
 
   Crew.fromJson(Map<String, dynamic> json) {
     this.department = json['department'];
@@ -29,8 +46,10 @@ class Crew {
     this.overview = json['overview'];
     this.releaseDate = json['release_date'];
     this.title = json['title'];
-    this.posterPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], true);
-    this.backdropPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], false);
+    this.posterPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], true);
+    this.backdropPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], false);
     this.creditId = json['credit_id'];
     this.video = json['video'];
     this.adult = json['adult'];
@@ -41,7 +60,7 @@ class Crew {
 
     List<dynamic> genreIdsList = json['genre_ids'];
     this.genreIds = new List();
-    if(genreIdsList != null){
+    if (genreIdsList != null) {
       this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
   }

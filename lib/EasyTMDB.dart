@@ -1,8 +1,8 @@
-import 'package:easytmdb/Category/ImageSize.dart';
-
+import 'Category/Auth.dart';
 import 'Category/Discover.dart';
 import 'Category/Episode.dart';
 import 'Category/FindExternal.dart';
+import 'Category/ImageSize.dart';
 import 'Category/Movie.dart';
 import 'Category/Peoples.dart';
 import 'Category/Search.dart';
@@ -10,6 +10,7 @@ import 'Category/Trending.dart';
 import 'Category/Tv.dart';
 import 'Category/Genre.dart';
 import 'Category/Seasons.dart';
+import 'Category/User.dart';
 
 class EasyTMDB {
   static String mKey;
@@ -97,4 +98,8 @@ class EasyTMDB {
   Genre genres() => Genre();
 
   ImageSize imageSize() => ImageSize();
+
+  Auth auth() => Auth();
+
+  User user() => User();
 }

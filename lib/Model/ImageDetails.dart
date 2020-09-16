@@ -7,7 +7,14 @@ class ImageDetails {
   int height;
   int voteCount;
 
-  ImageDetails({this.iso6391, this.filePath, this.voteAverage, this.aspectRatio, this.width, this.height, this.voteCount});
+  ImageDetails(
+      {this.iso6391,
+      this.filePath,
+      this.voteAverage,
+      this.aspectRatio,
+      this.width,
+      this.height,
+      this.voteCount});
 
   ImageDetails.fromJson(Map<String, dynamic> json) {
     this.iso6391 = json['iso_639_1'];

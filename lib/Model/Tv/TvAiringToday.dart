@@ -8,11 +8,15 @@ class TvAiringToday {
 
   TvAiringToday({this.page, this.totalResults, this.totalPages, this.results});
 
-  TvAiringToday.fromJson(Map<String, dynamic> json) {    
+  TvAiringToday.fromJson(Map<String, dynamic> json) {
     this.page = json['page'];
     this.totalResults = json['total_results'];
     this.totalPages = json['total_pages'];
-    this.results = (json['results'] as List)!=null?(json['results'] as List).map((i) => TvAiringTodayResults.fromJson(i)).toList():null;
+    this.results = (json['results'] as List) != null
+        ? (json['results'] as List)
+            .map((i) => TvAiringTodayResults.fromJson(i))
+            .toList()
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -20,10 +24,11 @@ class TvAiringToday {
     data['page'] = this.page;
     data['total_results'] = this.totalResults;
     data['total_pages'] = this.totalPages;
-    data['results'] = this.results != null?this.results.map((i) => i.toJson()).toList():null;
+    data['results'] = this.results != null
+        ? this.results.map((i) => i.toJson()).toList()
+        : null;
     return data;
   }
-
 }
 
 class TvAiringTodayResults {
@@ -41,7 +46,20 @@ class TvAiringTodayResults {
   List<int> genreIds;
   List<String> originCountry;
 
-  TvAiringTodayResults({this.originalName, this.name, this.firstAirDate, this.backdropPath, this.originalLanguage, this.overview, this.posterPath, this.popularity, this.voteAverage, this.voteCount, this.id, this.genreIds, this.originCountry});
+  TvAiringTodayResults(
+      {this.originalName,
+      this.name,
+      this.firstAirDate,
+      this.backdropPath,
+      this.originalLanguage,
+      this.overview,
+      this.posterPath,
+      this.popularity,
+      this.voteAverage,
+      this.voteCount,
+      this.id,
+      this.genreIds,
+      this.originCountry});
 
   TvAiringTodayResults.fromJson(Map<String, dynamic> json) {
     this.originalName = json['original_name'];
@@ -49,8 +67,10 @@ class TvAiringTodayResults {
     this.firstAirDate = json['first_air_date'];
     this.originalLanguage = json['original_language'];
     this.overview = json['overview'];
-    this.posterPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], true);
-    this.backdropPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], false);
+    this.posterPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], true);
+    this.backdropPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], false);
     this.popularity = json['popularity'];
     this.voteAverage = json['vote_average'];
     this.voteCount = json['vote_count'];
@@ -58,13 +78,13 @@ class TvAiringTodayResults {
 
     List<dynamic> genreIdsList = json['genre_ids'];
     this.genreIds = new List();
-    if(genreIdsList != null){
+    if (genreIdsList != null) {
       this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
 
     List<dynamic> originCountryList = json['origin_country'];
     this.originCountry = new List();
-    if(originCountryList != null){
+    if (originCountryList != null) {
       this.originCountry.addAll(originCountryList.map((o) => o.toString()));
     }
   }

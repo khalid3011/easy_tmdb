@@ -14,7 +14,7 @@ class Auth {
         : Utils.error(response);
   }
 
-  String askPermissionUrl({String token, bool autoGenerateToken = false}) {
+  String askPermissionUrl(String token, {bool autoGenerateToken = false}) {
     if (autoGenerateToken) {
       requestToken().then((value) {
         return UrlMaker.askPermission(value.requestToken);
@@ -24,9 +24,13 @@ class Auth {
     return UrlMaker.askPermission(token);
   }
 
-  askPermissionWithLogin(String username, String password,{String token, bool autoGenerateToken = false}) async {
-
-    if(autoGenerateToken){
+  Future<CreateSessionResponse> askPermissionWithLogin(
+    String username,
+    String password,
+    String token, {
+    bool autoGenerateToken = false,
+  }) async {
+    if (autoGenerateToken) {
       await requestToken().then((value) {
         token = value.requestToken;
       });

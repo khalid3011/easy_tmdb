@@ -1,6 +1,6 @@
 name: easytmdb
-description: easy way to fetch data from THE MOVIE DATABASE
-version: 1.1.2
+description: easytmdb is a data fetching library based on THE MOVIE DATABASE(TMDB) server.
+version: 1.1.3
 homepage: https://github.com/myThic-cosmos/easy_tmdb
 
 environment:

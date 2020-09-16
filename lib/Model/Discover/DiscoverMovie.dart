@@ -8,11 +8,15 @@ class DiscoverMovie {
 
   DiscoverMovie({this.page, this.totalResults, this.totalPages, this.results});
 
-  DiscoverMovie.fromJson(Map<String, dynamic> json) {    
+  DiscoverMovie.fromJson(Map<String, dynamic> json) {
     this.page = json['page'];
     this.totalResults = json['total_results'];
     this.totalPages = json['total_pages'];
-    this.results = (json['results'] as List)!=null?(json['results'] as List).map((i) => DiscoverMovieResults.fromJson(i)).toList():null;
+    this.results = (json['results'] as List) != null
+        ? (json['results'] as List)
+            .map((i) => DiscoverMovieResults.fromJson(i))
+            .toList()
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -20,10 +24,11 @@ class DiscoverMovie {
     data['page'] = this.page;
     data['total_results'] = this.totalResults;
     data['total_pages'] = this.totalPages;
-    data['results'] = this.results != null?this.results.map((i) => i.toJson()).toList():null;
+    data['results'] = this.results != null
+        ? this.results.map((i) => i.toJson()).toList()
+        : null;
     return data;
   }
-
 }
 
 class DiscoverMovieResults {
@@ -42,11 +47,27 @@ class DiscoverMovieResults {
   int id;
   List<int> genreIds;
 
-  DiscoverMovieResults({this.posterPath, this.backdropPath, this.originalLanguage, this.originalTitle, this.title, this.overview, this.releaseDate, this.video, this.adult, this.popularity, this.voteAverage, this.voteCount, this.id, this.genreIds});
+  DiscoverMovieResults(
+      {this.posterPath,
+      this.backdropPath,
+      this.originalLanguage,
+      this.originalTitle,
+      this.title,
+      this.overview,
+      this.releaseDate,
+      this.video,
+      this.adult,
+      this.popularity,
+      this.voteAverage,
+      this.voteCount,
+      this.id,
+      this.genreIds});
 
   DiscoverMovieResults.fromJson(Map<String, dynamic> json) {
-    this.posterPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], true);
-    this.backdropPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], false);
+    this.posterPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], true);
+    this.backdropPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], false);
     this.originalLanguage = json['original_language'];
     this.originalTitle = json['original_title'];
     this.title = json['title'];
@@ -61,7 +82,7 @@ class DiscoverMovieResults {
 
     List<dynamic> genreIdsList = json['genre_ids'];
     this.genreIds = new List();
-    if(genreIdsList != null){
+    if (genreIdsList != null) {
       this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
   }

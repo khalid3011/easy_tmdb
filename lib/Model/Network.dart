@@ -1,6 +1,6 @@
 import 'package:easytmdb/Helper/Utils.dart';
 
-class Network{
+class Network {
   String name;
   String logoPath;
   String originCountry;

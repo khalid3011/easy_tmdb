@@ -1,4 +1,3 @@
-
 class DiscoverHelper {
   getMovieKeys() {
     var movieKeys = {

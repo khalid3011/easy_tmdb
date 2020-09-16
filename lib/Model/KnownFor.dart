@@ -16,12 +16,26 @@ class KnownFor {
   List<String> originCountry;
 
   KnownFor(
-      {this.originalName, this.posterPath, this.mediaType, this.name, this.firstAirDate, this.originalLanguage, this.backdropPath, this.overview, this.voteAverage, this.voteCount, this.id, this.genreIds, this.originCountry});
+      {this.originalName,
+      this.posterPath,
+      this.mediaType,
+      this.name,
+      this.firstAirDate,
+      this.originalLanguage,
+      this.backdropPath,
+      this.overview,
+      this.voteAverage,
+      this.voteCount,
+      this.id,
+      this.genreIds,
+      this.originCountry});
 
   KnownFor.fromJson(Map<String, dynamic> json) {
     this.originalName = json['original_name'];
-    this.posterPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], true);
-    this.backdropPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], false);
+    this.posterPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], true);
+    this.backdropPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], false);
     this.mediaType = json['media_type'];
     this.name = json['name'];
     this.firstAirDate = json['first_air_date'];
@@ -33,16 +47,15 @@ class KnownFor {
 
     List<dynamic> genreIdsList = json['genre_ids'];
     this.genreIds = new List();
-    if(genreIdsList != null){
+    if (genreIdsList != null) {
       this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
 
     List<dynamic> originCountryList = json['origin_country'];
     this.originCountry = new List();
-    if(originCountryList != null){
+    if (originCountryList != null) {
       this.originCountry.addAll(originCountryList.map((o) => o.toString()));
     }
-
   }
 
   Map<String, dynamic> toJson() {

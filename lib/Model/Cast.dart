@@ -18,13 +18,31 @@ class Cast {
   int voteCount;
   List<int> genreIds;
 
-  Cast({this.character, this.creditId, this.posterPath, this.backdropPath, this.originalLanguage, this.originalTitle, this.title, this.overview, this.releaseDate, this.video, this.adult, this.popularity, this.voteAverage, this.id, this.voteCount, this.genreIds});
+  Cast(
+      {this.character,
+      this.creditId,
+      this.posterPath,
+      this.backdropPath,
+      this.originalLanguage,
+      this.originalTitle,
+      this.title,
+      this.overview,
+      this.releaseDate,
+      this.video,
+      this.adult,
+      this.popularity,
+      this.voteAverage,
+      this.id,
+      this.voteCount,
+      this.genreIds});
 
   Cast.fromJson(Map<String, dynamic> json) {
     this.character = json['character'];
     this.creditId = json['credit_id'];
-    this.posterPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], true);
-    this.backdropPath = Utils.userConditionalUrl(json['poster_path'], json['backdrop_path'], false);
+    this.posterPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], true);
+    this.backdropPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], false);
     this.originalLanguage = json['original_language'];
     this.originalTitle = json['original_title'];
     this.title = json['title'];
@@ -39,7 +57,7 @@ class Cast {
 
     List<dynamic> genreIdsList = json['genre_ids'];
     this.genreIds = new List();
-    if(genreIdsList != null){
+    if (genreIdsList != null) {
       this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
   }

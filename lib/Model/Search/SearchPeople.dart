@@ -54,7 +54,8 @@ class SearchPeopleResults {
   SearchPeopleResults.fromJson(Map<String, dynamic> json) {
     this.knownForDepartment = json['known_for_department'];
     this.name = json['name'];
-    this.profilePath = Utils.userConditionalUrl(json['profile_path'], null, true);
+    this.profilePath =
+        Utils.userConditionalUrl(json['profile_path'], null, true);
     this.adult = json['adult'];
     this.popularity = json['popularity'];
     this.id = json['id'];
