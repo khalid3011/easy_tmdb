@@ -16,7 +16,7 @@ import 'package:easytmdb/Helper/UrlMaker.dart';
 class Tv {
   //TV images
   Future<TvImage> image(int tvId) async {
-    var response = await http.get(UrlMaker.tvImage(tvId));
+    final response = await http.get(UrlMaker.tvImage(tvId));
 
     return Utils.isValidResponse(response)
         ? TvImage.fromJson(json.decode(response.body))
@@ -25,7 +25,7 @@ class Tv {
 
   //TV credits
   Future<TvCredits> credits(int tvId) async {
-    var response = await http.get(UrlMaker.tvCredits(tvId));
+    final response = await http.get(UrlMaker.tvCredits(tvId));
 
     return Utils.isValidResponse(response)
         ? TvCredits.fromJson(json.decode(response.body))
@@ -34,7 +34,7 @@ class Tv {
 
   //TV details
   Future<TvDetails> details(int tvId, {String language}) async {
-    var response = await http.get(UrlMaker.tvDetails(tvId, language));
+    final response = await http.get(UrlMaker.tvDetails(tvId, language));
 
     return Utils.isValidResponse(response)
         ? TvDetails.fromJson(json.decode(response.body))
@@ -89,7 +89,7 @@ class Tv {
 
   //TV latest
   Future<TvLatest> latest({String language}) async {
-    var response = await http.get(UrlMaker.tvLatest(language));
+    final response = await http.get(UrlMaker.tvLatest(language));
 
     return Utils.isValidResponse(response)
         ? TvLatest.fromJson(json.decode(response.body))
@@ -101,7 +101,7 @@ class Tv {
     bool validImagePath,
     int items,
   }) async {
-    var response = await latest();
+    final response = await latest();
     List<TvDetails> _result;
 
     try {
@@ -224,7 +224,7 @@ class Tv {
 
   //Tv video. (Trailer)
   Future<Video> video(int tvId) async {
-    var response = await http.get(UrlMaker.tvVideo(tvId));
+    final response = await http.get(UrlMaker.tvVideo(tvId));
     return Utils.isValidResponse(response)
         ? Video.fromJson(json.decode(response.body))
         : Utils.error(response);

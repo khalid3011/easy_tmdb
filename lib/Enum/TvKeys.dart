@@ -1,4 +1,4 @@
-enum TvKey {
+enum TvKeys {
   LANGUAGE,
   SORT_BY,
   AIR_DATE_GTE,
@@ -23,7 +23,7 @@ enum TvKey {
   WITH_NETWORKS
 }
 
-extension normalize on TvKey {
+extension normalize on TvKeys {
   String get value {
     String rawValue = this.toString().toLowerCase().split('.').last;
     rawValue.replaceAll("_gte", ".gte");

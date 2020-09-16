@@ -1,6 +1,6 @@
 ///last collect 15/8/20
-///check new form EasyTMDB.genre()
-enum TvGenres{
+///check new form EasyTMDB.genre().tv()
+enum TvGenres {
   Action_Adventure,
   Animation,
   Comedy,

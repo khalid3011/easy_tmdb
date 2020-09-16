@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 class Trending {
   Future<TrendingMovie> movieDay() async {
-    var response = await http.get(UrlMaker.trendingMovieDay());
+    final response = await http.get(UrlMaker.trendingMovieDay());
 
     return Utils.isValidResponse(response)
         ? TrendingMovie.fromJson(json.decode(response.body))
@@ -17,7 +17,7 @@ class Trending {
   }
 
   Future<TrendingMovie> movieWeek() async {
-    var response = await http.get(UrlMaker.trendingMovieWeek());
+    final response = await http.get(UrlMaker.trendingMovieWeek());
 
     return Utils.isValidResponse(response)
         ? TrendingMovie.fromJson(json.decode(response.body))
@@ -25,7 +25,7 @@ class Trending {
   }
 
   Future<TrendingTv> tvDay() async {
-    var response = await http.get(UrlMaker.trendingTvDay());
+    final response = await http.get(UrlMaker.trendingTvDay());
 
     return Utils.isValidResponse(response)
         ? TrendingTv.fromJson(json.decode(response.body))
@@ -33,7 +33,7 @@ class Trending {
   }
 
   Future<TrendingTv> tvWeek() async {
-    var response = await http.get(UrlMaker.trendingTvWeek());
+    final response = await http.get(UrlMaker.trendingTvWeek());
 
     return Utils.isValidResponse(response)
         ? TrendingTv.fromJson(json.decode(response.body))
@@ -44,7 +44,7 @@ class Trending {
 /*
 // run and solve error (solve later)
   Future<TrendingPerson> personDay() async {
-    var response = await http.get(UrlMaker.trendingPersonDay());
+    final response = await http.get(UrlMaker.trendingPersonDay());
 
     return Utils.isValidResponse(response)
         ? TrendingPerson.fromJson(json.decode(response.body))
@@ -53,7 +53,7 @@ class Trending {
 
 //run and solve error (solve later)
   Future<TrendingPerson> personWeek() async {
-    var response = await http.get(UrlMaker.trendingPersonWeek());
+    final response = await http.get(UrlMaker.trendingPersonWeek());
 
     return Utils.isValidResponse(response)
         ? TrendingPerson.fromJson(json.decode(response.body))
@@ -62,7 +62,7 @@ class Trending {
   */
 
   Future<TrendingAll> allDay() async {
-    var response = await http.get(UrlMaker.trendingAllDay());
+    final response = await http.get(UrlMaker.trendingAllDay());
 
     return Utils.isValidResponse(response)
         ? TrendingAll.fromJson(json.decode(response.body))
@@ -70,7 +70,7 @@ class Trending {
   }
 
   Future<TrendingAll> allWeek() async {
-    var response = await http.get(UrlMaker.trendingAllWeek());
+    final response = await http.get(UrlMaker.trendingAllWeek());
 
     return Utils.isValidResponse(response)
         ? TrendingAll.fromJson(json.decode(response.body))

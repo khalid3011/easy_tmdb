@@ -1,3 +1,5 @@
+import 'package:easytmdb/Category/ImageSize.dart';
+
 import 'Category/Discover.dart';
 import 'Category/Episode.dart';
 import 'Category/FindExternal.dart';
@@ -25,23 +27,23 @@ class EasyTMDB {
       {
 
       ///default language : en-US
-      ///thats not so important
       String language,
 
       ///image size contains image quality
-      ///all image size are [w92, w154, w185, w342, w500, w780, original]
       String imageSize,
 
-      ///api has 3 types of url
+      ///api has 5 types of image url
       ///1) poster path
       ///2) backdrop path
-      ///3)
+      ///3) logo
+      ///4) profile
+      ///5) still
       ///sometime url returns null. for that app will be crash.
       ///for ignore this problem set a default image
       ///default image url : https://ispab.org/wp-content/themes/consultix/images/no-image-found-360x260.png
       String alternativeImageUrl,
 
-      ///path returns only path
+      ///path returns only image path
       ///but for display a image it need a full url
       ///that generate the full url with image size
       ///default value is true
@@ -49,14 +51,14 @@ class EasyTMDB {
 
       /// fixUrl also return full url with complete extra condition
       ///some object contains poster path and backdrop path
-      ///fixUrl return a valid url
+      ///fixUrl return a valid url followed bellow steps
       ///at first check posterPath. if its valid then return poster path
-      ///otherwise check backdropPath if valid the return backdropPath
+      ///otherwise check backdropPath if valid then return backdropPath
       ///otherwise return noImage
       ///default value is FALSE
       bool fixUrl}) {
     if (tmdbKey == null || tmdbKey.trim().length == 0) {
-      throw Exception("Invalid tmdb key");
+      throw Exception("TMDB key is required");
     } else {
       _init(tmdbKey, language, imageSize, alternativeImageUrl, fixUrl, fullUrl);
     }
@@ -93,4 +95,6 @@ class EasyTMDB {
   Discover discover() => Discover();
 
   Genre genres() => Genre();
+
+  ImageSize imageSize() => ImageSize();
 }

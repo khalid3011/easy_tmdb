@@ -18,7 +18,7 @@ import '../Model/Movie/MoviePopular.dart';
 class Movie {
   //MOVIE images
   Future<MovieImage> image(int movieId) async {
-    var response = await http.get(UrlMaker.movieImage(movieId));
+    final response = await http.get(UrlMaker.movieImage(movieId));
 
     return Utils.isValidResponse(response)
         ? MovieImage.fromJson(json.decode(response.body))
@@ -27,7 +27,7 @@ class Movie {
 
   //MOVIE credits
   Future<MovieCredits> credits(int movieId) async {
-    var response = await http.get(UrlMaker.movieCredits(movieId));
+    final response = await http.get(UrlMaker.movieCredits(movieId));
 
     return Utils.isValidResponse(response)
         ? MovieCredits.fromJson(json.decode(response.body))
@@ -36,7 +36,7 @@ class Movie {
 
   //MOVIE details
   Future<MovieDetails> details(int movieId, {String language}) async {
-    var response = await http.get(UrlMaker.movieDetails(movieId, language));
+    final response = await http.get(UrlMaker.movieDetails(movieId, language));
 
     return Utils.isValidResponse(response)
         ? MovieDetails.fromJson(json.decode(response.body))
@@ -107,7 +107,7 @@ class Movie {
 
   //MOVIE latest
   Future<MovieLatest> latest({String language}) async {
-    var response = await http.get(UrlMaker.movieLatest(language));
+    final response = await http.get(UrlMaker.movieLatest(language));
 
     return Utils.isValidResponse(response)
         ? MovieLatest.fromJson(json.decode(response.body))
@@ -119,7 +119,7 @@ class Movie {
     bool validImagePath,
     int items,
   }) async {
-    var response = await latest();
+    final response = await latest();
     List<MovieDetails> _result;
 
     try {
@@ -230,7 +230,7 @@ class Movie {
 
   //Tv video. (Trailer)
   Future<Video> video(int movieId) async {
-    var response = await http.get(UrlMaker.movieVideo(movieId));
+    final response = await http.get(UrlMaker.movieVideo(movieId));
     return Utils.isValidResponse(response)
         ? Video.fromJson(json.decode(response.body))
         : Utils.error(response);

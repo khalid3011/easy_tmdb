@@ -9,8 +9,8 @@ enum ExternalSource {
   instagram_id*/
 }
 
-extension normalize on ExternalSource{
-  String get name{
+extension normalize on ExternalSource {
+  String get name {
     return this.toString().split('.').last;
   }
 }

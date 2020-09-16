@@ -9,9 +9,9 @@ import 'package:easytmdb/Model/People/PeoplePopular.dart';
 import 'package:easytmdb/Model/People/PeopleTvCredits.dart';
 import 'package:http/http.dart' as http;
 
-class Peoples{
+class Peoples {
   Future<PeopleDetails> details(int personId) async {
-    var response = await http.get(UrlMaker.peopleDetails(personId));
+    final response = await http.get(UrlMaker.peopleDetails(personId));
 
     return Utils.isValidResponse(response)
         ? PeopleDetails.fromJson(json.decode(response.body))
@@ -19,7 +19,7 @@ class Peoples{
   }
 
   Future<PeopleImage> image(int personId) async {
-    var response = await http.get(UrlMaker.peopleImage(personId));
+    final response = await http.get(UrlMaker.peopleImage(personId));
 
     return Utils.isValidResponse(response)
         ? PeopleImage.fromJson(json.decode(response.body))
@@ -27,7 +27,7 @@ class Peoples{
   }
 
   Future<PeopleMovieCredits> movieCredits(int personId) async {
-    var response = await http.get(UrlMaker.peopleMovieCredits(personId));
+    final response = await http.get(UrlMaker.peopleMovieCredits(personId));
 
     return Utils.isValidResponse(response)
         ? PeopleMovieCredits.fromJson(json.decode(response.body))
@@ -35,16 +35,15 @@ class Peoples{
   }
 
   Future<PeopleTvCredits> tvCredits(int personId) async {
-    var response = await http.get(UrlMaker.peopleTvCredits(personId));
+    final response = await http.get(UrlMaker.peopleTvCredits(personId));
 
     return Utils.isValidResponse(response)
         ? PeopleTvCredits.fromJson(json.decode(response.body))
         : Utils.error(response);
   }
 
-
   Future<PeoplePopular> popular({int page, String language}) async {
-    var response = await http.get(UrlMaker.peoplePopular(page, language));
+    final response = await http.get(UrlMaker.peoplePopular(page, language));
 
     return Utils.isValidResponse(response)
         ? PeoplePopular.fromJson(json.decode(response.body))
