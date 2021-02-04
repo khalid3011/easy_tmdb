@@ -58,7 +58,7 @@ class EasyTMDB {
       bool fullUrl) {
     mKey = tmdbKey;
     mLanguage = language == null ? "en-US" : language;
-    mImageSize = imageSize == null ? "w342" : imageSize;
+    mImageSize = imageSize == null ? ImageSize().posterSize().original : imageSize;
     mAlternativeImageUrl = alternativeImageUrl == null
         ? "https://ispab.org/wp-content/themes/consultix/images/no-image-found-360x260.png"
         : alternativeImageUrl;
