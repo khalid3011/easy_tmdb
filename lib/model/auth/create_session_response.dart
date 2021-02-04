@@ -32,9 +32,17 @@ class CreateSessionResponse {
   int statusCode;
   String sessionId;
   String expiresAt;
+  String requestToken;
 
-  CreateSessionResponse(
-      {this.statusMessage, this.success, this.failure, this.statusCode});
+  CreateSessionResponse({
+    this.statusMessage,
+    this.success,
+    this.failure,
+    this.statusCode,
+    this.sessionId,
+    this.expiresAt,
+    this.requestToken,
+  });
 
   CreateSessionResponse.fromJson(Map<String, dynamic> json) {
     this.statusMessage = json['status_message'];
@@ -43,6 +51,7 @@ class CreateSessionResponse {
     this.statusCode = json['status_code'];
     this.sessionId = json['session_id'];
     this.expiresAt = json['expires_at'];
+    this.requestToken = json['request_token'];
   }
 
   Map<String, dynamic> toJson() {
@@ -53,6 +62,7 @@ class CreateSessionResponse {
     data['status_code'] = this.statusCode;
     data['session_id'] = this.sessionId;
     data['expires_at'] = this.expiresAt;
+    data['request_token'] = this.requestToken;
     return data;
   }
 }

@@ -1,5 +1,5 @@
-import 'package:easytmdb/EasyTMDB.dart';
-import 'package:easytmdb/Enum/UserCreatedSortBy.dart';
+import 'package:easytmdb/easyTMDB.dart';
+import 'package:easytmdb/Enum/user_created_sort_by.dart';
 
 class UrlMaker {
   ///init
@@ -57,14 +57,17 @@ class UrlMaker {
     return path + token;
   }
 
-  static String createSeason() {
+  static String createSeason(String token) {
     String path = "authentication/session/new";
-    return _baseUrl + path + _key();
+    String data = "&request_token=$token";
+    return _baseUrl + path + _key() + data;
   }
 
-  static String createSeasonWithLogin() {
+  static String createSeasonWithLogin(
+      String username, String password, String token) {
     String path = "authentication/token/validate_with_login";
-    return _baseUrl + path + _key();
+    String data = "&username=$username&password=$password&request_token=$token";
+    return _baseUrl + path + _key() + data;
   }
 
   ///USERS

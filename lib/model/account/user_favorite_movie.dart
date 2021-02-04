@@ -1,20 +1,21 @@
-import 'package:easytmdb/Helper/Utils.dart';
+import 'package:easytmdb/Helper/utils.dart';
 
-class UserRatedMovie {
+class UserFavoriteMovie {
   int page;
   int totalPages;
   int totalResults;
-  List<UserRatedMovieResults> results;
+  List<UserFavoriteMovieResults> results;
 
-  UserRatedMovie({this.page, this.totalPages, this.totalResults, this.results});
+  UserFavoriteMovie(
+      {this.page, this.totalPages, this.totalResults, this.results});
 
-  UserRatedMovie.fromJson(Map<String, dynamic> json) {
+  UserFavoriteMovie.fromJson(Map<String, dynamic> json) {
     this.page = json['page'];
     this.totalPages = json['total_pages'];
     this.totalResults = json['total_results'];
     this.results = (json['results'] as List) != null
         ? (json['results'] as List)
-            .map((i) => UserRatedMovieResults.fromJson(i))
+            .map((i) => UserFavoriteMovieResults.fromJson(i))
             .toList()
         : null;
   }
@@ -31,7 +32,7 @@ class UserRatedMovie {
   }
 }
 
-class UserRatedMovieResults {
+class UserFavoriteMovieResults {
   String title;
   String releaseDate;
   String originalLanguage;
@@ -45,10 +46,9 @@ class UserRatedMovieResults {
   double popularity;
   int id;
   int voteCount;
-  int rating;
   List<int> genreIds;
 
-  UserRatedMovieResults(
+  UserFavoriteMovieResults(
       {this.title,
       this.releaseDate,
       this.originalLanguage,
@@ -62,10 +62,9 @@ class UserRatedMovieResults {
       this.popularity,
       this.id,
       this.voteCount,
-      this.rating,
       this.genreIds});
 
-  UserRatedMovieResults.fromJson(Map<String, dynamic> json) {
+  UserFavoriteMovieResults.fromJson(Map<String, dynamic> json) {
     this.title = json['title'];
     this.releaseDate = json['release_date'];
     this.originalLanguage = json['original_language'];
@@ -81,7 +80,6 @@ class UserRatedMovieResults {
     this.popularity = json['popularity'];
     this.id = json['id'];
     this.voteCount = json['vote_count'];
-    this.rating = json['rating'];
 
     List<dynamic> genreIdsList = json['genre_ids'];
     this.genreIds = new List();
@@ -103,7 +101,6 @@ class UserRatedMovieResults {
     data['popularity'] = this.popularity;
     data['id'] = this.id;
     data['vote_count'] = this.voteCount;
-    data['rating'] = this.rating;
     data['genre_ids'] = this.genreIds;
     return data;
   }

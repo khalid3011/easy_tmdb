@@ -1,21 +1,21 @@
-import 'package:easytmdb/Helper/Utils.dart';
+import 'package:easytmdb/Helper/utils.dart';
 
-class UserFavoriteMovie {
+class UserMovieWatchList {
   int page;
   int totalPages;
   int totalResults;
-  List<UserFavoriteMovieResults> results;
+  List<UserMovieWatchListResults> results;
 
-  UserFavoriteMovie(
+  UserMovieWatchList(
       {this.page, this.totalPages, this.totalResults, this.results});
 
-  UserFavoriteMovie.fromJson(Map<String, dynamic> json) {
+  UserMovieWatchList.fromJson(Map<String, dynamic> json) {
     this.page = json['page'];
     this.totalPages = json['total_pages'];
     this.totalResults = json['total_results'];
     this.results = (json['results'] as List) != null
         ? (json['results'] as List)
-            .map((i) => UserFavoriteMovieResults.fromJson(i))
+            .map((i) => UserMovieWatchListResults.fromJson(i))
             .toList()
         : null;
   }
@@ -32,50 +32,50 @@ class UserFavoriteMovie {
   }
 }
 
-class UserFavoriteMovieResults {
-  String title;
-  String releaseDate;
+class UserMovieWatchListResults {
+  String backdropPath;
   String originalLanguage;
   String originalTitle;
-  String backdropPath;
   String overview;
   String posterPath;
-  bool video;
+  String releaseDate;
+  String title;
   bool adult;
+  bool video;
   double voteAverage;
   double popularity;
   int id;
   int voteCount;
   List<int> genreIds;
 
-  UserFavoriteMovieResults(
-      {this.title,
-      this.releaseDate,
+  UserMovieWatchListResults(
+      {this.backdropPath,
       this.originalLanguage,
       this.originalTitle,
-      this.backdropPath,
       this.overview,
       this.posterPath,
-      this.video,
+      this.releaseDate,
+      this.title,
       this.adult,
+      this.video,
       this.voteAverage,
       this.popularity,
       this.id,
       this.voteCount,
       this.genreIds});
 
-  UserFavoriteMovieResults.fromJson(Map<String, dynamic> json) {
-    this.title = json['title'];
-    this.releaseDate = json['release_date'];
-    this.originalLanguage = json['original_language'];
-    this.originalTitle = json['original_title'];
+  UserMovieWatchListResults.fromJson(Map<String, dynamic> json) {
     this.backdropPath = Utils.userConditionalUrl(
         json['poster_path'], json['backdrop_path'], false);
+    this.originalLanguage = json['original_language'];
+    this.originalTitle = json['original_title'];
     this.overview = json['overview'];
     this.posterPath = Utils.userConditionalUrl(
         json['poster_path'], json['backdrop_path'], true);
-    this.video = json['video'];
+    this.releaseDate = json['release_date'];
+    this.title = json['title'];
     this.adult = json['adult'];
+    this.video = json['video'];
     this.voteAverage = json['vote_average'];
     this.popularity = json['popularity'];
     this.id = json['id'];
@@ -88,15 +88,15 @@ class UserFavoriteMovieResults {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['release_date'] = this.releaseDate;
+    data['backdrop_path'] = this.backdropPath;
     data['original_language'] = this.originalLanguage;
     data['original_title'] = this.originalTitle;
-    data['backdrop_path'] = this.backdropPath;
     data['overview'] = this.overview;
     data['poster_path'] = this.posterPath;
-    data['video'] = this.video;
+    data['release_date'] = this.releaseDate;
+    data['title'] = this.title;
     data['adult'] = this.adult;
+    data['video'] = this.video;
     data['vote_average'] = this.voteAverage;
     data['popularity'] = this.popularity;
     data['id'] = this.id;

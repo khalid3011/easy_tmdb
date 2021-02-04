@@ -1,21 +1,21 @@
-import 'package:easytmdb/Helper/Utils.dart';
+import 'package:easytmdb/Helper/utils.dart';
 
-class UserRatedTvShow {
+class UserTvWatchList {
   int page;
   int totalPages;
   int totalResults;
-  List<UserRatedTvShowResults> results;
+  List<UserTvWatchListResults> results;
 
-  UserRatedTvShow(
+  UserTvWatchList(
       {this.page, this.totalPages, this.totalResults, this.results});
 
-  UserRatedTvShow.fromJson(Map<String, dynamic> json) {
+  UserTvWatchList.fromJson(Map<String, dynamic> json) {
     this.page = json['page'];
     this.totalPages = json['total_pages'];
     this.totalResults = json['total_results'];
     this.results = (json['results'] as List) != null
         ? (json['results'] as List)
-            .map((i) => UserRatedTvShowResults.fromJson(i))
+            .map((i) => UserTvWatchListResults.fromJson(i))
             .toList()
         : null;
   }
@@ -32,7 +32,7 @@ class UserRatedTvShow {
   }
 }
 
-class UserRatedTvShowResults {
+class UserTvWatchListResults {
   String originalName;
   String name;
   String firstAirDate;
@@ -44,11 +44,10 @@ class UserRatedTvShowResults {
   double popularity;
   int id;
   int voteCount;
-  int rating;
   List<int> genreIds;
   List<String> originCountry;
 
-  UserRatedTvShowResults(
+  UserTvWatchListResults(
       {this.originalName,
       this.name,
       this.firstAirDate,
@@ -60,11 +59,10 @@ class UserRatedTvShowResults {
       this.popularity,
       this.id,
       this.voteCount,
-      this.rating,
       this.genreIds,
       this.originCountry});
 
-  UserRatedTvShowResults.fromJson(Map<String, dynamic> json) {
+  UserTvWatchListResults.fromJson(Map<String, dynamic> json) {
     this.originalName = json['original_name'];
     this.name = json['name'];
     this.firstAirDate = json['first_air_date'];
@@ -78,7 +76,6 @@ class UserRatedTvShowResults {
     this.popularity = json['popularity'];
     this.id = json['id'];
     this.voteCount = json['vote_count'];
-    this.rating = json['rating'];
 
     List<dynamic> genreIdsList = json['genre_ids'];
     this.genreIds = new List();
@@ -102,7 +99,6 @@ class UserRatedTvShowResults {
     data['popularity'] = this.popularity;
     data['id'] = this.id;
     data['vote_count'] = this.voteCount;
-    data['rating'] = this.rating;
     data['genre_ids'] = this.genreIds;
     data['origin_country'] = this.originCountry;
     return data;

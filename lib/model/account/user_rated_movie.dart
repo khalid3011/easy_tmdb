@@ -1,21 +1,20 @@
-import 'package:easytmdb/Helper/Utils.dart';
+import 'package:easytmdb/Helper/utils.dart';
 
-class UserTvWatchList {
+class UserRatedMovie {
   int page;
   int totalPages;
   int totalResults;
-  List<UserTvWatchListResults> results;
+  List<UserRatedMovieResults> results;
 
-  UserTvWatchList(
-      {this.page, this.totalPages, this.totalResults, this.results});
+  UserRatedMovie({this.page, this.totalPages, this.totalResults, this.results});
 
-  UserTvWatchList.fromJson(Map<String, dynamic> json) {
+  UserRatedMovie.fromJson(Map<String, dynamic> json) {
     this.page = json['page'];
     this.totalPages = json['total_pages'];
     this.totalResults = json['total_results'];
     this.results = (json['results'] as List) != null
         ? (json['results'] as List)
-            .map((i) => UserTvWatchListResults.fromJson(i))
+            .map((i) => UserRatedMovieResults.fromJson(i))
             .toList()
         : null;
   }
@@ -32,75 +31,80 @@ class UserTvWatchList {
   }
 }
 
-class UserTvWatchListResults {
-  String originalName;
-  String name;
-  String firstAirDate;
-  String posterPath;
+class UserRatedMovieResults {
+  String title;
+  String releaseDate;
   String originalLanguage;
+  String originalTitle;
   String backdropPath;
   String overview;
+  String posterPath;
+  bool video;
+  bool adult;
   double voteAverage;
   double popularity;
   int id;
   int voteCount;
+  int rating;
   List<int> genreIds;
-  List<String> originCountry;
 
-  UserTvWatchListResults(
-      {this.originalName,
-      this.name,
-      this.firstAirDate,
-      this.posterPath,
+  UserRatedMovieResults(
+      {this.title,
+      this.releaseDate,
       this.originalLanguage,
+      this.originalTitle,
       this.backdropPath,
       this.overview,
+      this.posterPath,
+      this.video,
+      this.adult,
       this.voteAverage,
       this.popularity,
       this.id,
       this.voteCount,
-      this.genreIds,
-      this.originCountry});
+      this.rating,
+      this.genreIds});
 
-  UserTvWatchListResults.fromJson(Map<String, dynamic> json) {
-    this.originalName = json['original_name'];
-    this.name = json['name'];
-    this.firstAirDate = json['first_air_date'];
-    this.posterPath = Utils.userConditionalUrl(
-        json['poster_path'], json['backdrop_path'], true);
+  UserRatedMovieResults.fromJson(Map<String, dynamic> json) {
+    this.title = json['title'];
+    this.releaseDate = json['release_date'];
     this.originalLanguage = json['original_language'];
+    this.originalTitle = json['original_title'];
     this.backdropPath = Utils.userConditionalUrl(
         json['poster_path'], json['backdrop_path'], false);
     this.overview = json['overview'];
+    this.posterPath = Utils.userConditionalUrl(
+        json['poster_path'], json['backdrop_path'], true);
+    this.video = json['video'];
+    this.adult = json['adult'];
     this.voteAverage = json['vote_average'];
     this.popularity = json['popularity'];
     this.id = json['id'];
     this.voteCount = json['vote_count'];
+    this.rating = json['rating'];
 
     List<dynamic> genreIdsList = json['genre_ids'];
     this.genreIds = new List();
     this.genreIds.addAll(genreIdsList.map((o) => int.parse(o.toString())));
-
-    List<dynamic> originCountryList = json['origin_country'];
-    this.originCountry = new List();
-    this.originCountry.addAll(originCountryList.map((o) => o.toString()));
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['original_name'] = this.originalName;
-    data['name'] = this.name;
-    data['first_air_date'] = this.firstAirDate;
-    data['poster_path'] = this.posterPath;
+    data['title'] = this.title;
+    data['release_date'] = this.releaseDate;
     data['original_language'] = this.originalLanguage;
+    data['original_title'] = this.originalTitle;
     data['backdrop_path'] = this.backdropPath;
     data['overview'] = this.overview;
+    data['poster_path'] = this.posterPath;
+    data['video'] = this.video;
+    data['adult'] = this.adult;
     data['vote_average'] = this.voteAverage;
     data['popularity'] = this.popularity;
     data['id'] = this.id;
     data['vote_count'] = this.voteCount;
+    data['rating'] = this.rating;
     data['genre_ids'] = this.genreIds;
-    data['origin_country'] = this.originCountry;
     return data;
   }
 }
