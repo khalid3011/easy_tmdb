@@ -1,5 +1,5 @@
-import 'package:easytmdb/Model/Cast.dart';
-import 'package:easytmdb/Model/Crew.dart';
+import 'package:easytmdb/Model/cast.dart';
+import 'package:easytmdb/Model/crew.dart';
 
 class PeopleMovieCredits {
   int id;

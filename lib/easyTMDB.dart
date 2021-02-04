@@ -1,16 +1,5 @@
-import 'Category/Auth.dart';
-import 'Category/Discover.dart';
-import 'Category/Episode.dart';
-import 'Category/FindExternal.dart';
-import 'Category/ImageSize.dart';
-import 'Category/Movie.dart';
-import 'Category/Peoples.dart';
-import 'Category/Search.dart';
-import 'Category/Trending.dart';
-import 'Category/Tv.dart';
-import 'Category/Genre.dart';
-import 'Category/Seasons.dart';
-import 'Category/User.dart';
+import 'export/export_all.dart';
+export 'export/export_all.dart';
 
 class EasyTMDB {
   static String mKey;
@@ -47,7 +36,7 @@ class EasyTMDB {
       ///path returns only image path
       ///but for display a image it need a full url
       ///that generate the full url with image size
-      ///default value is true
+      ///default value is TRUE
       bool fullUrl,
 
       /// fixUrl also return full url with complete extra condition
@@ -56,7 +45,7 @@ class EasyTMDB {
       ///at first check posterPath. if its valid then return poster path
       ///otherwise check backdropPath if valid then return backdropPath
       ///otherwise return noImage
-      ///default value is FALSE
+      ///default value is TRUE
       bool fixUrl}) {
     if (tmdbKey == null || tmdbKey.trim().length == 0) {
       throw Exception("TMDB key is required");
@@ -74,7 +63,7 @@ class EasyTMDB {
         ? "https://ispab.org/wp-content/themes/consultix/images/no-image-found-360x260.png"
         : alternativeImageUrl;
     mFullUrl = fullUrl == null ? true : fullUrl;
-    mFixUrl = fixUrl == null ? false : fixUrl;
+    mFixUrl = fixUrl == null ? true : fixUrl;
   }
 
   Movie movie() => Movie();

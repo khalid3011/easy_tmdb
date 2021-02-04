@@ -1,34 +1,18 @@
-import 'dart:convert';
-
-import 'package:easytmdb/Helper/UrlMaker.dart';
-import 'package:easytmdb/Helper/Utils.dart';
-import 'package:easytmdb/Model/Account/UserCreatedList.dart';
-import 'package:easytmdb/Model/Account/UserDetails.dart';
-import 'package:easytmdb/Model/Account/UserFavoriteMovie.dart';
-import 'package:easytmdb/Model/Account/UserFavoriteTv.dart';
-import 'package:easytmdb/Model/Account/UserMovieWatchList.dart';
-import 'package:easytmdb/Model/Account/UserRatedMovie.dart';
-import 'package:easytmdb/Model/Account/UserRatedTvShow.dart';
-import 'package:easytmdb/Model/Account/UserTvWatchList.dart';
-import 'package:http/http.dart' as http;
+import 'package:easytmdb/export/export_all.dart';
 
 class User {
   Future<UserDetails> userDetails(String sessionId) async {
-    final response = await http.get(UrlMaker.userDetails(sessionId));
+    final response = await Utils.fetchData(UrlMaker.userDetails(sessionId));
 
-    return Utils.isValidResponse(response)
-        ? UserDetails.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return UserDetails.fromJson(json.decode(response.body));
   }
 
   Future<UserCreatedList> userCreatedList(String sessionId,
       {int page, String language}) async {
-    final response =
-        await http.get(UrlMaker.userCreatedList(sessionId, page, language));
+    final response = await Utils.fetchData(
+        UrlMaker.userCreatedList(sessionId, page, language));
 
-    return Utils.isValidResponse(response)
-        ? UserCreatedList.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return UserCreatedList.fromJson(json.decode(response.body));
   }
 
   Future<UserFavoriteMovie> userFavoriteMovie(
@@ -39,12 +23,10 @@ class User {
   }) async {
     final String path = "account/{account_id}/favorite/movies";
 
-    final response = await http
-        .get(UrlMaker.userActivity(path, sessionId, page, language, sortBy));
+    final response = await Utils.fetchData(
+        UrlMaker.userActivity(path, sessionId, page, language, sortBy));
 
-    return Utils.isValidResponse(response)
-        ? UserFavoriteMovie.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return UserFavoriteMovie.fromJson(json.decode(response.body));
   }
 
   Future<UserFavoriteTv> userFavoriteTv(
@@ -54,12 +36,10 @@ class User {
     String sortBy,
   }) async {
     String path = "account/{account_id}/favorite/tv";
-    final response = await http
-        .get(UrlMaker.userActivity(path, sessionId, page, language, sortBy));
+    final response = await Utils.fetchData(
+        UrlMaker.userActivity(path, sessionId, page, language, sortBy));
 
-    return Utils.isValidResponse(response)
-        ? UserFavoriteTv.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return UserFavoriteTv.fromJson(json.decode(response.body));
   }
 
   Future<UserRatedMovie> userRatedMovie(
@@ -69,12 +49,10 @@ class User {
     String sortBy,
   }) async {
     String path = "account/{account_id}/rated/movies";
-    final response = await http
-        .get(UrlMaker.userActivity(path, sessionId, page, language, sortBy));
+    final response = await Utils.fetchData(
+        UrlMaker.userActivity(path, sessionId, page, language, sortBy));
 
-    return Utils.isValidResponse(response)
-        ? UserRatedMovie.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return UserRatedMovie.fromJson(json.decode(response.body));
   }
 
   Future<UserRatedTvShow> userRatedTvShows(
@@ -84,12 +62,10 @@ class User {
     String sortBy,
   }) async {
     String path = "account/{account_id}/rated/tv";
-    final response = await http
-        .get(UrlMaker.userActivity(path, sessionId, page, language, sortBy));
+    final response = await Utils.fetchData(
+        UrlMaker.userActivity(path, sessionId, page, language, sortBy));
 
-    return Utils.isValidResponse(response)
-        ? UserRatedTvShow.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return UserRatedTvShow.fromJson(json.decode(response.body));
   }
 
   Future<UserMovieWatchList> userMovieWatchlist(
@@ -99,12 +75,10 @@ class User {
     String sortBy,
   }) async {
     String path = "account/{account_id}/watchlist/movies";
-    final response = await http
-        .get(UrlMaker.userActivity(path, sessionId, page, language, sortBy));
+    final response = await Utils.fetchData(
+        UrlMaker.userActivity(path, sessionId, page, language, sortBy));
 
-    return Utils.isValidResponse(response)
-        ? UserMovieWatchList.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return UserMovieWatchList.fromJson(json.decode(response.body));
   }
 
   Future<UserTvWatchList> userTvWatchlist(
@@ -114,11 +88,9 @@ class User {
     String sortBy,
   }) async {
     String path = "account/{account_id}/watchlist/tv";
-    final response = await http
-        .get(UrlMaker.userActivity(path, sessionId, page, language, sortBy));
+    final response = await Utils.fetchData(
+        UrlMaker.userActivity(path, sessionId, page, language, sortBy));
 
-    return Utils.isValidResponse(response)
-        ? UserTvWatchList.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return UserTvWatchList.fromJson(json.decode(response.body));
   }
 }

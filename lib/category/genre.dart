@@ -1,25 +1,16 @@
-import 'dart:convert';
-
-import 'package:easytmdb/Helper/UrlMaker.dart';
-import 'package:easytmdb/Helper/Utils.dart';
-import 'package:easytmdb/Model/Genres.dart';
-import 'package:http/http.dart' as http;
+import 'package:easytmdb/export/export_all.dart';
 
 class Genre {
   Future<Genres> movie() async {
-    final response = await http.get(UrlMaker.genreMovie());
+    final response = await Utils.fetchData(UrlMaker.genreMovie());
 
-    return Utils.isValidResponse(response)
-        ? Genres.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return Genres.fromJson(json.decode(response.body));
   }
 
   Future<Genres> tv() async {
-    final response = await http.get(UrlMaker.genreTv());
+    final response = await Utils.fetchData(UrlMaker.genreTv());
 
-    return Utils.isValidResponse(response)
-        ? Genres.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return Genres.fromJson(json.decode(response.body));
   }
 
   ///last update 16-9-2020

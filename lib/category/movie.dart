@@ -1,117 +1,97 @@
-import 'dart:convert';
-
-import 'package:easytmdb/Model/Movie/MovieCredits.dart';
-import 'package:easytmdb/Model/Movie/MovieDetails.dart';
-import 'package:easytmdb/Model/Movie/MovieImage.dart';
-import 'package:easytmdb/Model/Movie/MovieLatest.dart';
-import 'package:easytmdb/Model/Movie/MovieNowPlaying.dart';
-import 'package:easytmdb/Model/Movie/MovieSimilar.dart';
-import 'package:easytmdb/Model/Movie/MovieTopRated.dart';
-import 'package:easytmdb/Model/video.dart';
-import 'package:http/http.dart' as http;
-import 'package:easytmdb/Helper/Utils.dart';
-import 'package:easytmdb/Helper/UrlMaker.dart';
-import 'package:easytmdb/Model/Movie/MovieUpcoming.dart';
-
-import '../Model/Movie/MoviePopular.dart';
+import 'package:easytmdb/export/export_all.dart';
 
 class Movie {
   //MOVIE images
   Future<MovieImage> image(int movieId) async {
-    final response = await http.get(UrlMaker.movieImage(movieId));
-
-    return Utils.isValidResponse(response)
-        ? MovieImage.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    final response = await Utils.fetchData(UrlMaker.movieImage(movieId));
+    return MovieImage.fromJson(json.decode(response.body));
   }
 
   //MOVIE credits
   Future<MovieCredits> credits(int movieId) async {
-    final response = await http.get(UrlMaker.movieCredits(movieId));
+    final response = await Utils.fetchData(UrlMaker.movieCredits(movieId));
 
-    return Utils.isValidResponse(response)
-        ? MovieCredits.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return MovieCredits.fromJson(json.decode(response.body));
   }
 
   //MOVIE details
   Future<MovieDetails> details(int movieId, {String language}) async {
-    final response = await http.get(UrlMaker.movieDetails(movieId, language));
+    final response =
+        await Utils.fetchData(UrlMaker.movieDetails(movieId, language));
 
-    return Utils.isValidResponse(response)
-        ? MovieDetails.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return MovieDetails.fromJson(json.decode(response.body));
   }
 
   //MOVIE similar
   Future<MovieSimilar> similar(int movieId,
       {int page: 1, String language, bool random: false}) async {
     var response =
-        await http.get(UrlMaker.movieSimilar(movieId, page, language));
+        await Utils.fetchData(UrlMaker.movieSimilar(movieId, page, language));
     if (Utils.isValidResponse(response) && random) {
       int page = Utils.randomBetween(
           MovieSimilar.fromJson(json.decode(response.body)).totalPages);
-      response = await http.get(UrlMaker.movieSimilar(movieId, page, language));
+      response =
+          await Utils.fetchData(UrlMaker.movieSimilar(movieId, page, language));
     }
 
-    return Utils.isValidResponse(response)
-        ? MovieSimilar.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return MovieSimilar.fromJson(json.decode(response.body));
   }
 
   //MOVIE top rated
   Future<MovieTopRated> topRated(
       {int page: 1, String language, bool random: false}) async {
-    var response = await http.get(UrlMaker.movieTopRated(page, language));
+    var response =
+        await Utils.fetchData(UrlMaker.movieTopRated(page, language));
     if (Utils.isValidResponse(response) && random) {
       int page = Utils.randomBetween(
           MovieTopRated.fromJson(json.decode(response.body)).totalPages);
-      response = await http.get(UrlMaker.movieTopRated(page, language));
+      response = await Utils.fetchData(UrlMaker.movieTopRated(page, language));
     }
 
-    return Utils.isValidResponse(response)
-        ? MovieTopRated.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return MovieTopRated.fromJson(json.decode(response.body));
   }
 
   //MOVIE popular
   Future<MoviePopular> popular(
       {int page: 1, String language, bool random: false}) async {
-    var response = await http.get(UrlMaker.moviePopular(page, language));
+    var response = await Utils.fetchData(UrlMaker.moviePopular(page, language));
 
     if (Utils.isValidResponse(response) && random) {
       int page = Utils.randomBetween(
           MoviePopular.fromJson(json.decode(response.body)).totalPages);
-      response = await http.get(UrlMaker.moviePopular(page, language));
+      response = await Utils.fetchData(UrlMaker.moviePopular(page, language));
     }
 
-    return Utils.isValidResponse(response)
-        ? MoviePopular.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return MoviePopular.fromJson(json.decode(response.body));
   }
 
   //MOVIE upcoming
   Future<MovieUpcoming> upcoming(
       {int page: 1, String language, bool random: false}) async {
-    var response = await http.get(UrlMaker.movieUpcoming(page, language));
+    var response =
+        await Utils.fetchData(UrlMaker.movieUpcoming(page, language));
     if (Utils.isValidResponse(response) && random) {
       int page = Utils.randomBetween(
           MovieUpcoming.fromJson(json.decode(response.body)).totalPages);
-      response = await http.get(UrlMaker.movieUpcoming(page, language));
+      response = await Utils.fetchData(UrlMaker.movieUpcoming(page, language));
     }
 
-    return Utils.isValidResponse(response)
-        ? MovieUpcoming.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return MovieUpcoming.fromJson(json.decode(response.body));
   }
 
   //MOVIE latest
-  Future<MovieLatest> latest({String language}) async {
-    final response = await http.get(UrlMaker.movieLatest(language));
+  Future<MovieLatest> latest({String language, bool adult = false}) async {
+    final response = await Utils.fetchData(UrlMaker.movieLatest(language));
 
-    return Utils.isValidResponse(response)
-        ? MovieLatest.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    MovieLatest movie = MovieLatest.fromJson(json.decode(response.body));
+
+    return adult
+        ? movie
+        : movie.adult
+            ? throw Exception("Latest Movie is Adult type")
+            : Filter.containAdultWordList(movie.originalTitle)
+                ? throw Exception("Latest Movie is Adult type")
+                : movie;
   }
 
   ///read details in [detailsWithMore()]
@@ -216,23 +196,21 @@ class Movie {
   //MOVIE now playing
   Future<MovieNowPlaying> nowPlaying(
       {int page: 1, String language, bool random: false}) async {
-    var response = await http.get(UrlMaker.movieNowPlaying(page, language));
+    var response =
+        await Utils.fetchData(UrlMaker.movieNowPlaying(page, language));
     if (Utils.isValidResponse(response) && random) {
       int page = Utils.randomBetween(
           MovieNowPlaying.fromJson(json.decode(response.body)).totalPages);
-      response = await http.get(UrlMaker.movieNowPlaying(page, language));
+      response =
+          await Utils.fetchData(UrlMaker.movieNowPlaying(page, language));
     }
 
-    return Utils.isValidResponse(response)
-        ? MovieNowPlaying.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return MovieNowPlaying.fromJson(json.decode(response.body));
   }
 
   //Tv video. (Trailer)
   Future<Video> video(int movieId) async {
-    final response = await http.get(UrlMaker.movieVideo(movieId));
-    return Utils.isValidResponse(response)
-        ? Video.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    final response = await Utils.fetchData(UrlMaker.movieVideo(movieId));
+    return Video.fromJson(json.decode(response.body));
   }
 }

@@ -1,79 +1,56 @@
-import 'dart:convert';
-
-import 'package:easytmdb/Helper/UrlMaker.dart';
-import 'package:easytmdb/Helper/Utils.dart';
-import 'package:easytmdb/Model/Trending/TrendingAll.dart';
-import 'package:easytmdb/Model/Trending/TrendingMovie.dart';
-import 'package:easytmdb/Model/Trending/TrendingTv.dart';
-import 'package:http/http.dart' as http;
+import 'package:easytmdb/export/export_all.dart';
 
 class Trending {
   Future<TrendingMovie> movieDay() async {
-    final response = await http.get(UrlMaker.trendingMovieDay());
+    final response = await Utils.fetchData(UrlMaker.trendingMovieDay());
 
-    return Utils.isValidResponse(response)
-        ? TrendingMovie.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TrendingMovie.fromJson(json.decode(response.body));
   }
 
   Future<TrendingMovie> movieWeek() async {
-    final response = await http.get(UrlMaker.trendingMovieWeek());
+    final response = await Utils.fetchData(UrlMaker.trendingMovieWeek());
 
-    return Utils.isValidResponse(response)
-        ? TrendingMovie.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TrendingMovie.fromJson(json.decode(response.body));
   }
 
   Future<TrendingTv> tvDay() async {
-    final response = await http.get(UrlMaker.trendingTvDay());
+    final response = await Utils.fetchData(UrlMaker.trendingTvDay());
 
-    return Utils.isValidResponse(response)
-        ? TrendingTv.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TrendingTv.fromJson(json.decode(response.body));
   }
 
   Future<TrendingTv> tvWeek() async {
-    final response = await http.get(UrlMaker.trendingTvWeek());
+    final response = await Utils.fetchData(UrlMaker.trendingTvWeek());
 
-    return Utils.isValidResponse(response)
-        ? TrendingTv.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TrendingTv.fromJson(json.decode(response.body));
   }
 
 //upcoming version
 /*
 // run and solve error (solve later)
   Future<TrendingPerson> personDay() async {
-    final response = await http.get(UrlMaker.trendingPersonDay());
+    final response = await Utils.fetchData(UrlMaker.trendingPersonDay());
 
-    return Utils.isValidResponse(response)
-        ? TrendingPerson.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return  TrendingPerson.fromJson(json.decode(response.body));
   }
 
 //run and solve error (solve later)
   Future<TrendingPerson> personWeek() async {
-    final response = await http.get(UrlMaker.trendingPersonWeek());
+    final response = await Utils.fetchData(UrlMaker.trendingPersonWeek());
 
-    return Utils.isValidResponse(response)
-        ? TrendingPerson.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return  TrendingPerson.fromJson(json.decode(response.body));
   }
   */
 
   Future<TrendingAll> allDay() async {
-    final response = await http.get(UrlMaker.trendingAllDay());
+    final response = await Utils.fetchData(UrlMaker.trendingAllDay());
 
-    return Utils.isValidResponse(response)
-        ? TrendingAll.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TrendingAll.fromJson(json.decode(response.body));
   }
 
   Future<TrendingAll> allWeek() async {
-    final response = await http.get(UrlMaker.trendingAllWeek());
+    final response = await Utils.fetchData(UrlMaker.trendingAllWeek());
 
-    return Utils.isValidResponse(response)
-        ? TrendingAll.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TrendingAll.fromJson(json.decode(response.body));
   }
 }

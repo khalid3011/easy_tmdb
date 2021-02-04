@@ -1,4 +1,4 @@
-import 'package:easytmdb/Helper/Utils.dart';
+import 'package:easytmdb/Helper/utils.dart';
 
 class MoviePopular {
   int page;

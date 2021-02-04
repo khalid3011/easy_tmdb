@@ -1,52 +1,35 @@
-import 'dart:convert';
-
-import 'package:easytmdb/Helper/UrlMaker.dart';
-import 'package:easytmdb/Helper/Utils.dart';
-import 'package:easytmdb/Model/People/PeopleDetails.dart';
-import 'package:easytmdb/Model/People/PeopleImage.dart';
-import 'package:easytmdb/Model/People/PeopleMovieCredits.dart';
-import 'package:easytmdb/Model/People/PeoplePopular.dart';
-import 'package:easytmdb/Model/People/PeopleTvCredits.dart';
-import 'package:http/http.dart' as http;
+import 'package:easytmdb/export/export_all.dart';
 
 class Peoples {
   Future<PeopleDetails> details(int personId) async {
-    final response = await http.get(UrlMaker.peopleDetails(personId));
+    final response = await Utils.fetchData(UrlMaker.peopleDetails(personId));
 
-    return Utils.isValidResponse(response)
-        ? PeopleDetails.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return PeopleDetails.fromJson(json.decode(response.body));
   }
 
   Future<PeopleImage> image(int personId) async {
-    final response = await http.get(UrlMaker.peopleImage(personId));
+    final response = await Utils.fetchData(UrlMaker.peopleImage(personId));
 
-    return Utils.isValidResponse(response)
-        ? PeopleImage.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return PeopleImage.fromJson(json.decode(response.body));
   }
 
   Future<PeopleMovieCredits> movieCredits(int personId) async {
-    final response = await http.get(UrlMaker.peopleMovieCredits(personId));
+    final response =
+        await Utils.fetchData(UrlMaker.peopleMovieCredits(personId));
 
-    return Utils.isValidResponse(response)
-        ? PeopleMovieCredits.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return PeopleMovieCredits.fromJson(json.decode(response.body));
   }
 
   Future<PeopleTvCredits> tvCredits(int personId) async {
-    final response = await http.get(UrlMaker.peopleTvCredits(personId));
+    final response = await Utils.fetchData(UrlMaker.peopleTvCredits(personId));
 
-    return Utils.isValidResponse(response)
-        ? PeopleTvCredits.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return PeopleTvCredits.fromJson(json.decode(response.body));
   }
 
   Future<PeoplePopular> popular({int page, String language}) async {
-    final response = await http.get(UrlMaker.peoplePopular(page, language));
+    final response =
+        await Utils.fetchData(UrlMaker.peoplePopular(page, language));
 
-    return Utils.isValidResponse(response)
-        ? PeoplePopular.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return PeoplePopular.fromJson(json.decode(response.body));
   }
 }

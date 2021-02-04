@@ -1,6 +1,6 @@
-import 'package:easytmdb/Helper/Utils.dart';
+import 'package:easytmdb/Helper/utils.dart';
 
-import '../Dates.dart';
+import '../dates.dart';
 
 class MovieNowPlaying {
   int page;

@@ -1,99 +1,74 @@
-import 'dart:convert';
-import 'package:easytmdb/Model/Tv/TvAiringToday.dart';
-import 'package:easytmdb/Model/Tv/TvCredits.dart';
-import 'package:easytmdb/Model/Tv/TvDetails.dart';
-import 'package:easytmdb/Model/Tv/TvImage.dart';
-import 'package:easytmdb/Model/Tv/TvLatest.dart';
-import 'package:easytmdb/Model/Tv/TvOnTheAir.dart';
-import 'package:easytmdb/Model/Tv/TvPopular.dart';
-import 'package:easytmdb/Model/Tv/TvSimilar.dart';
-import 'package:easytmdb/Model/Tv/TvTopRated.dart';
-import 'package:easytmdb/Model/video.dart';
-import 'package:http/http.dart' as http;
-import 'package:easytmdb/Helper/Utils.dart';
-import 'package:easytmdb/Helper/UrlMaker.dart';
+import 'package:easytmdb/export/export_all.dart';
 
 class Tv {
   //TV images
   Future<TvImage> image(int tvId) async {
-    final response = await http.get(UrlMaker.tvImage(tvId));
+    final response = await Utils.fetchData(UrlMaker.tvImage(tvId));
 
-    return Utils.isValidResponse(response)
-        ? TvImage.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TvImage.fromJson(json.decode(response.body));
   }
 
   //TV credits
   Future<TvCredits> credits(int tvId) async {
-    final response = await http.get(UrlMaker.tvCredits(tvId));
+    final response = await Utils.fetchData(UrlMaker.tvCredits(tvId));
 
-    return Utils.isValidResponse(response)
-        ? TvCredits.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TvCredits.fromJson(json.decode(response.body));
   }
 
   //TV details
   Future<TvDetails> details(int tvId, {String language}) async {
-    final response = await http.get(UrlMaker.tvDetails(tvId, language));
+    final response = await Utils.fetchData(UrlMaker.tvDetails(tvId, language));
 
-    return Utils.isValidResponse(response)
-        ? TvDetails.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TvDetails.fromJson(json.decode(response.body));
   }
 
   //TV similar
   Future<TvSimilar> similar(int tvId,
       {int page: 1, String language, bool random: false}) async {
-    var response = await http.get(UrlMaker.tvSimilar(tvId, page, language));
+    var response =
+        await Utils.fetchData(UrlMaker.tvSimilar(tvId, page, language));
     if (Utils.isValidResponse(response) && random) {
       int page = Utils.randomBetween(
           TvSimilar.fromJson(json.decode(response.body)).totalPages);
-      response = await http.get(UrlMaker.tvSimilar(tvId, page, language));
+      response =
+          await Utils.fetchData(UrlMaker.tvSimilar(tvId, page, language));
     }
 
-    return Utils.isValidResponse(response)
-        ? TvSimilar.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TvSimilar.fromJson(json.decode(response.body));
   }
 
   //TV top rated
   Future<TvTopRated> topRated(
       {int page: 1, String language, bool random: false}) async {
-    var response = await http.get(UrlMaker.tvTopRated(page, language));
+    var response = await Utils.fetchData(UrlMaker.tvTopRated(page, language));
     if (Utils.isValidResponse(response) && random) {
       int page = Utils.randomBetween(
           TvTopRated.fromJson(json.decode(response.body)).totalPages);
-      response = await http.get(UrlMaker.tvTopRated(page, language));
+      response = await Utils.fetchData(UrlMaker.tvTopRated(page, language));
     }
 
-    return Utils.isValidResponse(response)
-        ? TvTopRated.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TvTopRated.fromJson(json.decode(response.body));
   }
 
   //TV popular
   Future<TvPopular> popular(
       {int page: 1, String language, bool random: false}) async {
-    var response = await http.get(UrlMaker.tvPopular(page, language));
+    var response = await Utils.fetchData(UrlMaker.tvPopular(page, language));
 
     if (Utils.isValidResponse(response) && random) {
       int page = Utils.randomBetween(
           TvPopular.fromJson(json.decode(response.body)).totalPages);
-      response = await http.get(UrlMaker.tvPopular(page, language));
+      response = await Utils.fetchData(UrlMaker.tvPopular(page, language));
     }
 
-    return Utils.isValidResponse(response)
-        ? TvPopular.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TvPopular.fromJson(json.decode(response.body));
   }
 
   //TV latest
   Future<TvLatest> latest({String language}) async {
-    final response = await http.get(UrlMaker.tvLatest(language));
+    final response = await Utils.fetchData(UrlMaker.tvLatest(language));
 
-    return Utils.isValidResponse(response)
-        ? TvLatest.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TvLatest.fromJson(json.decode(response.body));
   }
 
   ///read details in [detailsWithMore()]
@@ -195,38 +170,33 @@ class Tv {
   //TV on the air
   Future<TvOnTheAir> onTheAir(
       {int page: 1, String language, bool random: false}) async {
-    var response = await http.get(UrlMaker.tvOnTheAir(page, language));
+    var response = await Utils.fetchData(UrlMaker.tvOnTheAir(page, language));
     if (Utils.isValidResponse(response) && random) {
       int page = Utils.randomBetween(
           TvOnTheAir.fromJson(json.decode(response.body)).totalPages);
-      response = await http.get(UrlMaker.tvOnTheAir(page, language));
+      response = await Utils.fetchData(UrlMaker.tvOnTheAir(page, language));
     }
 
-    return Utils.isValidResponse(response)
-        ? TvOnTheAir.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TvOnTheAir.fromJson(json.decode(response.body));
   }
 
   //TV airing today
   Future<TvAiringToday> airingToday(
       {int page: 1, String language, bool random: false}) async {
-    var response = await http.get(UrlMaker.tvAiringToday(page, language));
+    var response =
+        await Utils.fetchData(UrlMaker.tvAiringToday(page, language));
     if (Utils.isValidResponse(response) && random) {
       int page = Utils.randomBetween(
           TvAiringToday.fromJson(json.decode(response.body)).totalPages);
-      response = await http.get(UrlMaker.tvAiringToday(page, language));
+      response = await Utils.fetchData(UrlMaker.tvAiringToday(page, language));
     }
 
-    return Utils.isValidResponse(response)
-        ? TvAiringToday.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return TvAiringToday.fromJson(json.decode(response.body));
   }
 
   //Tv video. (Trailer)
   Future<Video> video(int tvId) async {
-    final response = await http.get(UrlMaker.tvVideo(tvId));
-    return Utils.isValidResponse(response)
-        ? Video.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    final response = await Utils.fetchData(UrlMaker.tvVideo(tvId));
+    return Video.fromJson(json.decode(response.body));
   }
 }

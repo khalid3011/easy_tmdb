@@ -1,17 +1,10 @@
-import 'dart:convert';
-
-import 'package:easytmdb/Helper/UrlMaker.dart';
-import 'package:easytmdb/Helper/Utils.dart';
-import 'package:easytmdb/Model/Auth/RequestTokenResponse.dart';
-import 'package:easytmdb/Model/Auth/createSessionResponse.dart';
+import 'package:easytmdb/export/export_all.dart';
 import 'package:http/http.dart' as http;
 
 class Auth {
   Future<RequestTokenResponse> requestToken() async {
-    final response = await http.get(UrlMaker.requestToken());
-    return Utils.isValidResponse(response)
-        ? RequestTokenResponse.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    final response = await Utils.fetchData(UrlMaker.requestToken());
+    return RequestTokenResponse.fromJson(json.decode(response.body));
   }
 
   String askPermissionUrl(String token, {bool autoGenerateToken = false}) {
@@ -36,22 +29,31 @@ class Auth {
       });
     }
 
-    final body = json.encode(
-        {"request_token": token, "username": username, "password": password});
-    final response =
-        await http.post(UrlMaker.createSeasonWithLogin(), body: body);
+    final response = await http
+        .get(UrlMaker.createSeasonWithLogin(username, password, token));
 
-    return Utils.isValidResponse(response)
-        ? CreateSessionResponse.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return CreateSessionResponse.fromJson(json.decode(response.body));
   }
 
   Future<CreateSessionResponse> createSession(String token) async {
-    final body = json.encode({"request_token": token});
-    final response = await http.post(UrlMaker.createSeason(), body: body);
+    final response = await Utils.fetchData(UrlMaker.createSeason(token));
 
-    return Utils.isValidResponse(response)
-        ? CreateSessionResponse.fromJson(json.decode(response.body))
-        : Utils.error(response);
+    return CreateSessionResponse.fromJson(json.decode(response.body));
+  }
+
+  Future<CreateSessionResponse> signIn(String username, String password) async {
+    var response;
+
+    askPermissionWithLogin(username, password, null, autoGenerateToken: true)
+        .then((value) {
+      response = value;
+      if (value.success) {
+        createSession(value.requestToken).then((value) {
+          response = value;
+        });
+      }
+    });
+
+    return CreateSessionResponse.fromJson(json.decode(response.body));
   }
 }

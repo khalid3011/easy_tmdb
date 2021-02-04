@@ -1,8 +1,28 @@
+import 'dart:async';
+import 'dart:io';
 import 'dart:math';
-
-import 'package:easytmdb/EasyTMDB.dart';
+import 'package:http/http.dart' as http;
+import 'package:easytmdb/easyTMDB.dart';
 
 class Utils {
+  static fetchData(String url, {timeoutSeconds = 10}) async {
+    try {
+      var response = await http
+          .get(url)
+          .timeout(Duration(seconds: timeoutSeconds), onTimeout: () {
+        throw TimeoutException("Connection time out. Please try again");
+      });
+
+      return isValidResponse(response) ? response : error(response);
+    } on SocketException {
+      throw Exception('No Internet connection');
+    } on TimeoutException {
+      print("Request time out");
+    } on Error catch (e) {
+      print('Error: $e');
+    }
+  }
+
   static bool isValidResponse(response) =>
       response.statusCode == 200 ? true : false;
 
@@ -48,5 +68,9 @@ class Utils {
           ? fixImageUrl(posterPath, backdropPath)
           : EasyTMDB.mFullUrl
               ? generateTMDBImageUrl(isPosterPath ? posterPath : backdropPath)
-              : isPosterPath ? posterPath : backdropPath;
+              : isPosterPath
+                  ? posterPath
+                  : backdropPath;
+
+  static filterAdult() {}
 }

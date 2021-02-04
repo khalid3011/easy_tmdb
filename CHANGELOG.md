@@ -1,3 +1,5 @@
+## [1.2.0] - beta release
+cnange name follow by dart
 ## [1.1.3] - beta release
 bug fix, reformate code
 

@@ -1,4 +1,4 @@
-import '../ImageDetails.dart';
+import '../image_details.dart';
 
 class MovieImage {
   int id;

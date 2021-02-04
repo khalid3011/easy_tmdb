@@ -1,4 +1,4 @@
-import 'package:easytmdb/EasyTMDB.dart';
+import 'package:easytmdb/easyTMDB.dart';
 
 main(List<String> args) {
   EasyTMDB easyTMDB = EasyTMDB("YOUR TMDB KEY");
@@ -6,4 +6,5 @@ main(List<String> args) {
   easyTMDB.movie().popular().then((value) {
     print(value.toJson());
   });
+
 }

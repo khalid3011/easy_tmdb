@@ -1,8 +1,8 @@
-import 'package:easytmdb/Helper/Utils.dart';
+import 'package:easytmdb/Helper/utils.dart';
 
-import '../Genres.dart';
-import '../Network.dart';
-import '../ProductionCompany.dart';
+import '../genres.dart';
+import '../network.dart';
+import '../production_company.dart';
 
 class TvDetails {
   String backdropPath;

@@ -1,9 +1,9 @@
-import 'package:easytmdb/Model/Genres.dart';
-import 'package:easytmdb/Model/ProductionCompany.dart';
-import 'package:easytmdb/Model/SpokenLanguage.dart';
+import 'package:easytmdb/Model/genres.dart';
+import 'package:easytmdb/Model/production_company.dart';
+import 'package:easytmdb/Model/spoken_language.dart';
 
-import '../ProductionCountry.dart';
-import 'package:easytmdb/Helper/Utils.dart';
+import '../production_country.dart';
+import 'package:easytmdb/Helper/utils.dart';
 
 class MovieDetails {
   String backdropPath;
