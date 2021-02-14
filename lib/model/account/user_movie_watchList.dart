@@ -1,4 +1,4 @@
-import 'package:easytmdb/Helper/utils.dart';
+import 'package:easyTMDB/Helper/utils.dart';
 
 class UserMovieWatchList {
   int page;

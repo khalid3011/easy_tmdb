@@ -1,4 +1,4 @@
-import 'package:easytmdb/export/export_all.dart';
+import 'package:easyTMDB/export/export_all.dart';
 
 class Auth {
   Future<RequestTokenResponse> requestToken() async {

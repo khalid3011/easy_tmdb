@@ -1,4 +1,4 @@
-import 'package:easytmdb/export/export_all.dart';
+import 'package:easyTMDB/export/export_all.dart';
 
 class FindExternal {
   Future<Find> externalItem(String id, String externalSourceName) async {

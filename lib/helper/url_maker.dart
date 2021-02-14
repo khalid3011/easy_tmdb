@@ -1,5 +1,5 @@
-import 'package:easytmdb/easyTMDB.dart';
-import 'package:easytmdb/enum_/user_created_sort_by.dart';
+import 'package:easyTMDB/easyTMDB.dart';
+import 'package:easyTMDB/enum_/user_created_sort_by.dart';
 
 class UrlMaker {
   ///init

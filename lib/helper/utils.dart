@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'package:http/http.dart' as http;
-import 'package:easytmdb/easyTMDB.dart';
+import 'package:easyTMDB/easyTMDB.dart';
 
 class Utils {
   static fetchData(String url, {timeoutSeconds = 10}) async {

@@ -1,4 +1,4 @@
-import 'package:easytmdb/helper/utils.dart';
+import 'package:easyTMDB/helper/utils.dart';
 
 class ImageDetails {
   String iso6391;

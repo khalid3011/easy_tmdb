@@ -1,5 +1,5 @@
-import 'package:easytmdb/enum_/media_type.dart';
-import 'package:easytmdb/export/export_all.dart';
+import 'package:easyTMDB/enum_/media_type.dart';
+import 'package:easyTMDB/export/export_all.dart';
 
 class User {
   Future<UserDetails> userDetails(String sessionId) async {

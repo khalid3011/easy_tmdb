@@ -1,8 +1,8 @@
-import 'package:easytmdb/Model/production_country.dart';
+import 'package:easyTMDB/Model/production_country.dart';
 
 import '../genres.dart';
 import '../production_company.dart';
-import 'package:easytmdb/Helper/utils.dart';
+import 'package:easyTMDB/Helper/utils.dart';
 
 class MovieLatest {
   bool adult;
