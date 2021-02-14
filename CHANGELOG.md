@@ -1,3 +1,5 @@
+## [1.2.0] - stable
+ready for use
 ## [1.2.0] - beta release
 cnange name follow by dart
 ## [1.1.3] - beta release
