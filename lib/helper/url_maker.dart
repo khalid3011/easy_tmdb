@@ -1,5 +1,4 @@
 import 'package:easytmdb/easyTMDB.dart';
-import 'package:easytmdb/enum_/media_type.dart';
 import 'package:easytmdb/enum_/user_created_sort_by.dart';
 
 class UrlMaker {
@@ -99,27 +98,19 @@ class UrlMaker {
     return _baseUrl + path + _key() + data;
   }
 
-
-  static String markAsFavorite(
-      String sessionId
-      ){
+  static String markAsFavorite(String sessionId) {
     String path = "account/{account_id}/favorite";
     String data = _getSessionId(sessionId);
     return _baseUrl + path + _key() + data;
   }
 
-  static String addToWatchlist(
-      String sessionId
-      ){
+  static String addToWatchlist(String sessionId) {
     String path = "account/{account_id}/watchlist";
     String data = _getSessionId(sessionId);
     return _baseUrl + path + _key() + data;
   }
 
-  static String movieRate(
-      String sessionId,
-      int movieId
-      ){
+  static String movieRate(String sessionId, int movieId) {
     String path = "movie/$movieId/rating";
     String data = _getSessionId(sessionId);
     return _baseUrl + path + _key() + data;

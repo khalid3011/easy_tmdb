@@ -1,5 +1,4 @@
 import 'package:easytmdb/export/export_all.dart';
-import 'package:http/http.dart' as http;
 
 class Auth {
   Future<RequestTokenResponse> requestToken() async {
