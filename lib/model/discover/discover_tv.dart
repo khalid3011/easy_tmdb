@@ -1,4 +1,4 @@
-import 'package:easyTMDB/Helper/utils.dart';
+import 'package:easy_tmdb/Helper/utils.dart';
 
 class DiscoverTv {
   int page;

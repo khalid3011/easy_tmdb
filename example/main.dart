@@ -1,4 +1,4 @@
-import 'package:easyTMDB/easyTMDB.dart';
+import 'package:easy_tmdb/easyTMDB.dart';
 
 main(List<String> args) {
   EasyTMDB easyTMDB = EasyTMDB("YOUR TMDB KEY");

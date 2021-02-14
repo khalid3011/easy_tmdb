@@ -1,4 +1,4 @@
-import 'package:easyTMDB/export/export_all.dart';
+import 'package:easy_tmdb/export/export_all.dart';
 
 class Discover {
   Future<DiscoverMovie> movie(Map<String, dynamic> data,{int page: 1}) async {
