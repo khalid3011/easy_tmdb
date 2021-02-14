@@ -1,0 +1,34 @@
+class MovieKeys{
+  get language => "language";
+  get region => "region";
+  get sortBy => "sort_by";
+  get certificationCountry => "certification_country";
+  get certification => "certification";
+  get certificationLTE => "certification.lte";
+  get certificationGTE => "certification.gte";
+  get includeAdult => "include_adult";
+  get includeVideo => "include_video";
+  get primaryReleaseYear => "primary_release_year";
+  get page => "page";
+  get primaryReleaseDateGTE => "primary_release_date.gte";
+  get primaryReleaseDateLTE => "primary_release_date.lte";
+  get releaseDateGTE => "release_date.gte";
+  get releaseDateLTE => "release_date.lte";
+  get withReleaseType => "with_release_type";
+  get year => "year";
+  get voteCountGTE => "vote_count.gte";
+  get voteCountLTE => "vote_count.lte";
+  get voteAverageGTE => "vote_average.gte";
+  get voteAverageLTE => "vote_average.lte";
+  get withCast => "with_cast";
+  get withCrew => "with_crew";
+  get withPeople => "with_people";
+  get withCompanies => "with_companies";
+  get withGenres => "with_genres";
+  get withoutGenres => "without_genres";
+  get withKeywords => "with_keywords";
+  get withoutKeywords => "without_keywords";
+  get withRuntimeGTE => "with_runtime.gte";
+  get withRuntimeLTE => "with_runtime.lte";
+  get withOriginalLanguage => "with_original_language";
+}
