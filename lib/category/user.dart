@@ -1,3 +1,4 @@
+import 'package:easytmdb/enum_/media_type.dart';
 import 'package:easytmdb/export/export_all.dart';
 
 class User {
@@ -92,5 +93,45 @@ class User {
         UrlMaker.userActivity(path, sessionId, page, language, sortBy));
 
     return UserTvWatchList.fromJson(json.decode(response.body));
+  }
+
+  Future<dynamic> markAsFavorite(
+      String sessionId,
+      MediaType mediaType,
+      int mediaId,
+      bool isFavorite) async {
+
+    String url = UrlMaker.markAsFavorite(sessionId);
+
+    Map<String, dynamic> body = {
+      "media_type": mediaType.name.toLowerCase(),
+      "media_id": mediaId,
+      "favorite": isFavorite,
+    };
+
+    final response = await Utils.writeData(url,body);
+    print(response.body);
+
+    return response;
+  }
+
+  Future<dynamic> addToWatchlist(
+      String sessionId,
+      MediaType mediaType,
+      int mediaId,
+      bool watchlist,) async {
+
+    String url = UrlMaker.addToWatchlist(sessionId);
+
+    Map<String, dynamic> body = {
+      "media_type": mediaType.name.toLowerCase(),
+      "media_id": mediaId,
+      "watchlist": watchlist,
+    };
+
+    final response = await Utils.writeData(url,body);
+    print(response.body);
+
+    return response;
   }
 }

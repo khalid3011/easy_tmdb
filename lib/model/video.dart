@@ -1,6 +1,6 @@
 class Video {
   int id;
-  List<ResultsListBean> results;
+  List<VideoResults> results;
 
   Video({this.id, this.results});
 
@@ -8,7 +8,7 @@ class Video {
     this.id = json['id'];
     this.results = (json['results'] as List) != null
         ? (json['results'] as List)
-            .map((i) => ResultsListBean.fromJson(i))
+            .map((i) => VideoResults.fromJson(i))
             .toList()
         : null;
   }
@@ -23,7 +23,7 @@ class Video {
   }
 }
 
-class ResultsListBean {
+class VideoResults {
   String id;
   String iso6391;
   String iso31661;
@@ -33,7 +33,7 @@ class ResultsListBean {
   String type;
   int size;
 
-  ResultsListBean(
+  VideoResults(
       {this.id,
       this.iso6391,
       this.iso31661,
@@ -43,7 +43,7 @@ class ResultsListBean {
       this.type,
       this.size});
 
-  ResultsListBean.fromJson(Map<String, dynamic> json) {
+  VideoResults.fromJson(Map<String, dynamic> json) {
     this.id = json['id'];
     this.iso6391 = json['iso_639_1'];
     this.iso31661 = json['iso_3166_1'];

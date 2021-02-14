@@ -53,7 +53,8 @@ class PeoplePopularResults {
 
   PeoplePopularResults.fromJson(Map<String, dynamic> json) {
     this.knownForDepartment = json['known_for_department'];
-    this.profilePath = json['profile_path'];
+    this.profilePath = Utils.userConditionalUrl(
+        json['profile_path'], "", true);
     this.name = json['name'];
     this.adult = json['adult'];
     this.popularity = json['popularity'];

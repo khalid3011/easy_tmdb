@@ -1,4 +1,5 @@
 import 'package:easytmdb/easyTMDB.dart';
+import 'package:easytmdb/enum_/media_type.dart';
 import 'package:easytmdb/enum_/user_created_sort_by.dart';
 
 class UrlMaker {
@@ -95,6 +96,32 @@ class UrlMaker {
         _getPage(page) +
         _getLanguage(language) +
         _getSortBy(sortBy);
+    return _baseUrl + path + _key() + data;
+  }
+
+
+  static String markAsFavorite(
+      String sessionId
+      ){
+    String path = "account/{account_id}/favorite";
+    String data = _getSessionId(sessionId);
+    return _baseUrl + path + _key() + data;
+  }
+
+  static String addToWatchlist(
+      String sessionId
+      ){
+    String path = "account/{account_id}/watchlist";
+    String data = _getSessionId(sessionId);
+    return _baseUrl + path + _key() + data;
+  }
+
+  static String movieRate(
+      String sessionId,
+      int movieId
+      ){
+    String path = "movie/$movieId/rating";
+    String data = _getSessionId(sessionId);
     return _baseUrl + path + _key() + data;
   }
 
@@ -390,18 +417,18 @@ class UrlMaker {
     return _baseUrl + path + _key() + data;
   }
 
-  static String discoverMovie(Map<String, dynamic> userData) {
+  static String discoverMovie(Map<String, dynamic> userData, int page) {
     String path = "discover/movie";
-    String data = "";
+    String data = _getPage(page);
     userData.forEach((k, v) {
       data += "&" + k.toString() + "=" + v.toString();
     });
     return _baseUrl + path + _key() + data;
   }
 
-  static String discoverTv(Map<String, dynamic> userData) {
+  static String discoverTv(Map<String, dynamic> userData, int page) {
     String path = "discover/tv";
-    String data = "";
+    String data = _getPage(page);
     userData.forEach((k, v) {
       data += "&" + k.toString() + "=" + v.toString();
     });

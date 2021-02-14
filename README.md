@@ -125,6 +125,12 @@ Collect YOUR ***TMDB*** KEY from [THE MOVIE DB](https://www.themoviedb.org/setti
 | tvCredits     | PeopleTvCredits    | int personId       | ------------------------- |
 | popular       | PeoplePopular      | ------------------ | int page, String language |
 
+**NB**
+    gender : 
+    0. Not specified
+    1. Female
+    2. Male
+
 
 
 

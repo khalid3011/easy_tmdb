@@ -15,6 +15,8 @@ export 'package:easytmdb/category/genre.dart';
 export 'package:easytmdb/category/seasons.dart';
 export 'package:easytmdb/category/user.dart';
 export 'package:easytmdb/category/filter.dart';
+export 'package:easytmdb/category/movie_keys.dart';
+export 'package:easytmdb/category/tv_keys.dart';
 
 //helper
 export 'package:easytmdb/helper/discover_helper.dart';

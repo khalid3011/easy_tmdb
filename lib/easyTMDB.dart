@@ -1,3 +1,6 @@
+import 'package:easytmdb/category/url_builder.dart';
+
+
 import 'export/export_all.dart';
 export 'export/export_all.dart';
 
@@ -91,4 +94,12 @@ class EasyTMDB {
   Auth auth() => Auth();
 
   User user() => User();
+
+  UrlBuilder urlBuilder() => UrlBuilder();
+
+  MovieKeys movieKeys() => MovieKeys();
+
+  TvKeys tvKeys() => TvKeys();
+
+
 }

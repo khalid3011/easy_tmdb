@@ -45,13 +45,13 @@ class CreateSessionResponse {
   });
 
   CreateSessionResponse.fromJson(Map<String, dynamic> json) {
-    this.statusMessage = json['status_message'];
-    this.success = json['success'];
-    this.failure = json['failure'];
-    this.statusCode = json['status_code'];
-    this.sessionId = json['session_id'];
-    this.expiresAt = json['expires_at'];
-    this.requestToken = json['request_token'];
+    this.statusMessage = json['status_message']??"";
+    this.success = json['success']??false;
+    this.failure = json['failure']??true;
+    this.statusCode = json['status_code']??0;
+    this.sessionId = json['session_id']??"";
+    this.expiresAt = json['expires_at']??"";
+    this.requestToken = json['request_token']??"";
   }
 
   Map<String, dynamic> toJson() {

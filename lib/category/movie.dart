@@ -213,4 +213,35 @@ class Movie {
     final response = await Utils.fetchData(UrlMaker.movieVideo(movieId));
     return Video.fromJson(json.decode(response.body));
   }
+
+
+  Future<dynamic> rate(
+      String sessionId,
+      int movieId, double value) async {
+
+    String url = UrlMaker.movieRate(sessionId,movieId);
+
+    Map<String, dynamic> body = {
+      "value": value,
+    };
+
+    final response = await Utils.writeData(url,body);
+    print(response.body);
+
+    return response;
+  }
+
+  Future<dynamic> deleteRate(
+      String sessionId,
+      int movieId) async {
+
+    String url = UrlMaker.movieRate(sessionId,movieId);
+
+    final response = await Utils.writeData(url,null);
+    print(response.body);
+
+    return response;
+  }
+
+
 }

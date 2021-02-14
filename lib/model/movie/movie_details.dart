@@ -1,9 +1,10 @@
-import 'package:easytmdb/Model/genres.dart';
-import 'package:easytmdb/Model/production_company.dart';
-import 'package:easytmdb/Model/spoken_language.dart';
+import 'package:easytmdb/model/genres.dart';
+import 'package:easytmdb/model/production_company.dart';
+import 'package:easytmdb/model/spoken_language.dart';
+import 'package:easytmdb/easyTMDB.dart';
 
 import '../production_country.dart';
-import 'package:easytmdb/Helper/utils.dart';
+import 'package:easytmdb/helper/utils.dart';
 
 class MovieDetails {
   String backdropPath;
@@ -27,10 +28,10 @@ class MovieDetails {
   int revenue;
   int runtime;
   int voteCount;
-  List<MovieDetailsGenres> genres;
-  List<MovieDetailsProductionCompanies> productionCompanies;
-  List<MovieDetailsProductionCountries> productionCountries;
-  List<MovieDetailsSpokenLanguages> spokenLanguages;
+  List<GenreDetails> genres;
+  List<ProductionCompanies> productionCompanies;
+  List<ProductionCountries> productionCountries;
+  List<SpokenLanguages> spokenLanguages;
 
   MovieDetails(
       {this.backdropPath,
@@ -85,22 +86,22 @@ class MovieDetails {
     this.voteCount = json['vote_count'];
     this.genres = (json['genres'] as List) != null
         ? (json['genres'] as List)
-            .map((i) => MovieDetailsGenres.fromJson(i))
+            .map((i) => GenreDetails.fromJson(i))
             .toList()
         : null;
     this.productionCompanies = (json['production_companies'] as List) != null
         ? (json['production_companies'] as List)
-            .map((i) => MovieDetailsProductionCompanies.fromJson(i))
+            .map((i) => ProductionCompanies.fromJson(i))
             .toList()
         : null;
     this.productionCountries = (json['production_countries'] as List) != null
         ? (json['production_countries'] as List)
-            .map((i) => MovieDetailsProductionCountries.fromJson(i))
+            .map((i) => ProductionCountries.fromJson(i))
             .toList()
         : null;
     this.spokenLanguages = (json['spoken_languages'] as List) != null
         ? (json['spoken_languages'] as List)
-            .map((i) => MovieDetailsSpokenLanguages.fromJson(i))
+            .map((i) => SpokenLanguages.fromJson(i))
             .toList()
         : null;
   }
@@ -142,23 +143,4 @@ class MovieDetails {
         : null;
     return data;
   }
-}
-
-class MovieDetailsGenres extends Genres {
-  MovieDetailsGenres.fromJson(Map<String, dynamic> json) : super.fromJson(json);
-}
-
-class MovieDetailsProductionCompanies extends ProductionCompanies {
-  MovieDetailsProductionCompanies.fromJson(Map<String, dynamic> json)
-      : super.fromJson(json);
-}
-
-class MovieDetailsProductionCountries extends ProductionCountries {
-  MovieDetailsProductionCountries.fromJson(Map<String, dynamic> json)
-      : super.fromJson(json);
-}
-
-class MovieDetailsSpokenLanguages extends SpokenLanguages {
-  MovieDetailsSpokenLanguages.fromJson(Map<String, dynamic> json)
-      : super.fromJson(json);
 }

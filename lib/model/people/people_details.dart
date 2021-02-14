@@ -1,3 +1,5 @@
+import 'package:easytmdb/helper/utils.dart';
+
 class PeopleDetails {
   String birthday;
   String knownForDepartment;
@@ -37,7 +39,8 @@ class PeopleDetails {
     this.name = json['name'];
     this.biography = json['biography'];
     this.placeOfBirth = json['place_of_birth'];
-    this.profilePath = json['profile_path'];
+    this.profilePath = Utils.userConditionalUrl(
+        json['profile_path'], "", true);
     this.imdbId = json['imdb_id'];
     this.homepage = json['homepage'];
     this.adult = json['adult'];

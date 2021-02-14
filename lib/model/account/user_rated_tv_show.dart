@@ -44,7 +44,7 @@ class UserRatedTvShowResults {
   double popularity;
   int id;
   int voteCount;
-  int rating;
+  var rating;
   List<int> genreIds;
   List<String> originCountry;
 

@@ -10,7 +10,7 @@ class TvDetails {
   String homepage;
   String lastAirDate;
   String name;
-  String nextEpisodeToAir;
+  TvDetailsLastEpisodeToAir nextEpisodeToAir;
   String originalLanguage;
   String originalName;
   String overview;
@@ -29,9 +29,9 @@ class TvDetails {
   List<String> languages;
   List<String> originCountry;
   List<TvDetailsCreatedBy> createdBy;
-  List<TvDetailsGenres> genres;
-  List<TvDetailsNetworks> networks;
-  List<TvDetailsProductionCompanies> productionCompanies;
+  List<GenreDetails> genres;
+  List<Network> networks;
+  List<ProductionCompanies> productionCompanies;
   List<TvDetailsSeasons> seasons;
 
   TvDetails(
@@ -69,7 +69,9 @@ class TvDetails {
     this.homepage = json['homepage'];
     this.lastAirDate = json['last_air_date'];
     this.name = json['name'];
-    this.nextEpisodeToAir = json['next_episode_to_air'];
+    this.nextEpisodeToAir = json['next_episode_to_air'] != null
+        ? TvDetailsLastEpisodeToAir.fromJson(json['next_episode_to_air'])
+        : null;
     this.originalLanguage = json['original_language'];
     this.originalName = json['original_name'];
     this.overview = json['overview'];
@@ -96,17 +98,17 @@ class TvDetails {
         : null;
     this.genres = (json['genres'] as List) != null
         ? (json['genres'] as List)
-            .map((i) => TvDetailsGenres.fromJson(i))
+            .map((i) => GenreDetails.fromJson(i))
             .toList()
         : null;
     this.networks = (json['networks'] as List) != null
         ? (json['networks'] as List)
-            .map((i) => TvDetailsNetworks.fromJson(i))
+            .map((i) => Network.fromJson(i))
             .toList()
         : null;
     this.productionCompanies = (json['production_companies'] as List) != null
         ? (json['production_companies'] as List)
-            .map((i) => TvDetailsProductionCompanies.fromJson(i))
+            .map((i) => ProductionCompanies.fromJson(i))
             .toList()
         : null;
     this.seasons = (json['seasons'] as List) != null
@@ -262,19 +264,6 @@ class TvDetailsCreatedBy {
     data['gender'] = this.gender;
     return data;
   }
-}
-
-class TvDetailsGenres extends Genres {
-  TvDetailsGenres.fromJson(Map<String, dynamic> json) : super.fromJson(json);
-}
-
-class TvDetailsNetworks extends Network {
-  TvDetailsNetworks.fromJson(Map<String, dynamic> json) : super.fromJson(json);
-}
-
-class TvDetailsProductionCompanies extends ProductionCompanies {
-  TvDetailsProductionCompanies.fromJson(Map<String, dynamic> json)
-      : super.fromJson(json);
 }
 
 class TvDetailsSeasons {

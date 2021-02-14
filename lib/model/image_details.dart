@@ -1,3 +1,5 @@
+import 'package:easytmdb/helper/utils.dart';
+
 class ImageDetails {
   String iso6391;
   String filePath;
@@ -18,7 +20,8 @@ class ImageDetails {
 
   ImageDetails.fromJson(Map<String, dynamic> json) {
     this.iso6391 = json['iso_639_1'];
-    this.filePath = json['file_path'];
+    this.filePath = Utils.userConditionalUrl(
+        json['file_path'], "", true);
     this.voteAverage = json['vote_average'];
     this.aspectRatio = json['aspect_ratio'];
     this.width = json['width'];

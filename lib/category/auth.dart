@@ -7,9 +7,12 @@ class Auth {
     return RequestTokenResponse.fromJson(json.decode(response.body));
   }
 
-  String askPermissionUrl(String token, {bool autoGenerateToken = false}) {
+  Future<String> askPermissionUrl(
+    String token, {
+    bool autoGenerateToken = false,
+  }) async {
     if (autoGenerateToken) {
-      requestToken().then((value) {
+      await requestToken().then((value) {
         return UrlMaker.askPermission(value.requestToken);
       });
     }
@@ -29,31 +32,39 @@ class Auth {
       });
     }
 
-    final response = await http
-        .get(UrlMaker.createSeasonWithLogin(username, password, token));
+    final response = await Utils.fetchData(
+      UrlMaker.createSeasonWithLogin(
+        username,
+        password,
+        token,
+      ),
+    );
 
     return CreateSessionResponse.fromJson(json.decode(response.body));
   }
 
   Future<CreateSessionResponse> createSession(String token) async {
     final response = await Utils.fetchData(UrlMaker.createSeason(token));
-
     return CreateSessionResponse.fromJson(json.decode(response.body));
   }
 
-  Future<CreateSessionResponse> signIn(String username, String password) async {
-    var response;
+  Future<CreateSessionResponse> signIn(
+    String username,
+    String password,
+  ) async {
+    CreateSessionResponse _csr;
 
-    askPermissionWithLogin(username, password, null, autoGenerateToken: true)
-        .then((value) {
-      response = value;
+    await askPermissionWithLogin(
+      username,
+      password,
+      null,
+      autoGenerateToken: true,
+    ).then((CreateSessionResponse value) async {
       if (value.success) {
-        createSession(value.requestToken).then((value) {
-          response = value;
-        });
+        _csr = await createSession(value.requestToken);
       }
     });
 
-    return CreateSessionResponse.fromJson(json.decode(response.body));
+    return _csr;
   }
 }

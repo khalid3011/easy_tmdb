@@ -45,7 +45,7 @@ class UserRatedMovieResults {
   double popularity;
   int id;
   int voteCount;
-  int rating;
+  var rating;
   List<int> genreIds;
 
   UserRatedMovieResults(

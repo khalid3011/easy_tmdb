@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
+import 'package:easytmdb/enum_/media_type.dart';
 import 'package:http/http.dart' as http;
 import 'package:easytmdb/easyTMDB.dart';
 
@@ -23,8 +24,33 @@ class Utils {
     }
   }
 
+  static writeData(String url, Map<String, dynamic> body, {timeoutSeconds = 10,}) async {
+    try {
+      var response = await http.post(
+        url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(body),
+      ).timeout(Duration(seconds: timeoutSeconds), onTimeout: () {
+        throw TimeoutException("Connection time out. Please try again");
+      });
+
+      return isValidResponse(response) ? response : error(response);
+    } on SocketException {
+      throw Exception('No Internet connection');
+    } on TimeoutException {
+      print("Request time out");
+    } on Error catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  static List<int> successResponse = [200,201,1,12];
+
+
   static bool isValidResponse(response) =>
-      response.statusCode == 200 ? true : false;
+      successResponse.contains(response.statusCode)? true : false;
 
   static error(response) =>
       throw Exception('Failed to load. server status code:' +
@@ -43,10 +69,13 @@ class Utils {
               : EasyTMDB.mAlternativeImageUrl;
 
   static bool isValidPath(String path) =>
-      (path != null && path.length > 0) ? true : false;
+      (path != null && path.length > 0 )
+          ? true
+          : false;
 
   static bool validImagePath(String path) {
-    if (path.contains("http://image.tmdb.org/t/p/") ||
+    if (
+        path.contains("http://image.tmdb.org/t/p/") ||
         path.startsWith("/") ||
         path.length == 32) {
       return true;
@@ -63,14 +92,14 @@ class Utils {
   }
 
   static String userConditionalUrl(
-          String posterPath, String backdropPath, bool isPosterPath) =>
-      EasyTMDB.mFixUrl
-          ? fixImageUrl(posterPath, backdropPath)
-          : EasyTMDB.mFullUrl
-              ? generateTMDBImageUrl(isPosterPath ? posterPath : backdropPath)
-              : isPosterPath
-                  ? posterPath
-                  : backdropPath;
+      String posterPath, String backdropPath, bool isPosterPath) {
 
-  static filterAdult() {}
+    return EasyTMDB.mFixUrl
+        ? fixImageUrl(posterPath, backdropPath)
+        : EasyTMDB.mFullUrl
+            ? generateTMDBImageUrl(isPosterPath ? posterPath : backdropPath)
+            : isPosterPath
+                ? posterPath
+                : backdropPath;
+  }
 }
