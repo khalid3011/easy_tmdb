@@ -1,4 +1,4 @@
-import 'package:easy_tmdb/helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class PeopleDetails {
   String birthday;

@@ -1,6 +1,6 @@
-import 'package:easy_tmdb/Helper/utils.dart';
+import 'package:tmdb_easy/Helper/utils.dart';
 
-import 'package:easy_tmdb/Model/dates.dart';
+import 'package:tmdb_easy/Model/dates.dart';
 
 class MovieUpcoming {
   int page;

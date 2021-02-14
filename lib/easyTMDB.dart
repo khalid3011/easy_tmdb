@@ -1,4 +1,4 @@
-import 'package:easy_tmdb/category/url_builder.dart';
+import 'package:tmdb_easy/category/url_builder.dart';
 
 
 import 'export/export_all.dart';

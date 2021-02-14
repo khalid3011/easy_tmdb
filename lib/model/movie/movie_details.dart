@@ -1,10 +1,10 @@
-import 'package:easy_tmdb/model/genres.dart';
-import 'package:easy_tmdb/model/production_company.dart';
-import 'package:easy_tmdb/model/spoken_language.dart';
-import 'package:easy_tmdb/easyTMDB.dart';
+import 'package:tmdb_easy/model/genres.dart';
+import 'package:tmdb_easy/model/production_company.dart';
+import 'package:tmdb_easy/model/spoken_language.dart';
+import 'package:tmdb_easy/easyTMDB.dart';
 
 import '../production_country.dart';
-import 'package:easy_tmdb/helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class MovieDetails {
   String backdropPath;

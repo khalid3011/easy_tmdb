@@ -1,4 +1,4 @@
-import 'package:easy_tmdb/export/export_all.dart';
+import 'package:tmdb_easy/export/export_all.dart';
 
 class Genre {
   Future<Genres> movie() async {

@@ -1,5 +1,5 @@
 
-import 'package:easy_tmdb/easyTMDB.dart';
+import 'package:tmdb_easy/easyTMDB.dart';
 
 class UrlBuilder{
   final String _baseUrl = "http://image.tmdb.org/t/p/";

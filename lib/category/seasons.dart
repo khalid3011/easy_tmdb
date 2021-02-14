@@ -1,4 +1,4 @@
-import 'package:easy_tmdb/export/export_all.dart';
+import 'package:tmdb_easy/export/export_all.dart';
 
 class Seasons {
   Future<Season> details(int tvId, int seasonNumber, {String language}) async {

@@ -1,4 +1,4 @@
-import 'package:easy_tmdb/Model/image_details.dart';
+import 'package:tmdb_easy/Model/image_details.dart';
 
 class PeopleImage {
   int id;

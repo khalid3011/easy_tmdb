@@ -1,5 +1,5 @@
-import 'package:easy_tmdb/Model/cast.dart';
-import 'package:easy_tmdb/Model/crew.dart';
+import 'package:tmdb_easy/Model/cast.dart';
+import 'package:tmdb_easy/Model/crew.dart';
 
 class PeopleMovieCredits {
   int id;

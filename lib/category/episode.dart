@@ -1,4 +1,4 @@
-import 'package:easy_tmdb/export/export_all.dart';
+import 'package:tmdb_easy/export/export_all.dart';
 
 class Episode {
   Future<SeasonEpisodes> details(int tvId, int seasonNumber, int episodeNumber,

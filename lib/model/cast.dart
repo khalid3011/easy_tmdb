@@ -1,4 +1,4 @@
-import 'package:easy_tmdb/Helper/utils.dart';
+import 'package:tmdb_easy/Helper/utils.dart';
 
 class Cast {
   String character;

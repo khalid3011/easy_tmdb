@@ -1,6 +1,6 @@
-import 'package:easy_tmdb/Helper/utils.dart';
-import 'package:easy_tmdb/Model/network.dart';
-import 'package:easy_tmdb/Model/production_company.dart';
+import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/Model/network.dart';
+import 'package:tmdb_easy/Model/production_company.dart';
 
 import '../genres.dart';
 
