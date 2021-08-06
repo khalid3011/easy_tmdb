@@ -15,7 +15,7 @@ class Movie {
   }
 
   //MOVIE details
-  Future<MovieDetails> details(int movieId, {String language}) async {
+  Future<MovieDetails> details(int? movieId, {String? language}) async {
     final response =
         await Utils.fetchData(UrlMaker.movieDetails(movieId, language));
 
@@ -24,12 +24,12 @@ class Movie {
 
   //MOVIE similar
   Future<MovieSimilar> similar(int movieId,
-      {int page: 1, String language, bool random: false}) async {
+      {int page: 1, String? language, bool random: false}) async {
     var response =
         await Utils.fetchData(UrlMaker.movieSimilar(movieId, page, language));
     if (Utils.isValidResponse(response) && random) {
-      int page = Utils.randomBetween(
-          MovieSimilar.fromJson(json.decode(response.body)).totalPages);
+      int? page = Utils.randomBetween(
+          MovieSimilar.fromJson(json.decode(response.body)).totalPages!);
       response =
           await Utils.fetchData(UrlMaker.movieSimilar(movieId, page, language));
     }
@@ -39,12 +39,12 @@ class Movie {
 
   //MOVIE top rated
   Future<MovieTopRated> topRated(
-      {int page: 1, String language, bool random: false}) async {
+      {int page: 1, String? language, bool random: false}) async {
     var response =
         await Utils.fetchData(UrlMaker.movieTopRated(page, language));
     if (Utils.isValidResponse(response) && random) {
-      int page = Utils.randomBetween(
-          MovieTopRated.fromJson(json.decode(response.body)).totalPages);
+      int? page = Utils.randomBetween(
+          MovieTopRated.fromJson(json.decode(response.body)).totalPages!);
       response = await Utils.fetchData(UrlMaker.movieTopRated(page, language));
     }
 
@@ -53,12 +53,12 @@ class Movie {
 
   //MOVIE popular
   Future<MoviePopular> popular(
-      {int page: 1, String language, bool random: false}) async {
+      {int page: 1, String? language, bool random: false}) async {
     var response = await Utils.fetchData(UrlMaker.moviePopular(page, language));
 
     if (Utils.isValidResponse(response) && random) {
-      int page = Utils.randomBetween(
-          MoviePopular.fromJson(json.decode(response.body)).totalPages);
+      int? page = Utils.randomBetween(
+          MoviePopular.fromJson(json.decode(response.body)).totalPages!);
       response = await Utils.fetchData(UrlMaker.moviePopular(page, language));
     }
 
@@ -67,12 +67,12 @@ class Movie {
 
   //MOVIE upcoming
   Future<MovieUpcoming> upcoming(
-      {int page: 1, String language, bool random: false}) async {
+      {int page: 1, String? language, bool random: false}) async {
     var response =
         await Utils.fetchData(UrlMaker.movieUpcoming(page, language));
     if (Utils.isValidResponse(response) && random) {
-      int page = Utils.randomBetween(
-          MovieUpcoming.fromJson(json.decode(response.body)).totalPages);
+      int? page = Utils.randomBetween(
+          MovieUpcoming.fromJson(json.decode(response.body)).totalPages!);
       response = await Utils.fetchData(UrlMaker.movieUpcoming(page, language));
     }
 
@@ -80,14 +80,14 @@ class Movie {
   }
 
   //MOVIE latest
-  Future<MovieLatest> latest({String language, bool adult = false}) async {
+  Future<MovieLatest> latest({String? language, bool adult = false}) async {
     final response = await Utils.fetchData(UrlMaker.movieLatest(language));
 
     MovieLatest movie = MovieLatest.fromJson(json.decode(response.body));
 
     return adult
         ? movie
-        : movie.adult
+        : movie.adult!
             ? throw Exception("Latest Movie is Adult type")
             : Filter.containAdultWordList(movie.originalTitle)
                 ? throw Exception("Latest Movie is Adult type")
@@ -95,12 +95,12 @@ class Movie {
   }
 
   ///read details in [detailsWithMore()]
-  Future<List<MovieDetails>> latestWithMore({
-    bool validImagePath,
-    int items,
+  Future<List<MovieDetails>?> latestWithMore({
+    bool? validImagePath,
+    int? items,
   }) async {
     final response = await latest();
-    List<MovieDetails> _result;
+    List<MovieDetails>? _result;
 
     try {
       if (validImagePath == null && items == null) {
@@ -128,32 +128,32 @@ class Movie {
   ///if you provide [endMovieId] then [items] and  [decrement] will not work
   ///if some id not found then it will ignore automatically
   Future<List<MovieDetails>> detailsWithMore(
-    int startMovieId, {
-    String language,
-    int endMovieId,
-    int items,
+    int? startMovieId, {
+    String? language,
+    int? endMovieId,
+    int? items,
     bool validImagePath = false,
     bool decrement = true,
     bool adult = false,
   }) async {
-    List<MovieDetails> _results = List();
+    List<MovieDetails> _results = [];
 
     if (endMovieId != null) {
       //start > end
-      if (startMovieId < endMovieId) {
-        int temp = startMovieId;
+      if (startMovieId! < endMovieId) {
+        int? temp = startMovieId;
         startMovieId = endMovieId;
         endMovieId = temp;
       }
     }
-    int _currentMovieId = startMovieId;
+    int _currentMovieId = startMovieId!;
 
     while (true) {
       try {
         MovieDetails _details = await details(_currentMovieId);
         if (validImagePath) {
-          if (Utils.validImagePath(_details.posterPath) ||
-              Utils.validImagePath(_details.backdropPath)) {
+          if (Utils.validImagePath(_details.posterPath!) ||
+              Utils.validImagePath(_details.backdropPath!)) {
             if (_details.adult == adult) _results.add(_details);
           }
         } else {
@@ -195,12 +195,12 @@ class Movie {
 
   //MOVIE now playing
   Future<MovieNowPlaying> nowPlaying(
-      {int page: 1, String language, bool random: false}) async {
+      {int page: 1, String? language, bool random: false}) async {
     var response =
         await Utils.fetchData(UrlMaker.movieNowPlaying(page, language));
     if (Utils.isValidResponse(response) && random) {
-      int page = Utils.randomBetween(
-          MovieNowPlaying.fromJson(json.decode(response.body)).totalPages);
+      int? page = Utils.randomBetween(
+          MovieNowPlaying.fromJson(json.decode(response.body)).totalPages!);
       response =
           await Utils.fetchData(UrlMaker.movieNowPlaying(page, language));
     }
@@ -214,34 +214,25 @@ class Movie {
     return Video.fromJson(json.decode(response.body));
   }
 
-
-  Future<dynamic> rate(
-      String sessionId,
-      int movieId, double value) async {
-
-    String url = UrlMaker.movieRate(sessionId,movieId);
+  Future<dynamic> rate(String sessionId, int movieId, double value) async {
+    String url = UrlMaker.movieRate(sessionId, movieId);
 
     Map<String, dynamic> body = {
       "value": value,
     };
 
-    final response = await Utils.writeData(url,body);
+    final response = await Utils.writeData(url, body);
     print(response.body);
 
     return response;
   }
 
-  Future<dynamic> deleteRate(
-      String sessionId,
-      int movieId) async {
+  Future<dynamic> deleteRate(String sessionId, int movieId) async {
+    String url = UrlMaker.movieRate(sessionId, movieId);
 
-    String url = UrlMaker.movieRate(sessionId,movieId);
-
-    final response = await Utils.writeData(url,null);
+    final response = await Utils.writeData(url, null);
     print(response.body);
 
     return response;
   }
-
-
 }

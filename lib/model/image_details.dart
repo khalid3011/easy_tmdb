@@ -1,13 +1,13 @@
 import 'package:tmdb_easy/helper/utils.dart';
 
 class ImageDetails {
-  String iso6391;
-  String filePath;
+  String? iso6391;
+  String? filePath;
   var voteAverage;
-  double aspectRatio;
-  int width;
-  int height;
-  int voteCount;
+  double? aspectRatio;
+  int? width;
+  int? height;
+  int? voteCount;
 
   ImageDetails(
       {this.iso6391,
@@ -20,8 +20,7 @@ class ImageDetails {
 
   ImageDetails.fromJson(Map<String, dynamic> json) {
     this.iso6391 = json['iso_639_1'];
-    this.filePath = Utils.userConditionalUrl(
-        json['file_path'], "", true);
+    this.filePath = Utils.userConditionalUrl(json['file_path'], "", true);
     this.voteAverage = json['vote_average'];
     this.aspectRatio = json['aspect_ratio'];
     this.width = json['width'];

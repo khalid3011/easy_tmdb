@@ -1,10 +1,10 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class TvSimilar {
-  int page;
-  int totalPages;
-  int totalResults;
-  List<TvSimilarResults> results;
+  int? page;
+  int? totalPages;
+  int? totalResults;
+  List<TvSimilarResults>? results;
 
   TvSimilar({this.page, this.totalPages, this.totalResults, this.results});
 
@@ -12,7 +12,7 @@ class TvSimilar {
     this.page = json['page'];
     this.totalPages = json['total_pages'];
     this.totalResults = json['total_results'];
-    this.results = (json['results'] as List) != null
+    this.results = (json['results'] as List?) != null
         ? (json['results'] as List)
             .map((i) => TvSimilarResults.fromJson(i))
             .toList()
@@ -25,26 +25,26 @@ class TvSimilar {
     data['total_pages'] = this.totalPages;
     data['total_results'] = this.totalResults;
     data['results'] = this.results != null
-        ? this.results.map((i) => i.toJson()).toList()
+        ? this.results!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class TvSimilarResults {
-  String backdropPath;
-  String firstAirDate;
-  String name;
-  String originalLanguage;
-  String originalName;
-  String overview;
-  String posterPath;
+  String? backdropPath;
+  String? firstAirDate;
+  String? name;
+  String? originalLanguage;
+  String? originalName;
+  String? overview;
+  String? posterPath;
   var popularity;
-  int id;
+  int? id;
   var voteAverage;
-  int voteCount;
-  List<int> genreIds;
-  List<String> originCountry;
+  int? voteCount;
+  List<int?>? genreIds;
+  List<String>? originCountry;
 
   TvSimilarResults(
       {this.backdropPath,
@@ -76,16 +76,16 @@ class TvSimilarResults {
     this.voteAverage = json['vote_average'];
     this.voteCount = json['vote_count'];
 
-    List<dynamic> genreIdsList = json['genre_ids'];
-    this.genreIds = new List();
+    List<dynamic>? genreIdsList = json['genre_ids'];
+    this.genreIds = [];
     if (genreIdsList != null) {
-      this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
+      this.genreIds!.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
 
-    List<dynamic> originCountryList = json['origin_country'];
-    this.originCountry = new List();
+    List<dynamic>? originCountryList = json['origin_country'];
+    this.originCountry = [];
     if (originCountryList != null) {
-      this.originCountry.addAll(originCountryList.map((o) => o.toString()));
+      this.originCountry!.addAll(originCountryList.map((o) => o.toString()));
     }
   }
 

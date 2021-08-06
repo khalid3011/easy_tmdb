@@ -16,7 +16,7 @@ class Tv {
   }
 
   //TV details
-  Future<TvDetails> details(int tvId, {String language}) async {
+  Future<TvDetails> details(int? tvId, {String? language}) async {
     final response = await Utils.fetchData(UrlMaker.tvDetails(tvId, language));
 
     return TvDetails.fromJson(json.decode(response.body));
@@ -24,12 +24,12 @@ class Tv {
 
   //TV similar
   Future<TvSimilar> similar(int tvId,
-      {int page: 1, String language, bool random: false}) async {
+      {int page: 1, String? language, bool random: false}) async {
     var response =
         await Utils.fetchData(UrlMaker.tvSimilar(tvId, page, language));
     if (Utils.isValidResponse(response) && random) {
-      int page = Utils.randomBetween(
-          TvSimilar.fromJson(json.decode(response.body)).totalPages);
+      int? page = Utils.randomBetween(
+          TvSimilar.fromJson(json.decode(response.body)).totalPages!);
       response =
           await Utils.fetchData(UrlMaker.tvSimilar(tvId, page, language));
     }
@@ -39,11 +39,11 @@ class Tv {
 
   //TV top rated
   Future<TvTopRated> topRated(
-      {int page: 1, String language, bool random: false}) async {
+      {int page: 1, String? language, bool random: false}) async {
     var response = await Utils.fetchData(UrlMaker.tvTopRated(page, language));
     if (Utils.isValidResponse(response) && random) {
-      int page = Utils.randomBetween(
-          TvTopRated.fromJson(json.decode(response.body)).totalPages);
+      int? page = Utils.randomBetween(
+          TvTopRated.fromJson(json.decode(response.body)).totalPages!);
       response = await Utils.fetchData(UrlMaker.tvTopRated(page, language));
     }
 
@@ -52,12 +52,12 @@ class Tv {
 
   //TV popular
   Future<TvPopular> popular(
-      {int page: 1, String language, bool random: false}) async {
+      {int page: 1, String? language, bool random: false}) async {
     var response = await Utils.fetchData(UrlMaker.tvPopular(page, language));
 
     if (Utils.isValidResponse(response) && random) {
-      int page = Utils.randomBetween(
-          TvPopular.fromJson(json.decode(response.body)).totalPages);
+      int? page = Utils.randomBetween(
+          TvPopular.fromJson(json.decode(response.body)).totalPages!);
       response = await Utils.fetchData(UrlMaker.tvPopular(page, language));
     }
 
@@ -65,19 +65,19 @@ class Tv {
   }
 
   //TV latest
-  Future<TvLatest> latest({String language}) async {
+  Future<TvLatest> latest({String? language}) async {
     final response = await Utils.fetchData(UrlMaker.tvLatest(language));
 
     return TvLatest.fromJson(json.decode(response.body));
   }
 
   ///read details in [detailsWithMore()]
-  Future<List<TvDetails>> latestWithMore({
-    bool validImagePath,
-    int items,
+  Future<List<TvDetails>?> latestWithMore({
+    bool? validImagePath,
+    int? items,
   }) async {
     final response = await latest();
-    List<TvDetails> _result;
+    List<TvDetails>? _result;
 
     try {
       if (validImagePath == null && items == null) {
@@ -105,30 +105,30 @@ class Tv {
   ///if you provide [endTvId] then [items] and  [decrement] will not work
   ///if some id not found then it will ignore automatically
   Future<List<TvDetails>> detailsWithMore(
-    int startTvId, {
-    int endTvId,
-    int items,
+    int? startTvId, {
+    int? endTvId,
+    int? items,
     bool validImagePath = false,
     bool decrement = true,
   }) async {
-    List<TvDetails> _results = List();
+    List<TvDetails> _results = [];
 
     if (endTvId != null) {
       //start > end
-      if (startTvId < endTvId) {
-        int temp = startTvId;
+      if (startTvId! < endTvId) {
+        int? temp = startTvId;
         startTvId = endTvId;
         endTvId = temp;
       }
     }
-    int _currentTvId = startTvId;
+    int _currentTvId = startTvId!;
 
     while (true) {
       try {
         TvDetails _details = await details(_currentTvId);
         if (validImagePath) {
-          if (Utils.validImagePath(_details.posterPath) ||
-              Utils.validImagePath(_details.backdropPath)) {
+          if (Utils.validImagePath(_details.posterPath!) ||
+              Utils.validImagePath(_details.backdropPath!)) {
             _results.add(_details);
           }
         } else {
@@ -169,11 +169,11 @@ class Tv {
 
   //TV on the air
   Future<TvOnTheAir> onTheAir(
-      {int page: 1, String language, bool random: false}) async {
+      {int page: 1, String? language, bool random: false}) async {
     var response = await Utils.fetchData(UrlMaker.tvOnTheAir(page, language));
     if (Utils.isValidResponse(response) && random) {
-      int page = Utils.randomBetween(
-          TvOnTheAir.fromJson(json.decode(response.body)).totalPages);
+      int? page = Utils.randomBetween(
+          TvOnTheAir.fromJson(json.decode(response.body)).totalPages!);
       response = await Utils.fetchData(UrlMaker.tvOnTheAir(page, language));
     }
 
@@ -182,12 +182,12 @@ class Tv {
 
   //TV airing today
   Future<TvAiringToday> airingToday(
-      {int page: 1, String language, bool random: false}) async {
+      {int page: 1, String? language, bool random: false}) async {
     var response =
         await Utils.fetchData(UrlMaker.tvAiringToday(page, language));
     if (Utils.isValidResponse(response) && random) {
-      int page = Utils.randomBetween(
-          TvAiringToday.fromJson(json.decode(response.body)).totalPages);
+      int? page = Utils.randomBetween(
+          TvAiringToday.fromJson(json.decode(response.body)).totalPages!);
       response = await Utils.fetchData(UrlMaker.tvAiringToday(page, language));
     }
 

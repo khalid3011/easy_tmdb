@@ -12,7 +12,7 @@ class Auth {
   }) async {
     if (autoGenerateToken) {
       await requestToken().then((value) {
-        return UrlMaker.askPermission(value.requestToken);
+        return UrlMaker.askPermission(value.requestToken!);
       });
     }
 
@@ -22,7 +22,7 @@ class Auth {
   Future<CreateSessionResponse> askPermissionWithLogin(
     String username,
     String password,
-    String token, {
+    String? token, {
     bool autoGenerateToken = false,
   }) async {
     if (autoGenerateToken) {
@@ -42,16 +42,16 @@ class Auth {
     return CreateSessionResponse.fromJson(json.decode(response.body));
   }
 
-  Future<CreateSessionResponse> createSession(String token) async {
+  Future<CreateSessionResponse> createSession(String? token) async {
     final response = await Utils.fetchData(UrlMaker.createSeason(token));
     return CreateSessionResponse.fromJson(json.decode(response.body));
   }
 
-  Future<CreateSessionResponse> signIn(
+  Future<CreateSessionResponse?> signIn(
     String username,
     String password,
   ) async {
-    CreateSessionResponse _csr;
+    CreateSessionResponse? _csr;
 
     await askPermissionWithLogin(
       username,
@@ -59,7 +59,7 @@ class Auth {
       null,
       autoGenerateToken: true,
     ).then((CreateSessionResponse value) async {
-      if (value.success) {
+      if (value.success!) {
         _csr = await createSession(value.requestToken);
       }
     });

@@ -1,10 +1,10 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class UserCreatedList {
-  int page;
-  int totalPages;
-  int totalResults;
-  List<UserCreatedListResults> results;
+  int? page;
+  int? totalPages;
+  int? totalResults;
+  List<UserCreatedListResults>? results;
 
   UserCreatedList(
       {this.page, this.totalPages, this.totalResults, this.results});
@@ -13,7 +13,7 @@ class UserCreatedList {
     this.page = json['page'];
     this.totalPages = json['total_pages'];
     this.totalResults = json['total_results'];
-    this.results = (json['results'] as List) != null
+    this.results = (json['results'] as List?) != null
         ? (json['results'] as List)
             .map((i) => UserCreatedListResults.fromJson(i))
             .toList()
@@ -26,21 +26,21 @@ class UserCreatedList {
     data['total_pages'] = this.totalPages;
     data['total_results'] = this.totalResults;
     data['results'] = this.results != null
-        ? this.results.map((i) => i.toJson()).toList()
+        ? this.results!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class UserCreatedListResults {
-  String description;
-  String iso6391;
-  String listType;
-  String name;
-  String posterPath;
-  int favoriteCount;
-  int id;
-  int itemCount;
+  String? description;
+  String? iso6391;
+  String? listType;
+  String? name;
+  String? posterPath;
+  int? favoriteCount;
+  int? id;
+  int? itemCount;
 
   UserCreatedListResults(
       {this.description,

@@ -1,12 +1,12 @@
 class Video {
-  int id;
-  List<VideoResults> results;
+  int? id;
+  List<VideoResults>? results;
 
   Video({this.id, this.results});
 
   Video.fromJson(Map<String, dynamic> json) {
     this.id = json['id'];
-    this.results = (json['results'] as List) != null
+    this.results = (json['results'] as List?) != null
         ? (json['results'] as List)
             .map((i) => VideoResults.fromJson(i))
             .toList()
@@ -17,21 +17,21 @@ class Video {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['results'] = this.results != null
-        ? this.results.map((i) => i.toJson()).toList()
+        ? this.results!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class VideoResults {
-  String id;
-  String iso6391;
-  String iso31661;
-  String key;
-  String name;
-  String site;
-  String type;
-  int size;
+  String? id;
+  String? iso6391;
+  String? iso31661;
+  String? key;
+  String? name;
+  String? site;
+  String? type;
+  int? size;
 
   VideoResults(
       {this.id,

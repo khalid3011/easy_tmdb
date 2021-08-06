@@ -1,11 +1,11 @@
 class UserDetails {
-  String iso6391;
-  String iso31661;
-  String name;
-  String username;
-  bool includeAdult;
-  int id;
-  Avatar avatar;
+  String? iso6391;
+  String? iso31661;
+  String? name;
+  String? username;
+  bool? includeAdult;
+  int? id;
+  Avatar? avatar;
 
   UserDetails(
       {this.iso6391,
@@ -36,14 +36,14 @@ class UserDetails {
     data['include_adult'] = this.includeAdult;
     data['id'] = this.id;
     if (this.avatar != null) {
-      data['avatar'] = this.avatar.toJson();
+      data['avatar'] = this.avatar!.toJson();
     }
     return data;
   }
 }
 
 class Avatar {
-  Gravatar gravatar;
+  Gravatar? gravatar;
 
   Avatar({this.gravatar});
 
@@ -55,14 +55,14 @@ class Avatar {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.gravatar != null) {
-      data['gravatar'] = this.gravatar.toJson();
+      data['gravatar'] = this.gravatar!.toJson();
     }
     return data;
   }
 }
 
 class Gravatar {
-  String hash;
+  String? hash;
 
   Gravatar({this.hash});
 

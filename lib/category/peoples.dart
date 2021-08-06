@@ -26,7 +26,7 @@ class Peoples {
     return PeopleTvCredits.fromJson(json.decode(response.body));
   }
 
-  Future<PeoplePopular> popular({int page, String language}) async {
+  Future<PeoplePopular> popular({int? page, String? language}) async {
     final response =
         await Utils.fetchData(UrlMaker.peoplePopular(page, language));
 

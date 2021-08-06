@@ -1,10 +1,10 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class UserRatedMovie {
-  int page;
-  int totalPages;
-  int totalResults;
-  List<UserRatedMovieResults> results;
+  int? page;
+  int? totalPages;
+  int? totalResults;
+  List<UserRatedMovieResults>? results;
 
   UserRatedMovie({this.page, this.totalPages, this.totalResults, this.results});
 
@@ -12,7 +12,7 @@ class UserRatedMovie {
     this.page = json['page'];
     this.totalPages = json['total_pages'];
     this.totalResults = json['total_results'];
-    this.results = (json['results'] as List) != null
+    this.results = (json['results'] as List?) != null
         ? (json['results'] as List)
             .map((i) => UserRatedMovieResults.fromJson(i))
             .toList()
@@ -25,28 +25,28 @@ class UserRatedMovie {
     data['total_pages'] = this.totalPages;
     data['total_results'] = this.totalResults;
     data['results'] = this.results != null
-        ? this.results.map((i) => i.toJson()).toList()
+        ? this.results!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class UserRatedMovieResults {
-  String title;
-  String releaseDate;
-  String originalLanguage;
-  String originalTitle;
-  String backdropPath;
-  String overview;
-  String posterPath;
-  bool video;
-  bool adult;
-  double voteAverage;
-  double popularity;
-  int id;
-  int voteCount;
+  String? title;
+  String? releaseDate;
+  String? originalLanguage;
+  String? originalTitle;
+  String? backdropPath;
+  String? overview;
+  String? posterPath;
+  bool? video;
+  bool? adult;
+  double? voteAverage;
+  double? popularity;
+  int? id;
+  int? voteCount;
   var rating;
-  List<int> genreIds;
+  List<int>? genreIds;
 
   UserRatedMovieResults(
       {this.title,
@@ -84,8 +84,8 @@ class UserRatedMovieResults {
     this.rating = json['rating'];
 
     List<dynamic> genreIdsList = json['genre_ids'];
-    this.genreIds = new List();
-    this.genreIds.addAll(genreIdsList.map((o) => int.parse(o.toString())));
+    this.genreIds = [];
+    this.genreIds!.addAll(genreIdsList.map((o) => int.parse(o.toString())));
   }
 
   Map<String, dynamic> toJson() {

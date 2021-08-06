@@ -1,13 +1,13 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 import '../dates.dart';
 
 class MovieNowPlaying {
-  int page;
-  int totalResults;
-  int totalPages;
-  MovieNowPlayingDates dates;
-  List<MovieNowPlayingResults> results;
+  int? page;
+  int? totalResults;
+  int? totalPages;
+  MovieNowPlayingDates? dates;
+  List<MovieNowPlayingResults>? results;
 
   MovieNowPlaying(
       {this.page,
@@ -23,7 +23,7 @@ class MovieNowPlaying {
     this.dates = json['dates'] != null
         ? MovieNowPlayingDates.fromJson(json['dates'])
         : null;
-    this.results = (json['results'] as List) != null
+    this.results = (json['results'] as List?) != null
         ? (json['results'] as List)
             .map((i) => MovieNowPlayingResults.fromJson(i))
             .toList()
@@ -36,10 +36,10 @@ class MovieNowPlaying {
     data['total_results'] = this.totalResults;
     data['total_pages'] = this.totalPages;
     if (this.dates != null) {
-      data['dates'] = this.dates.toJson();
+      data['dates'] = this.dates!.toJson();
     }
     data['results'] = this.results != null
-        ? this.results.map((i) => i.toJson()).toList()
+        ? this.results!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
@@ -51,20 +51,20 @@ class MovieNowPlayingDates extends Dates {
 }
 
 class MovieNowPlayingResults {
-  String posterPath;
-  String backdropPath;
-  String originalLanguage;
-  String originalTitle;
-  String title;
-  String overview;
-  String releaseDate;
-  bool video;
-  bool adult;
+  String? posterPath;
+  String? backdropPath;
+  String? originalLanguage;
+  String? originalTitle;
+  String? title;
+  String? overview;
+  String? releaseDate;
+  bool? video;
+  bool? adult;
   var popularity;
   var voteAverage;
-  int voteCount;
-  int id;
-  List<int> genreIds;
+  int? voteCount;
+  int? id;
+  List<int?>? genreIds;
 
   MovieNowPlayingResults(
       {this.posterPath,
@@ -99,10 +99,10 @@ class MovieNowPlayingResults {
     this.voteCount = json['vote_count'];
     this.id = json['id'];
 
-    List<dynamic> genreIdsList = json['genre_ids'];
-    this.genreIds = new List();
+    List<dynamic>? genreIdsList = json['genre_ids'];
+    this.genreIds = [];
     if (genreIdsList != null) {
-      this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
+      this.genreIds!.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
   }
 

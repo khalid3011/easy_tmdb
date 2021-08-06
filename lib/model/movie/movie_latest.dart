@@ -1,35 +1,35 @@
-import 'package:tmdb_easy/Model/production_country.dart';
+import 'package:tmdb_easy/model/production_country.dart';
 
 import '../genres.dart';
 import '../production_company.dart';
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class MovieLatest {
-  bool adult;
-  String backdropPath;
+  bool? adult;
+  String? backdropPath;
   var belongsToCollection;
-  int budget;
-  List<MovieLatestGenres> genres;
-  String homepage;
-  int id;
-  String imdbId;
-  String originalLanguage;
-  String originalTitle;
-  String overview;
+  int? budget;
+  List<MovieLatestGenres>? genres;
+  String? homepage;
+  int? id;
+  String? imdbId;
+  String? originalLanguage;
+  String? originalTitle;
+  String? overview;
   var popularity;
-  String posterPath;
-  List<MovieLatestProductionCompanies> productionCompanies;
-  List<MovieLatestProductionCountries> productionCountries;
-  String releaseDate;
-  int revenue;
-  int runtime;
-  List<String> spokenLanguages;
-  String status;
-  String tagline;
-  String title;
-  bool video;
+  String? posterPath;
+  List<MovieLatestProductionCompanies>? productionCompanies;
+  List<MovieLatestProductionCountries>? productionCountries;
+  String? releaseDate;
+  int? revenue;
+  int? runtime;
+  List<String>? spokenLanguages;
+  String? status;
+  String? tagline;
+  String? title;
+  bool? video;
   var voteAverage;
-  int voteCount;
+  int? voteCount;
 
   MovieLatest(
       {this.adult,
@@ -87,8 +87,8 @@ class MovieLatest {
     this.runtime = json['runtime'];
 
     List<dynamic> languagesList = json['spoken_languages'];
-    this.spokenLanguages = new List();
-    this.spokenLanguages.addAll(languagesList.map((o) => o.toString()));
+    this.spokenLanguages = [];
+    this.spokenLanguages!.addAll(languagesList.map((o) => o.toString()));
 
     this.status = json['status'];
     this.tagline = json['tagline'];
@@ -125,15 +125,15 @@ class MovieLatest {
       data['belongs_to_collection'] = this.belongsToCollection.toJson();
     }
     if (this.genres != null) {
-      data['genres'] = this.genres.map((v) => v.toJson()).toList();
+      data['genres'] = this.genres!.map((v) => v.toJson()).toList();
     }
     if (this.productionCompanies != null) {
       data['production_companies'] =
-          this.productionCompanies.map((v) => v.toJson()).toList();
+          this.productionCompanies!.map((v) => v.toJson()).toList();
     }
     if (this.productionCountries != null) {
       data['production_countries'] =
-          this.productionCountries.map((v) => v.toJson()).toList();
+          this.productionCountries!.map((v) => v.toJson()).toList();
     }
     return data;
   }

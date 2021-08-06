@@ -1,10 +1,10 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class TrendingPerson {
-  int page;
-  int totalPages;
-  int totalResults;
-  List<ResultsListBean> results;
+  int? page;
+  int? totalPages;
+  int? totalResults;
+  List<ResultsListBean>? results;
 
   TrendingPerson({this.page, this.totalPages, this.totalResults, this.results});
 
@@ -12,7 +12,7 @@ class TrendingPerson {
     this.page = json['page'];
     this.totalPages = json['total_pages'];
     this.totalResults = json['total_results'];
-    this.results = (json['results'] as List) != null
+    this.results = (json['results'] as List?) != null
         ? (json['results'] as List)
             .map((i) => ResultsListBean.fromJson(i))
             .toList()
@@ -25,22 +25,22 @@ class TrendingPerson {
     data['total_pages'] = this.totalPages;
     data['total_results'] = this.totalResults;
     data['results'] = this.results != null
-        ? this.results.map((i) => i.toJson()).toList()
+        ? this.results!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class ResultsListBean {
-  String name;
-  String knownForDepartment;
-  String profilePath;
-  String mediaType;
-  bool adult;
+  String? name;
+  String? knownForDepartment;
+  String? profilePath;
+  String? mediaType;
+  bool? adult;
   var popularity;
-  int gender;
-  int id;
-  List<KnownForListBean> knownFor;
+  int? gender;
+  int? id;
+  List<KnownForListBean>? knownFor;
 
   ResultsListBean(
       {this.name,
@@ -62,7 +62,7 @@ class ResultsListBean {
     this.popularity = json['popularity'];
     this.gender = json['gender'];
     this.id = json['id'];
-    this.knownFor = (json['known_for'] as List) != null
+    this.knownFor = (json['known_for'] as List?) != null
         ? (json['known_for'] as List)
             .map((i) => KnownForListBean.fromJson(i))
             .toList()
@@ -80,28 +80,28 @@ class ResultsListBean {
     data['gender'] = this.gender;
     data['id'] = this.id;
     data['known_for'] = this.knownFor != null
-        ? this.knownFor.map((i) => i.toJson()).toList()
+        ? this.knownFor!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class KnownForListBean {
-  String backdropPath;
-  String originalLanguage;
-  String originalTitle;
-  String overview;
-  String posterPath;
-  String releaseDate;
-  String title;
-  String mediaType;
-  bool adult;
-  bool video;
+  String? backdropPath;
+  String? originalLanguage;
+  String? originalTitle;
+  String? overview;
+  String? posterPath;
+  String? releaseDate;
+  String? title;
+  String? mediaType;
+  bool? adult;
+  bool? video;
   var popularity;
   var id;
   var voteAverage;
   var voteCount;
-  List<int> genreIds;
+  List<int?>? genreIds;
 
   KnownForListBean(
       {this.backdropPath,
@@ -138,10 +138,10 @@ class KnownForListBean {
     this.voteAverage = json['vote_average'];
     this.voteCount = json['vote_count'];
 
-    List<dynamic> genreIdsList = json['genre_ids'];
-    this.genreIds = new List();
+    List<dynamic>? genreIdsList = json['genre_ids'];
+    this.genreIds = [];
     if (genreIdsList != null) {
-      this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
+      this.genreIds!.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
   }
 

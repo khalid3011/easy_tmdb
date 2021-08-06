@@ -1,10 +1,10 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class SearchCompany {
-  int page;
-  int totalPages;
-  int totalResults;
-  List<SearchCompanyResults> results;
+  int? page;
+  int? totalPages;
+  int? totalResults;
+  List<SearchCompanyResults>? results;
 
   SearchCompany({this.page, this.totalPages, this.totalResults, this.results});
 
@@ -12,7 +12,7 @@ class SearchCompany {
     this.page = json['page'];
     this.totalPages = json['total_pages'];
     this.totalResults = json['total_results'];
-    this.results = (json['results'] as List) != null
+    this.results = (json['results'] as List?) != null
         ? (json['results'] as List)
             .map((i) => SearchCompanyResults.fromJson(i))
             .toList()
@@ -25,17 +25,17 @@ class SearchCompany {
     data['total_pages'] = this.totalPages;
     data['total_results'] = this.totalResults;
     data['results'] = this.results != null
-        ? this.results.map((i) => i.toJson()).toList()
+        ? this.results!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class SearchCompanyResults {
-  String logoPath;
-  String name;
-  String originCountry;
-  int id;
+  String? logoPath;
+  String? name;
+  String? originCountry;
+  int? id;
 
   SearchCompanyResults({this.logoPath, this.name, this.originCountry, this.id});
 

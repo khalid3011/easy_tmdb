@@ -1,20 +1,20 @@
 import 'package:tmdb_easy/helper/utils.dart';
 
 class PeopleDetails {
-  String birthday;
-  String knownForDepartment;
-  String deathday;
-  String name;
-  String biography;
-  String placeOfBirth;
-  String profilePath;
-  String imdbId;
-  String homepage;
-  bool adult;
+  String? birthday;
+  String? knownForDepartment;
+  String? deathday;
+  String? name;
+  String? biography;
+  String? placeOfBirth;
+  String? profilePath;
+  String? imdbId;
+  String? homepage;
+  bool? adult;
   var popularity;
-  int id;
-  int gender;
-  List<String> alsoKnownAs;
+  int? id;
+  int? gender;
+  List<String>? alsoKnownAs;
 
   PeopleDetails(
       {this.birthday,
@@ -39,8 +39,7 @@ class PeopleDetails {
     this.name = json['name'];
     this.biography = json['biography'];
     this.placeOfBirth = json['place_of_birth'];
-    this.profilePath = Utils.userConditionalUrl(
-        json['profile_path'], "", true);
+    this.profilePath = Utils.userConditionalUrl(json['profile_path'], "", true);
     this.imdbId = json['imdb_id'];
     this.homepage = json['homepage'];
     this.adult = json['adult'];
@@ -49,8 +48,8 @@ class PeopleDetails {
     this.gender = json['gender'];
 
     List<dynamic> alsoKnownAsList = json['also_known_as'];
-    this.alsoKnownAs = new List();
-    this.alsoKnownAs.addAll(alsoKnownAsList.map((o) => o.toString()));
+    this.alsoKnownAs = [];
+    this.alsoKnownAs!.addAll(alsoKnownAsList.map((o) => o.toString()));
   }
 
   Map<String, dynamic> toJson() {

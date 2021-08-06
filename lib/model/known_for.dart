@@ -1,19 +1,19 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class KnownFor {
-  String originalName;
-  String posterPath;
-  String mediaType;
-  String name;
-  String firstAirDate;
-  String originalLanguage;
-  String backdropPath;
-  String overview;
+  String? originalName;
+  String? posterPath;
+  String? mediaType;
+  String? name;
+  String? firstAirDate;
+  String? originalLanguage;
+  String? backdropPath;
+  String? overview;
   var voteAverage;
-  int voteCount;
-  int id;
-  List<int> genreIds;
-  List<String> originCountry;
+  int? voteCount;
+  int? id;
+  List<int?>? genreIds;
+  List<String>? originCountry;
 
   KnownFor(
       {this.originalName,
@@ -45,16 +45,16 @@ class KnownFor {
     this.voteCount = json['vote_count'];
     this.id = json['id'];
 
-    List<dynamic> genreIdsList = json['genre_ids'];
-    this.genreIds = new List();
+    List<dynamic>? genreIdsList = json['genre_ids'];
+    this.genreIds = [];
     if (genreIdsList != null) {
-      this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
+      this.genreIds!.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
 
-    List<dynamic> originCountryList = json['origin_country'];
-    this.originCountry = new List();
+    List<dynamic>? originCountryList = json['origin_country'];
+    this.originCountry = [];
     if (originCountryList != null) {
-      this.originCountry.addAll(originCountryList.map((o) => o.toString()));
+      this.originCountry!.addAll(originCountryList.map((o) => o.toString()));
     }
   }
 

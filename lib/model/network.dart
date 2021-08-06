@@ -1,10 +1,10 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class Network {
-  String name;
-  String logoPath;
-  String originCountry;
-  int id;
+  String? name;
+  String? logoPath;
+  String? originCountry;
+  int? id;
 
   Network({this.name, this.logoPath, this.originCountry, this.id});
 

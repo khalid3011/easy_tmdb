@@ -1,6 +1,6 @@
 class SpokenLanguages {
-  String iso6391;
-  String name;
+  String? iso6391;
+  String? name;
 
   SpokenLanguages({this.iso6391, this.name});
 

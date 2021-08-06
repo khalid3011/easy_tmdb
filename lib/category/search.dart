@@ -3,12 +3,12 @@ import 'package:tmdb_easy/export/export_all.dart';
 class Search {
   Future<SearchMovie> movie(
     String query, {
-    String language,
-    int page,
-    bool includeAdult,
-    String region,
-    int year,
-    int primaryReleaseYear,
+    String? language,
+    int? page,
+    bool? includeAdult,
+    String? region,
+    int? year,
+    int? primaryReleaseYear,
   }) async {
     final response = await Utils.fetchData(UrlMaker.searchMovie(
         query, language, page, includeAdult, region, year, primaryReleaseYear));
@@ -17,10 +17,10 @@ class Search {
   }
 
   Future<SearchTv> tv(String query,
-      {String language,
-      int page,
-      bool includeAdult,
-      int firstAirDateYear}) async {
+      {String? language,
+      int? page,
+      bool? includeAdult,
+      int? firstAirDateYear}) async {
     final response = await Utils.fetchData(UrlMaker.searchTv(
         query, language, page, includeAdult, firstAirDateYear));
 
@@ -28,27 +28,27 @@ class Search {
   }
 
   Future<SearchPeople> people(String query,
-      {String language, int page, bool includeAdult, String region}) async {
+      {String? language, int? page, bool? includeAdult, String? region}) async {
     final response = await Utils.fetchData(
         UrlMaker.searchPeople(query, language, page, includeAdult, region));
 
     return SearchPeople.fromJson(json.decode(response.body));
   }
 
-  Future<SearchCompany> company(String query, {int page}) async {
+  Future<SearchCompany> company(String query, {int? page}) async {
     final response = await Utils.fetchData(UrlMaker.searchCompany(query, page));
 
     return SearchCompany.fromJson(json.decode(response.body));
   }
 
-  Future<SearchKeyword> keyword(String query, {int page}) async {
+  Future<SearchKeyword> keyword(String query, {int? page}) async {
     final response = await Utils.fetchData(UrlMaker.searchKeyword(query, page));
 
     return SearchKeyword.fromJson(json.decode(response.body));
   }
 
   Future<SearchCollections> collection(String query,
-      {String language, int page}) async {
+      {String? language, int? page}) async {
     final response = await Utils.fetchData(
         UrlMaker.searchCollections(query, language, page));
 
@@ -57,7 +57,7 @@ class Search {
 
   ///movie, tv, people
   Future<SearchMulti> multi(String query,
-      {String language, int page, bool includeAdult, String region}) async {
+      {String? language, int? page, bool? includeAdult, String? region}) async {
     final response = await Utils.fetchData(
         UrlMaker.searchMulti(query, language, page, includeAdult, region));
 

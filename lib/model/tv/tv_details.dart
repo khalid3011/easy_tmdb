@@ -1,38 +1,38 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 import '../genres.dart';
 import '../network.dart';
 import '../production_company.dart';
 
 class TvDetails {
-  String backdropPath;
-  String firstAirDate;
-  String homepage;
-  String lastAirDate;
-  String name;
-  TvDetailsLastEpisodeToAir nextEpisodeToAir;
-  String originalLanguage;
-  String originalName;
-  String overview;
-  String posterPath;
-  String status;
-  String type;
-  bool inProduction;
+  String? backdropPath;
+  String? firstAirDate;
+  String? homepage;
+  String? lastAirDate;
+  String? name;
+  TvDetailsLastEpisodeToAir? nextEpisodeToAir;
+  String? originalLanguage;
+  String? originalName;
+  String? overview;
+  String? posterPath;
+  String? status;
+  String? type;
+  bool? inProduction;
   var popularity;
   var voteAverage;
-  int id;
-  int numberOfEpisodes;
-  int numberOfSeasons;
-  int voteCount;
-  TvDetailsLastEpisodeToAir lastEpisodeToAir;
-  List<int> episodeRunTime;
-  List<String> languages;
-  List<String> originCountry;
-  List<TvDetailsCreatedBy> createdBy;
-  List<GenreDetails> genres;
-  List<Network> networks;
-  List<ProductionCompanies> productionCompanies;
-  List<TvDetailsSeasons> seasons;
+  int? id;
+  int? numberOfEpisodes;
+  int? numberOfSeasons;
+  int? voteCount;
+  TvDetailsLastEpisodeToAir? lastEpisodeToAir;
+  List<int>? episodeRunTime;
+  List<String>? languages;
+  List<String>? originCountry;
+  List<TvDetailsCreatedBy>? createdBy;
+  List<GenreDetails>? genres;
+  List<Network>? networks;
+  List<ProductionCompanies>? productionCompanies;
+  List<TvDetailsSeasons>? seasons;
 
   TvDetails(
       {this.backdropPath,
@@ -91,46 +91,42 @@ class TvDetails {
     this.lastEpisodeToAir = json['last_episode_to_air'] != null
         ? TvDetailsLastEpisodeToAir.fromJson(json['last_episode_to_air'])
         : null;
-    this.createdBy = (json['created_by'] as List) != null
+    this.createdBy = (json['created_by'] as List?) != null
         ? (json['created_by'] as List)
             .map((i) => TvDetailsCreatedBy.fromJson(i))
             .toList()
         : null;
-    this.genres = (json['genres'] as List) != null
-        ? (json['genres'] as List)
-            .map((i) => GenreDetails.fromJson(i))
-            .toList()
+    this.genres = (json['genres'] as List?) != null
+        ? (json['genres'] as List).map((i) => GenreDetails.fromJson(i)).toList()
         : null;
-    this.networks = (json['networks'] as List) != null
-        ? (json['networks'] as List)
-            .map((i) => Network.fromJson(i))
-            .toList()
+    this.networks = (json['networks'] as List?) != null
+        ? (json['networks'] as List).map((i) => Network.fromJson(i)).toList()
         : null;
-    this.productionCompanies = (json['production_companies'] as List) != null
+    this.productionCompanies = (json['production_companies'] as List?) != null
         ? (json['production_companies'] as List)
             .map((i) => ProductionCompanies.fromJson(i))
             .toList()
         : null;
-    this.seasons = (json['seasons'] as List) != null
+    this.seasons = (json['seasons'] as List?) != null
         ? (json['seasons'] as List)
             .map((i) => TvDetailsSeasons.fromJson(i))
             .toList()
         : null;
 
     List<dynamic> episodeRunTimeList = json['episode_run_time'];
-    this.episodeRunTime = new List();
+    this.episodeRunTime = [];
     this
-        .episodeRunTime
+        .episodeRunTime!
         .addAll(episodeRunTimeList.map((o) => int.parse(o.toString())));
 
     List<dynamic> languagesList = json['languages'];
-    this.languages = new List();
-    this.languages.addAll(languagesList.map((o) => o.toString()));
+    this.languages = [];
+    this.languages!.addAll(languagesList.map((o) => o.toString()));
 
-    List<dynamic> originCountryList = json['origin_country'];
-    this.originCountry = new List();
+    List<dynamic>? originCountryList = json['origin_country'];
+    this.originCountry = [];
     if (originCountryList != null) {
-      this.originCountry.addAll(originCountryList.map((o) => o.toString()));
+      this.originCountry!.addAll(originCountryList.map((o) => o.toString()));
     }
   }
 
@@ -156,22 +152,22 @@ class TvDetails {
     data['number_of_seasons'] = this.numberOfSeasons;
     data['vote_count'] = this.voteCount;
     if (this.lastEpisodeToAir != null) {
-      data['last_episode_to_air'] = this.lastEpisodeToAir.toJson();
+      data['last_episode_to_air'] = this.lastEpisodeToAir!.toJson();
     }
     data['created_by'] = this.createdBy != null
-        ? this.createdBy.map((i) => i.toJson()).toList()
+        ? this.createdBy!.map((i) => i.toJson()).toList()
         : null;
     data['genres'] = this.genres != null
-        ? this.genres.map((i) => i.toJson()).toList()
+        ? this.genres!.map((i) => i.toJson()).toList()
         : null;
     data['networks'] = this.networks != null
-        ? this.networks.map((i) => i.toJson()).toList()
+        ? this.networks!.map((i) => i.toJson()).toList()
         : null;
     data['production_companies'] = this.productionCompanies != null
-        ? this.productionCompanies.map((i) => i.toJson()).toList()
+        ? this.productionCompanies!.map((i) => i.toJson()).toList()
         : null;
     data['seasons'] = this.seasons != null
-        ? this.seasons.map((i) => i.toJson()).toList()
+        ? this.seasons!.map((i) => i.toJson()).toList()
         : null;
     data['episode_run_time'] = this.episodeRunTime;
     data['languages'] = this.languages;
@@ -181,17 +177,17 @@ class TvDetails {
 }
 
 class TvDetailsLastEpisodeToAir {
-  String airDate;
-  String name;
-  String overview;
-  String productionCode;
-  String stillPath;
+  String? airDate;
+  String? name;
+  String? overview;
+  String? productionCode;
+  String? stillPath;
   var voteAverage;
-  int episodeNumber;
-  int id;
-  int seasonNumber;
-  int showId;
-  int voteCount;
+  int? episodeNumber;
+  int? id;
+  int? seasonNumber;
+  int? showId;
+  int? voteCount;
 
   TvDetailsLastEpisodeToAir(
       {this.airDate,
@@ -238,11 +234,11 @@ class TvDetailsLastEpisodeToAir {
 }
 
 class TvDetailsCreatedBy {
-  String creditId;
-  String name;
-  String profilePath;
-  int id;
-  int gender;
+  String? creditId;
+  String? name;
+  String? profilePath;
+  int? id;
+  int? gender;
 
   TvDetailsCreatedBy(
       {this.creditId, this.name, this.profilePath, this.id, this.gender});
@@ -267,13 +263,13 @@ class TvDetailsCreatedBy {
 }
 
 class TvDetailsSeasons {
-  String airDate;
-  String name;
-  String overview;
-  String posterPath;
-  int episodeCount;
-  int id;
-  int seasonNumber;
+  String? airDate;
+  String? name;
+  String? overview;
+  String? posterPath;
+  int? episodeCount;
+  int? id;
+  int? seasonNumber;
 
   TvDetailsSeasons(
       {this.airDate,

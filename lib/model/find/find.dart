@@ -1,11 +1,11 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class Find {
-  List<FindMovieResults> movieResults;
-  List<FindPersonResults> personResults;
-  List<FindTvResults> tvResults;
-  List<FindTvEpisodeResults> tvEpisodeResults;
-  List<FindTvEpisodeResults> tvSeasonResults;
+  List<FindMovieResults>? movieResults;
+  List<FindPersonResults>? personResults;
+  List<FindTvResults>? tvResults;
+  List<FindTvEpisodeResults>? tvEpisodeResults;
+  List<FindTvEpisodeResults>? tvSeasonResults;
 
   Find(
       {this.movieResults,
@@ -15,27 +15,27 @@ class Find {
       this.tvSeasonResults});
 
   Find.fromJson(Map<String, dynamic> json) {
-    this.movieResults = (json['movie_results'] as List) != null
+    this.movieResults = (json['movie_results'] as List?) != null
         ? (json['movie_results'] as List)
             .map((i) => FindMovieResults.fromJson(i))
             .toList()
         : null;
-    this.personResults = (json['person_results'] as List) != null
+    this.personResults = (json['person_results'] as List?) != null
         ? (json['person_results'] as List)
             .map((i) => FindPersonResults.fromJson(i))
             .toList()
         : null;
-    this.tvResults = (json['tv_results'] as List) != null
+    this.tvResults = (json['tv_results'] as List?) != null
         ? (json['tv_results'] as List)
             .map((i) => FindTvResults.fromJson(i))
             .toList()
         : null;
-    this.tvEpisodeResults = (json['tv_episode_results'] as List) != null
+    this.tvEpisodeResults = (json['tv_episode_results'] as List?) != null
         ? (json['tv_episode_results'] as List)
             .map((i) => FindTvEpisodeResults.fromJson(i))
             .toList()
         : null;
-    this.tvEpisodeResults = (json['tv_season_results'] as List) != null
+    this.tvEpisodeResults = (json['tv_season_results'] as List?) != null
         ? (json['tv_season_results'] as List)
             .map((i) => FindTvEpisodeResults.fromJson(i))
             .toList()
@@ -45,39 +45,39 @@ class Find {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['movie_results'] = this.movieResults != null
-        ? this.movieResults.map((i) => i.toJson()).toList()
+        ? this.movieResults!.map((i) => i.toJson()).toList()
         : null;
     data['person_results'] = this.personResults != null
-        ? this.personResults.map((i) => i.toJson()).toList()
+        ? this.personResults!.map((i) => i.toJson()).toList()
         : null;
     data['tv_results'] = this.tvResults != null
-        ? this.tvResults.map((i) => i.toJson()).toList()
+        ? this.tvResults!.map((i) => i.toJson()).toList()
         : null;
     data['tv_episode_results'] = this.tvEpisodeResults != null
-        ? this.tvEpisodeResults.map((i) => i.toJson()).toList()
+        ? this.tvEpisodeResults!.map((i) => i.toJson()).toList()
         : null;
     data['tv_season_results'] = this.tvEpisodeResults != null
-        ? this.tvEpisodeResults.map((i) => i.toJson()).toList()
+        ? this.tvEpisodeResults!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class FindMovieResults {
-  String title;
-  String releaseDate;
-  String originalLanguage;
-  String originalTitle;
-  String backdropPath;
-  String overview;
-  String posterPath;
-  bool video;
-  bool adult;
+  String? title;
+  String? releaseDate;
+  String? originalLanguage;
+  String? originalTitle;
+  String? backdropPath;
+  String? overview;
+  String? posterPath;
+  bool? video;
+  bool? adult;
   var voteAverage;
   var popularity;
-  int id;
-  int voteCount;
-  List<int> genreIds;
+  int? id;
+  int? voteCount;
+  List<int?>? genreIds;
 
   FindMovieResults(
       {this.title,
@@ -112,10 +112,10 @@ class FindMovieResults {
     this.id = json['id'];
     this.voteCount = json['vote_count'];
 
-    List<dynamic> genreIdsList = json['genre_ids'];
-    this.genreIds = new List();
+    List<dynamic>? genreIdsList = json['genre_ids'];
+    this.genreIds = [];
     if (genreIdsList != null) {
-      this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
+      this.genreIds!.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
   }
 
@@ -140,14 +140,14 @@ class FindMovieResults {
 }
 
 class FindPersonResults {
-  String knownForDepartment;
-  String profilePath;
-  String name;
-  bool adult;
+  String? knownForDepartment;
+  String? profilePath;
+  String? name;
+  bool? adult;
   var popularity;
-  int id;
-  int gender;
-  List<FindPersonResultsKnownFor> knownFor;
+  int? id;
+  int? gender;
+  List<FindPersonResultsKnownFor>? knownFor;
 
   FindPersonResults(
       {this.knownForDepartment,
@@ -167,7 +167,7 @@ class FindPersonResults {
     this.popularity = json['popularity'];
     this.id = json['id'];
     this.gender = json['gender'];
-    this.knownFor = (json['known_for'] as List) != null
+    this.knownFor = (json['known_for'] as List?) != null
         ? (json['known_for'] as List)
             .map((i) => FindPersonResultsKnownFor.fromJson(i))
             .toList()
@@ -184,28 +184,28 @@ class FindPersonResults {
     data['id'] = this.id;
     data['gender'] = this.gender;
     data['known_for'] = this.knownFor != null
-        ? this.knownFor.map((i) => i.toJson()).toList()
+        ? this.knownFor!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class FindPersonResultsKnownFor {
-  String posterPath;
-  String mediaType;
-  String backdropPath;
-  String originalLanguage;
-  String originalTitle;
-  String title;
-  String overview;
-  String releaseDate;
-  bool video;
-  bool adult;
+  String? posterPath;
+  String? mediaType;
+  String? backdropPath;
+  String? originalLanguage;
+  String? originalTitle;
+  String? title;
+  String? overview;
+  String? releaseDate;
+  bool? video;
+  bool? adult;
   var popularity;
   var voteAverage;
-  int voteCount;
-  int id;
-  List<int> genreIds;
+  int? voteCount;
+  int? id;
+  List<int?>? genreIds;
 
   FindPersonResultsKnownFor(
       {this.posterPath,
@@ -242,10 +242,10 @@ class FindPersonResultsKnownFor {
     this.voteCount = json['vote_count'];
     this.id = json['id'];
 
-    List<dynamic> genreIdsList = json['genre_ids'];
-    this.genreIds = new List();
+    List<dynamic>? genreIdsList = json['genre_ids'];
+    this.genreIds = [];
     if (genreIdsList != null) {
-      this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
+      this.genreIds!.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
   }
 
@@ -271,19 +271,19 @@ class FindPersonResultsKnownFor {
 }
 
 class FindTvResults {
-  String originalName;
-  String name;
-  String firstAirDate;
-  String posterPath;
-  String originalLanguage;
-  String backdropPath;
-  String overview;
+  String? originalName;
+  String? name;
+  String? firstAirDate;
+  String? posterPath;
+  String? originalLanguage;
+  String? backdropPath;
+  String? overview;
   var voteAverage;
   var popularity;
-  int id;
-  int voteCount;
-  List<int> genreIds;
-  List<String> originCountry;
+  int? id;
+  int? voteCount;
+  List<int?>? genreIds;
+  List<String>? originCountry;
 
   FindTvResults(
       {this.originalName,
@@ -315,16 +315,16 @@ class FindTvResults {
     this.id = json['id'];
     this.voteCount = json['vote_count'];
 
-    List<dynamic> genreIdsList = json['genre_ids'];
-    this.genreIds = new List();
+    List<dynamic>? genreIdsList = json['genre_ids'];
+    this.genreIds = [];
     if (genreIdsList != null) {
-      this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
+      this.genreIds!.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
 
-    List<dynamic> originCountryList = json['origin_country'];
-    this.originCountry = new List();
+    List<dynamic>? originCountryList = json['origin_country'];
+    this.originCountry = [];
     if (originCountryList != null) {
-      this.originCountry.addAll(originCountryList.map((o) => o.toString()));
+      this.originCountry!.addAll(originCountryList.map((o) => o.toString()));
     }
   }
 
@@ -348,17 +348,17 @@ class FindTvResults {
 }
 
 class FindTvEpisodeResults {
-  String airDate;
-  String name;
-  String overview;
-  String productionCode;
-  String stillPath;
+  String? airDate;
+  String? name;
+  String? overview;
+  String? productionCode;
+  String? stillPath;
   var voteAverage;
-  int episodeNumber;
-  int id;
-  int seasonNumber;
-  int showId;
-  int voteCount;
+  int? episodeNumber;
+  int? id;
+  int? seasonNumber;
+  int? showId;
+  int? voteCount;
 
   FindTvEpisodeResults(
       {this.airDate,

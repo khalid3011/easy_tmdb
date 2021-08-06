@@ -11,36 +11,37 @@ class UrlMaker {
   static String _getSessionId(String sessionId) =>
       "&session_id=" + sessionId.trim();
 
-  static String _getSortBy(String sortBy) =>
+  static String _getSortBy(String? sortBy) =>
       "&sort_by=" +
       (sortBy == null
           ? UserCreatedSortBy.created_at.asc
           : sortBy.toLowerCase().trim());
 
-  static String _getPage(int page) =>
+  static String _getPage(int? page) =>
       "&page=" + (page == null ? 1.toString() : page.toString().trim());
 
-  static String _getYear(int year) =>
+  static String _getYear(int? year) =>
       "&year=" + (year == null ? "" : year.toString().trim());
 
-  static String _getFirstAirDateYear(int firstAirDateYear) =>
+  static String _getFirstAirDateYear(int? firstAirDateYear) =>
       "&first_air_date_year=" +
       (firstAirDateYear == null ? "" : firstAirDateYear.toString().trim());
 
-  static String _getPrimaryReleaseYear(int primaryReleaseYear) =>
+  static String _getPrimaryReleaseYear(int? primaryReleaseYear) =>
       "&primary_release_year=" +
       (primaryReleaseYear == null ? "" : primaryReleaseYear.toString().trim());
 
-  static String _getLanguage(String language) =>
-      "&language=" + (language == null ? EasyTMDB.mLanguage : language.trim());
+  static String _getLanguage(String? language) =>
+      "&language=" + (language == null ? EasyTMDB.mLanguage! : language.trim());
 
   static String _getQuery(String query) =>
+      // ignore: unnecessary_null_comparison
       "&query=" + (query == null ? "" : query.trim());
 
-  static String _getRegion(String region) =>
+  static String _getRegion(String? region) =>
       "&region=" + (region == null ? "" : region.trim());
 
-  static String _getIncludeAdult(bool includeAdult) =>
+  static String _getIncludeAdult(bool? includeAdult) =>
       "&include_adult=" +
       (includeAdult == null
           ? false.toString()
@@ -57,14 +58,14 @@ class UrlMaker {
     return path + token;
   }
 
-  static String createSeason(String token) {
+  static String createSeason(String? token) {
     String path = "authentication/session/new";
     String data = "&request_token=$token";
     return _baseUrl + path + _key() + data;
   }
 
   static String createSeasonWithLogin(
-      String username, String password, String token) {
+      String username, String password, String? token) {
     String path = "authentication/token/validate_with_login";
     String data = "&username=$username&password=$password&request_token=$token";
     return _baseUrl + path + _key() + data;
@@ -77,7 +78,7 @@ class UrlMaker {
     return _baseUrl + path + _key() + data;
   }
 
-  static String userCreatedList(String sessionId, int page, String language) {
+  static String userCreatedList(String sessionId, int? page, String? language) {
     String path = "account/{account_id}/lists";
     String data =
         _getSessionId(sessionId) + _getPage(page) + _getLanguage(language);
@@ -87,9 +88,9 @@ class UrlMaker {
   static String userActivity(
     String path,
     String sessionId,
-    int page,
-    String language,
-    String sortBy,
+    int? page,
+    String? language,
+    String? sortBy,
   ) {
     String data = _getSessionId(sessionId) +
         _getPage(page) +
@@ -117,43 +118,43 @@ class UrlMaker {
   }
 
   ///MOVIE
-  static String movieNowPlaying(int page, String language) {
+  static String movieNowPlaying(int? page, String? language) {
     String path = "movie/now_playing";
     String data = _getPage(page) + _getLanguage(language);
     return _baseUrl + path + _key() + data;
   }
 
-  static String movieLatest(String language) {
+  static String movieLatest(String? language) {
     String path = "movie/latest";
     String data = _getLanguage(language);
     return _baseUrl + path + _key() + data;
   }
 
-  static String movieUpcoming(int page, String language) {
+  static String movieUpcoming(int? page, String? language) {
     String path = "movie/upcoming";
     String data = _getPage(page) + _getLanguage(language);
     return _baseUrl + path + _key() + data;
   }
 
-  static String moviePopular(int page, String language) {
+  static String moviePopular(int? page, String? language) {
     String path = "movie/popular";
     String data = _getPage(page) + _getLanguage(language);
     return _baseUrl + path + _key() + data;
   }
 
-  static String movieTopRated(int page, String language) {
+  static String movieTopRated(int? page, String? language) {
     String path = "movie/top_rated";
     String data = _getPage(page) + _getLanguage(language);
     return _baseUrl + path + _key() + data;
   }
 
-  static String movieSimilar(int movieId, int page, String language) {
+  static String movieSimilar(int movieId, int? page, String? language) {
     String path = "movie/" + movieId.toString() + "/similar";
     String data = _getPage(page) + _getLanguage(language);
     return _baseUrl + path + _key() + data;
   }
 
-  static String movieDetails(int movieId, String language) {
+  static String movieDetails(int? movieId, String? language) {
     String path = "movie/" + movieId.toString();
     String data = _getLanguage(language);
     return _baseUrl + path + _key() + data;
@@ -175,43 +176,43 @@ class UrlMaker {
   }
 
   ///TV
-  static String tvAiringToday(int page, String language) {
+  static String tvAiringToday(int? page, String? language) {
     String path = "tv/airing_today";
     String data = _getPage(page) + _getLanguage(language);
     return _baseUrl + path + _key() + data;
   }
 
-  static String tvOnTheAir(int page, String language) {
+  static String tvOnTheAir(int? page, String? language) {
     String path = "tv/on_the_air";
     String data = _getPage(page) + _getLanguage(language);
     return _baseUrl + path + _key() + data;
   }
 
-  static String tvLatest(String language) {
+  static String tvLatest(String? language) {
     String path = "tv/latest";
     String data = _getLanguage(language);
     return _baseUrl + path + _key() + data;
   }
 
-  static String tvPopular(int page, String language) {
+  static String tvPopular(int? page, String? language) {
     String path = "tv/popular";
     String data = _getPage(page) + _getLanguage(language);
     return _baseUrl + path + _key() + data;
   }
 
-  static String tvTopRated(int page, String language) {
+  static String tvTopRated(int? page, String? language) {
     String path = "tv/top_rated";
     String data = _getPage(page) + _getLanguage(language);
     return _baseUrl + path + _key() + data;
   }
 
-  static String tvSimilar(int tvId, int page, String language) {
+  static String tvSimilar(int tvId, int? page, String? language) {
     String path = "tv/" + tvId.toString() + "/similar";
     String data = _getPage(page) + _getLanguage(language);
     return _baseUrl + path + _key() + data;
   }
 
-  static String tvDetails(int tvId, String language) {
+  static String tvDetails(int? tvId, String? language) {
     String path = "tv/" + tvId.toString();
     String data = _getLanguage(language);
     return _baseUrl + path + _key() + data;
@@ -233,7 +234,7 @@ class UrlMaker {
   }
 
   ///SEASON
-  static String season(int tvId, int seasonNumber, String language) {
+  static String season(int tvId, int seasonNumber, String? language) {
     String path =
         "tv/" + tvId.toString() + "/season/" + seasonNumber.toString();
     String data = _getLanguage(language);
@@ -242,7 +243,7 @@ class UrlMaker {
 
   ///EPISODE
   static String episode(
-      int tvId, int seasonNumber, int episodeNumber, String language) {
+      int tvId, int seasonNumber, int episodeNumber, String? language) {
     String path = "tv/" +
         tvId.toString() +
         "/season/" +
@@ -285,7 +286,7 @@ class UrlMaker {
     return _baseUrl + path + _key();
   }
 
-  static String peoplePopular(int page, String language) {
+  static String peoplePopular(int? page, String? language) {
     String path = "person/popular";
     String data = _getPage(page) + _getLanguage(language);
     return _baseUrl + path + _key() + data;
@@ -333,8 +334,8 @@ class UrlMaker {
   }
 
   ///SEARCH
-  static String searchMovie(String query, String language, int page,
-      bool includeAdult, String region, int year, int primaryReleaseYear) {
+  static String searchMovie(String query, String? language, int? page,
+      bool? includeAdult, String? region, int? year, int? primaryReleaseYear) {
     String path = "search/movie";
     String data = _getQuery(query) +
         _getLanguage(language) +
@@ -347,8 +348,8 @@ class UrlMaker {
     return _baseUrl + path + _key() + data;
   }
 
-  static String searchTv(String query, String language, int page,
-      bool includeAdult, int firstAirDateYear) {
+  static String searchTv(String query, String? language, int? page,
+      bool? includeAdult, int? firstAirDateYear) {
     String path = "search/tv";
     String data = _getQuery(query) +
         _getLanguage(language) +
@@ -359,8 +360,8 @@ class UrlMaker {
     return _baseUrl + path + _key() + data;
   }
 
-  static String searchPeople(String query, String language, int page,
-      bool includeAdult, String region) {
+  static String searchPeople(String query, String? language, int? page,
+      bool? includeAdult, String? region) {
     String path = "search/person";
     String data = _getQuery(query) +
         _getLanguage(language) +
@@ -371,26 +372,26 @@ class UrlMaker {
     return _baseUrl + path + _key() + data;
   }
 
-  static String searchCompany(String query, int page) {
+  static String searchCompany(String query, int? page) {
     String path = "search/company";
     String data = _getQuery(query) + _getPage(page);
     return _baseUrl + path + _key() + data;
   }
 
-  static String searchKeyword(String query, int page) {
+  static String searchKeyword(String query, int? page) {
     String path = "search/keyword";
     String data = _getQuery(query) + _getPage(page);
     return _baseUrl + path + _key() + data;
   }
 
-  static String searchCollections(String query, String language, int page) {
+  static String searchCollections(String query, String? language, int? page) {
     String path = "search/collection";
     String data = _getQuery(query) + _getLanguage(language) + _getPage(page);
     return _baseUrl + path + _key() + data;
   }
 
-  static String searchMulti(String query, String language, int page,
-      bool includeAdult, String region) {
+  static String searchMulti(String query, String? language, int? page,
+      bool? includeAdult, String? region) {
     String path = "search/multi";
     String data = _getQuery(query) +
         _getLanguage(language) +

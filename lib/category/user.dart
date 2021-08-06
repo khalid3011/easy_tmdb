@@ -9,7 +9,7 @@ class User {
   }
 
   Future<UserCreatedList> userCreatedList(String sessionId,
-      {int page, String language}) async {
+      {int? page, String? language}) async {
     final response = await Utils.fetchData(
         UrlMaker.userCreatedList(sessionId, page, language));
 
@@ -18,9 +18,9 @@ class User {
 
   Future<UserFavoriteMovie> userFavoriteMovie(
     String sessionId, {
-    int page,
-    String language,
-    String sortBy,
+    int? page,
+    String? language,
+    String? sortBy,
   }) async {
     final String path = "account/{account_id}/favorite/movies";
 
@@ -32,9 +32,9 @@ class User {
 
   Future<UserFavoriteTv> userFavoriteTv(
     String sessionId, {
-    int page,
-    String language,
-    String sortBy,
+    int? page,
+    String? language,
+    String? sortBy,
   }) async {
     String path = "account/{account_id}/favorite/tv";
     final response = await Utils.fetchData(
@@ -45,9 +45,9 @@ class User {
 
   Future<UserRatedMovie> userRatedMovie(
     String sessionId, {
-    int page,
-    String language,
-    String sortBy,
+    int? page,
+    String? language,
+    String? sortBy,
   }) async {
     String path = "account/{account_id}/rated/movies";
     final response = await Utils.fetchData(
@@ -58,9 +58,9 @@ class User {
 
   Future<UserRatedTvShow> userRatedTvShows(
     String sessionId, {
-    int page,
-    String language,
-    String sortBy,
+    int? page,
+    String? language,
+    String? sortBy,
   }) async {
     String path = "account/{account_id}/rated/tv";
     final response = await Utils.fetchData(
@@ -71,9 +71,9 @@ class User {
 
   Future<UserMovieWatchList> userMovieWatchlist(
     String sessionId, {
-    int page,
-    String language,
-    String sortBy,
+    int? page,
+    String? language,
+    String? sortBy,
   }) async {
     String path = "account/{account_id}/watchlist/movies";
     final response = await Utils.fetchData(
@@ -84,9 +84,9 @@ class User {
 
   Future<UserTvWatchList> userTvWatchlist(
     String sessionId, {
-    int page,
-    String language,
-    String sortBy,
+    int? page,
+    String? language,
+    String? sortBy,
   }) async {
     String path = "account/{account_id}/watchlist/tv";
     final response = await Utils.fetchData(

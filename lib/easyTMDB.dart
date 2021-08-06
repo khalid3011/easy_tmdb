@@ -1,16 +1,15 @@
 import 'package:tmdb_easy/category/url_builder.dart';
 
-
 import 'export/export_all.dart';
 export 'export/export_all.dart';
 
 class EasyTMDB {
-  static String mKey;
-  static String mLanguage;
-  static String mImageSize;
-  static String mAlternativeImageUrl;
-  static bool mFullUrl;
-  static bool mFixUrl;
+  static late String mKey;
+  static String? mLanguage;
+  static String? mImageSize;
+  static String? mAlternativeImageUrl;
+  static late bool mFullUrl;
+  static late bool mFixUrl;
 
   EasyTMDB(
 
@@ -20,10 +19,10 @@ class EasyTMDB {
       {
 
       ///default language : en-US
-      String language,
+      String? language,
 
       ///image size contains image quality
-      String imageSize,
+      String? imageSize,
 
       ///api has 5 types of image url
       ///1) poster path
@@ -34,13 +33,13 @@ class EasyTMDB {
       ///sometime url returns null. for that app will be crash.
       ///for ignore this problem set a default image
       ///default image url : https://ispab.org/wp-content/themes/consultix/images/no-image-found-360x260.png
-      String alternativeImageUrl,
+      String? alternativeImageUrl,
 
       ///path returns only image path
       ///but for display a image it need a full url
       ///that generate the full url with image size
       ///default value is TRUE
-      bool fullUrl,
+      bool? fullUrl,
 
       /// fixUrl also return full url with complete extra condition
       ///some object contains poster path and backdrop path
@@ -49,19 +48,20 @@ class EasyTMDB {
       ///otherwise check backdropPath if valid then return backdropPath
       ///otherwise return noImage
       ///default value is TRUE
-      bool fixUrl}) {
-    if (tmdbKey == null || tmdbKey.trim().length == 0) {
+      bool? fixUrl}) {
+    if (tmdbKey.trim().length == 0) {
       throw Exception("TMDB key is required");
     } else {
       _init(tmdbKey, language, imageSize, alternativeImageUrl, fixUrl, fullUrl);
     }
   }
 
-  static _init(tmdbKey, language, imageSize, alternativeImageUrl, bool fixUrl,
-      bool fullUrl) {
+  static _init(tmdbKey, language, imageSize, alternativeImageUrl, bool? fixUrl,
+      bool? fullUrl) {
     mKey = tmdbKey;
     mLanguage = language == null ? "en-US" : language;
-    mImageSize = imageSize == null ? ImageSize().posterSize().original : imageSize;
+    mImageSize =
+        imageSize == null ? ImageSize().posterSize().original : imageSize;
     mAlternativeImageUrl = alternativeImageUrl == null
         ? "https://ispab.org/wp-content/themes/consultix/images/no-image-found-360x260.png"
         : alternativeImageUrl;
@@ -100,6 +100,4 @@ class EasyTMDB {
   MovieKeys movieKeys() => MovieKeys();
 
   TvKeys tvKeys() => TvKeys();
-
-
 }

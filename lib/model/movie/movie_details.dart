@@ -7,31 +7,31 @@ import '../production_country.dart';
 import 'package:tmdb_easy/helper/utils.dart';
 
 class MovieDetails {
-  String backdropPath;
+  String? backdropPath;
   var belongsToCollection;
-  String homepage;
-  String imdbId;
-  String originalLanguage;
-  String originalTitle;
-  String overview;
-  String posterPath;
-  String releaseDate;
-  String status;
-  String tagline;
-  String title;
-  bool adult;
-  bool video;
+  String? homepage;
+  String? imdbId;
+  String? originalLanguage;
+  String? originalTitle;
+  String? overview;
+  String? posterPath;
+  String? releaseDate;
+  String? status;
+  String? tagline;
+  String? title;
+  bool? adult;
+  bool? video;
   var popularity;
   var voteAverage;
-  int budget;
-  int id;
-  int revenue;
-  int runtime;
-  int voteCount;
-  List<GenreDetails> genres;
-  List<ProductionCompanies> productionCompanies;
-  List<ProductionCountries> productionCountries;
-  List<SpokenLanguages> spokenLanguages;
+  int? budget;
+  int? id;
+  int? revenue;
+  int? runtime;
+  int? voteCount;
+  List<GenreDetails>? genres;
+  List<ProductionCompanies>? productionCompanies;
+  List<ProductionCountries>? productionCountries;
+  List<SpokenLanguages>? spokenLanguages;
 
   MovieDetails(
       {this.backdropPath,
@@ -84,22 +84,20 @@ class MovieDetails {
     this.revenue = json['revenue'];
     this.runtime = json['runtime'];
     this.voteCount = json['vote_count'];
-    this.genres = (json['genres'] as List) != null
-        ? (json['genres'] as List)
-            .map((i) => GenreDetails.fromJson(i))
-            .toList()
+    this.genres = (json['genres'] as List?) != null
+        ? (json['genres'] as List).map((i) => GenreDetails.fromJson(i)).toList()
         : null;
-    this.productionCompanies = (json['production_companies'] as List) != null
+    this.productionCompanies = (json['production_companies'] as List?) != null
         ? (json['production_companies'] as List)
             .map((i) => ProductionCompanies.fromJson(i))
             .toList()
         : null;
-    this.productionCountries = (json['production_countries'] as List) != null
+    this.productionCountries = (json['production_countries'] as List?) != null
         ? (json['production_countries'] as List)
             .map((i) => ProductionCountries.fromJson(i))
             .toList()
         : null;
-    this.spokenLanguages = (json['spoken_languages'] as List) != null
+    this.spokenLanguages = (json['spoken_languages'] as List?) != null
         ? (json['spoken_languages'] as List)
             .map((i) => SpokenLanguages.fromJson(i))
             .toList()
@@ -130,16 +128,16 @@ class MovieDetails {
     data['runtime'] = this.runtime;
     data['vote_count'] = this.voteCount;
     data['genres'] = this.genres != null
-        ? this.genres.map((i) => i.toJson()).toList()
+        ? this.genres!.map((i) => i.toJson()).toList()
         : null;
     data['production_companies'] = this.productionCompanies != null
-        ? this.productionCompanies.map((i) => i.toJson()).toList()
+        ? this.productionCompanies!.map((i) => i.toJson()).toList()
         : null;
     data['production_countries'] = this.productionCountries != null
-        ? this.productionCountries.map((i) => i.toJson()).toList()
+        ? this.productionCountries!.map((i) => i.toJson()).toList()
         : null;
     data['spoken_languages'] = this.spokenLanguages != null
-        ? this.spokenLanguages.map((i) => i.toJson()).toList()
+        ? this.spokenLanguages!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
