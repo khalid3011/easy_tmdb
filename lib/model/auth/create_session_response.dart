@@ -26,13 +26,13 @@
 //  "status_message": "Invalid request token: The request token is either expired or invalid."
 //}
 class CreateSessionResponse {
-  String statusMessage;
-  bool success;
-  bool failure;
-  int statusCode;
-  String sessionId;
-  String expiresAt;
-  String requestToken;
+  String? statusMessage;
+  bool? success;
+  bool? failure;
+  int? statusCode;
+  String? sessionId;
+  String? expiresAt;
+  String? requestToken;
 
   CreateSessionResponse({
     this.statusMessage,

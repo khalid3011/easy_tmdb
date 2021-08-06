@@ -1,22 +1,22 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class Cast {
-  String character;
-  String creditId;
-  String posterPath;
-  String backdropPath;
-  String originalLanguage;
-  String originalTitle;
-  String title;
-  String overview;
-  String releaseDate;
-  bool video;
-  bool adult;
+  String? character;
+  String? creditId;
+  String? posterPath;
+  String? backdropPath;
+  String? originalLanguage;
+  String? originalTitle;
+  String? title;
+  String? overview;
+  String? releaseDate;
+  bool? video;
+  bool? adult;
   var popularity;
   var voteAverage;
-  int id;
-  int voteCount;
-  List<int> genreIds;
+  int? id;
+  int? voteCount;
+  List<int?>? genreIds;
 
   Cast(
       {this.character,
@@ -55,10 +55,10 @@ class Cast {
     this.id = json['id'];
     this.voteCount = json['vote_count'];
 
-    List<dynamic> genreIdsList = json['genre_ids'];
-    this.genreIds = new List();
+    List<dynamic>? genreIdsList = json['genre_ids'];
+    this.genreIds = [];
     if (genreIdsList != null) {
-      this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
+      this.genreIds!.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
   }
 

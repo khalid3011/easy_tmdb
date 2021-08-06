@@ -1,10 +1,10 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class DiscoverMovie {
-  int page;
-  int totalResults;
-  int totalPages;
-  List<DiscoverMovieResults> results;
+  int? page;
+  int? totalResults;
+  int? totalPages;
+  List<DiscoverMovieResults>? results;
 
   DiscoverMovie({this.page, this.totalResults, this.totalPages, this.results});
 
@@ -12,7 +12,7 @@ class DiscoverMovie {
     this.page = json['page'];
     this.totalResults = json['total_results'];
     this.totalPages = json['total_pages'];
-    this.results = (json['results'] as List) != null
+    this.results = (json['results'] as List?) != null
         ? (json['results'] as List)
             .map((i) => DiscoverMovieResults.fromJson(i))
             .toList()
@@ -25,27 +25,27 @@ class DiscoverMovie {
     data['total_results'] = this.totalResults;
     data['total_pages'] = this.totalPages;
     data['results'] = this.results != null
-        ? this.results.map((i) => i.toJson()).toList()
+        ? this.results!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class DiscoverMovieResults {
-  String posterPath;
-  String backdropPath;
-  String originalLanguage;
-  String originalTitle;
-  String title;
-  String overview;
-  String releaseDate;
-  bool video;
-  bool adult;
+  String? posterPath;
+  String? backdropPath;
+  String? originalLanguage;
+  String? originalTitle;
+  String? title;
+  String? overview;
+  String? releaseDate;
+  bool? video;
+  bool? adult;
   var popularity;
   var voteAverage;
-  int voteCount;
-  int id;
-  List<int> genreIds;
+  int? voteCount;
+  int? id;
+  List<int?>? genreIds;
 
   DiscoverMovieResults(
       {this.posterPath,
@@ -80,10 +80,10 @@ class DiscoverMovieResults {
     this.voteCount = json['vote_count'];
     this.id = json['id'];
 
-    List<dynamic> genreIdsList = json['genre_ids'];
-    this.genreIds = new List();
+    List<dynamic>? genreIdsList = json['genre_ids'];
+    this.genreIds = [];
     if (genreIdsList != null) {
-      this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
+      this.genreIds!.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
   }
 

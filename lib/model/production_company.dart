@@ -1,10 +1,10 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class ProductionCompanies {
-  String logoPath;
-  String name;
-  String originCountry;
-  int id;
+  String? logoPath;
+  String? name;
+  String? originCountry;
+  int? id;
 
   ProductionCompanies({this.logoPath, this.name, this.originCountry, this.id});
 

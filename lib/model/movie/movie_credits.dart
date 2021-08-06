@@ -1,20 +1,20 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class MovieCredits {
-  int id;
-  List<MovieCreditsCast> cast;
-  List<MovieCreditsCrew> crew;
+  int? id;
+  List<MovieCreditsCast>? cast;
+  List<MovieCreditsCrew>? crew;
 
   MovieCredits({this.id, this.cast, this.crew});
 
   MovieCredits.fromJson(Map<String, dynamic> json) {
     this.id = json['id'];
-    this.cast = (json['cast'] as List) != null
+    this.cast = (json['cast'] as List?) != null
         ? (json['cast'] as List)
             .map((i) => MovieCreditsCast.fromJson(i))
             .toList()
         : null;
-    this.crew = (json['crew'] as List) != null
+    this.crew = (json['crew'] as List?) != null
         ? (json['crew'] as List)
             .map((i) => MovieCreditsCrew.fromJson(i))
             .toList()
@@ -25,22 +25,22 @@ class MovieCredits {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['cast'] =
-        this.cast != null ? this.cast.map((i) => i.toJson()).toList() : null;
+        this.cast != null ? this.cast!.map((i) => i.toJson()).toList() : null;
     data['crew'] =
-        this.crew != null ? this.crew.map((i) => i.toJson()).toList() : null;
+        this.crew != null ? this.crew!.map((i) => i.toJson()).toList() : null;
     return data;
   }
 }
 
 class MovieCreditsCast {
-  String character;
-  String creditId;
-  String name;
-  String profilePath;
-  int castId;
-  int gender;
-  int id;
-  int order;
+  String? character;
+  String? creditId;
+  String? name;
+  String? profilePath;
+  int? castId;
+  int? gender;
+  int? id;
+  int? order;
 
   MovieCreditsCast(
       {this.character,
@@ -79,13 +79,13 @@ class MovieCreditsCast {
 }
 
 class MovieCreditsCrew {
-  String creditId;
-  String department;
-  String job;
-  String name;
-  String profilePath;
-  int gender;
-  int id;
+  String? creditId;
+  String? department;
+  String? job;
+  String? name;
+  String? profilePath;
+  int? gender;
+  int? id;
 
   MovieCreditsCrew(
       {this.creditId,

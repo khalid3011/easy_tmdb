@@ -1,10 +1,10 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class PeoplePopular {
-  int page;
-  int totalResults;
-  int totalPages;
-  List<PeoplePopularResults> results;
+  int? page;
+  int? totalResults;
+  int? totalPages;
+  List<PeoplePopularResults>? results;
 
   PeoplePopular({this.page, this.totalResults, this.totalPages, this.results});
 
@@ -12,7 +12,7 @@ class PeoplePopular {
     this.page = json['page'];
     this.totalResults = json['total_results'];
     this.totalPages = json['total_pages'];
-    this.results = (json['results'] as List) != null
+    this.results = (json['results'] as List?) != null
         ? (json['results'] as List)
             .map((i) => PeoplePopularResults.fromJson(i))
             .toList()
@@ -25,21 +25,21 @@ class PeoplePopular {
     data['total_results'] = this.totalResults;
     data['total_pages'] = this.totalPages;
     data['results'] = this.results != null
-        ? this.results.map((i) => i.toJson()).toList()
+        ? this.results!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class PeoplePopularResults {
-  String knownForDepartment;
-  String profilePath;
-  String name;
-  bool adult;
+  String? knownForDepartment;
+  String? profilePath;
+  String? name;
+  bool? adult;
   var popularity;
-  int gender;
-  int id;
-  List<PeoplePopularResultsKnownFor> knownFor;
+  int? gender;
+  int? id;
+  List<PeoplePopularResultsKnownFor>? knownFor;
 
   PeoplePopularResults(
       {this.knownForDepartment,
@@ -53,14 +53,13 @@ class PeoplePopularResults {
 
   PeoplePopularResults.fromJson(Map<String, dynamic> json) {
     this.knownForDepartment = json['known_for_department'];
-    this.profilePath = Utils.userConditionalUrl(
-        json['profile_path'], "", true);
+    this.profilePath = Utils.userConditionalUrl(json['profile_path'], "", true);
     this.name = json['name'];
     this.adult = json['adult'];
     this.popularity = json['popularity'];
     this.gender = json['gender'];
     this.id = json['id'];
-    this.knownFor = (json['known_for'] as List) != null
+    this.knownFor = (json['known_for'] as List?) != null
         ? (json['known_for'] as List)
             .map((i) => PeoplePopularResultsKnownFor.fromJson(i))
             .toList()
@@ -77,27 +76,27 @@ class PeoplePopularResults {
     data['gender'] = this.gender;
     data['id'] = this.id;
     data['known_for'] = this.knownFor != null
-        ? this.knownFor.map((i) => i.toJson()).toList()
+        ? this.knownFor!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class PeoplePopularResultsKnownFor {
-  String releaseDate;
-  String mediaType;
-  String title;
-  String originalTitle;
-  String originalLanguage;
-  String backdropPath;
-  String overview;
-  String posterPath;
-  bool video;
-  bool adult;
+  String? releaseDate;
+  String? mediaType;
+  String? title;
+  String? originalTitle;
+  String? originalLanguage;
+  String? backdropPath;
+  String? overview;
+  String? posterPath;
+  bool? video;
+  bool? adult;
   var voteAverage;
-  int id;
-  int voteCount;
-  List<int> genreIds;
+  int? id;
+  int? voteCount;
+  List<int?>? genreIds;
 
   PeoplePopularResultsKnownFor(
       {this.releaseDate,
@@ -132,10 +131,10 @@ class PeoplePopularResultsKnownFor {
     this.id = json['id'];
     this.voteCount = json['vote_count'];
 
-    List<dynamic> genreIdsList = json['genre_ids'];
-    this.genreIds = new List();
+    List<dynamic>? genreIdsList = json['genre_ids'];
+    this.genreIds = [];
     if (genreIdsList != null) {
-      this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
+      this.genreIds!.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
   }
 

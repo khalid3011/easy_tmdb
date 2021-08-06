@@ -8,7 +8,7 @@ class Utils {
   static fetchData(String url, {timeoutSeconds = 10}) async {
     try {
       var response = await http
-          .get(url)
+          .get(Uri.parse(url))
           .timeout(Duration(seconds: timeoutSeconds), onTimeout: () {
         throw TimeoutException("Connection time out. Please try again");
       });
@@ -25,13 +25,13 @@ class Utils {
 
   static writeData(
     String url,
-    Map<String, dynamic> body, {
+    Map<String, dynamic>? body, {
     timeoutSeconds = 10,
   }) async {
     try {
       var response = await http
           .post(
-        url,
+        Uri.parse(url),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -62,17 +62,17 @@ class Utils {
           ". " +
           response.body.toString());
 
-  static int randomBetween(int max, {min: 1}) =>
-      min + Random().nextInt(max - min);
+  static int? randomBetween(int max, {min: 1}) =>
+      min + Random().nextInt(max - min as int);
 
-  static String fixImageUrl(String posterPath, String backdropPath) =>
+  static String? fixImageUrl(String? posterPath, String? backdropPath) =>
       isValidPath(posterPath)
-          ? generateTMDBImageUrl(posterPath)
+          ? generateTMDBImageUrl(posterPath!)
           : isValidPath(backdropPath)
-              ? generateTMDBImageUrl(backdropPath)
+              ? generateTMDBImageUrl(backdropPath!)
               : EasyTMDB.mAlternativeImageUrl;
 
-  static bool isValidPath(String path) =>
+  static bool isValidPath(String? path) =>
       (path != null && path.length > 0) ? true : false;
 
   static bool validImagePath(String path) {
@@ -84,20 +84,20 @@ class Utils {
     return false;
   }
 
-  static String generateTMDBImageUrl(String path, {String size}) {
+  static String generateTMDBImageUrl(String path, {String? size}) {
     String slash = path.startsWith("/") ? "" : "/";
     return "http://image.tmdb.org/t/p/" +
-        (size == null ? EasyTMDB.mImageSize : size) +
+        (size == null ? EasyTMDB.mImageSize! : size) +
         slash +
         path;
   }
 
-  static String userConditionalUrl(
-      String posterPath, String backdropPath, bool isPosterPath) {
+  static String? userConditionalUrl(
+      String? posterPath, String? backdropPath, bool isPosterPath) {
     return EasyTMDB.mFixUrl
         ? fixImageUrl(posterPath, backdropPath)
         : EasyTMDB.mFullUrl
-            ? generateTMDBImageUrl(isPosterPath ? posterPath : backdropPath)
+            ? generateTMDBImageUrl(isPosterPath ? posterPath! : backdropPath!)
             : isPosterPath
                 ? posterPath
                 : backdropPath;

@@ -1,8 +1,8 @@
 class SearchKeyword {
-  int page;
-  int totalPages;
-  int totalResults;
-  List<SearchKeywordResults> results;
+  int? page;
+  int? totalPages;
+  int? totalResults;
+  List<SearchKeywordResults>? results;
 
   SearchKeyword({this.page, this.totalPages, this.totalResults, this.results});
 
@@ -10,7 +10,7 @@ class SearchKeyword {
     this.page = json['page'];
     this.totalPages = json['total_pages'];
     this.totalResults = json['total_results'];
-    this.results = (json['results'] as List) != null
+    this.results = (json['results'] as List?) != null
         ? (json['results'] as List)
             .map((i) => SearchKeywordResults.fromJson(i))
             .toList()
@@ -23,15 +23,15 @@ class SearchKeyword {
     data['total_pages'] = this.totalPages;
     data['total_results'] = this.totalResults;
     data['results'] = this.results != null
-        ? this.results.map((i) => i.toJson()).toList()
+        ? this.results!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class SearchKeywordResults {
-  String name;
-  int id;
+  String? name;
+  int? id;
 
   SearchKeywordResults({this.name, this.id});
 

@@ -2,7 +2,7 @@ import 'package:tmdb_easy/export/export_all.dart';
 
 class Episode {
   Future<SeasonEpisodes> details(int tvId, int seasonNumber, int episodeNumber,
-      {String language}) async {
+      {String? language}) async {
     var response = await Utils.fetchData(
         UrlMaker.episode(tvId, seasonNumber, episodeNumber, language));
 

@@ -1,23 +1,23 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class Crew {
-  String department;
-  String originalLanguage;
-  String originalTitle;
-  String job;
-  String overview;
-  String releaseDate;
-  String title;
-  String backdropPath;
-  String posterPath;
-  String creditId;
-  bool video;
-  bool adult;
+  String? department;
+  String? originalLanguage;
+  String? originalTitle;
+  String? job;
+  String? overview;
+  String? releaseDate;
+  String? title;
+  String? backdropPath;
+  String? posterPath;
+  String? creditId;
+  bool? video;
+  bool? adult;
   var voteAverage;
   var popularity;
-  int id;
-  int voteCount;
-  List<int> genreIds;
+  int? id;
+  int? voteCount;
+  List<int?>? genreIds;
 
   Crew(
       {this.department,
@@ -58,10 +58,10 @@ class Crew {
     this.id = json['id'];
     this.voteCount = json['vote_count'];
 
-    List<dynamic> genreIdsList = json['genre_ids'];
-    this.genreIds = new List();
+    List<dynamic>? genreIdsList = json['genre_ids'];
+    this.genreIds = [];
     if (genreIdsList != null) {
-      this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
+      this.genreIds!.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
   }
 

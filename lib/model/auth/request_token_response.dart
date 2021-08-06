@@ -1,7 +1,7 @@
 class RequestTokenResponse {
-  String expiresAt;
-  String requestToken;
-  bool success;
+  String? expiresAt;
+  String? requestToken;
+  bool? success;
 
   RequestTokenResponse({this.expiresAt, this.requestToken, this.success});
 

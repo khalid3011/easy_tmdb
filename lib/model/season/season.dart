@@ -1,14 +1,14 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class Season {
-  String uniqueId;
-  String airDate;
-  String name;
-  String overview;
-  String posterPath;
-  int id;
-  int seasonNumber;
-  List<SeasonEpisodes> episodes;
+  String? uniqueId;
+  String? airDate;
+  String? name;
+  String? overview;
+  String? posterPath;
+  int? id;
+  int? seasonNumber;
+  List<SeasonEpisodes>? episodes;
 
   Season(
       {this.uniqueId,
@@ -28,7 +28,7 @@ class Season {
     this.posterPath = Utils.userConditionalUrl(json['poster_path'], null, true);
     this.id = json['id'];
     this.seasonNumber = json['season_number'];
-    this.episodes = (json['episodes'] as List) != null
+    this.episodes = (json['episodes'] as List?) != null
         ? (json['episodes'] as List)
             .map((i) => SeasonEpisodes.fromJson(i))
             .toList()
@@ -45,26 +45,26 @@ class Season {
     data['id'] = this.id;
     data['season_number'] = this.seasonNumber;
     data['episodes'] = this.episodes != null
-        ? this.episodes.map((i) => i.toJson()).toList()
+        ? this.episodes!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class SeasonEpisodes {
-  String airDate;
-  String name;
-  String overview;
-  String productionCode;
-  String stillPath;
-  double voteAverage;
-  int episodeNumber;
-  int id;
-  int seasonNumber;
-  int showId;
-  int voteCount;
-  List<SeasonEpisodesCrew> crew;
-  List<SeasonEpisodesGuestStars> guestStars;
+  String? airDate;
+  String? name;
+  String? overview;
+  String? productionCode;
+  String? stillPath;
+  double? voteAverage;
+  int? episodeNumber;
+  int? id;
+  int? seasonNumber;
+  int? showId;
+  int? voteCount;
+  List<SeasonEpisodesCrew>? crew;
+  List<SeasonEpisodesGuestStars>? guestStars;
 
   SeasonEpisodes(
       {this.airDate,
@@ -93,12 +93,12 @@ class SeasonEpisodes {
     this.seasonNumber = json['season_number'];
     this.showId = json['show_id'];
     this.voteCount = json['vote_count'];
-    this.crew = (json['crew'] as List) != null
+    this.crew = (json['crew'] as List?) != null
         ? (json['crew'] as List)
             .map((i) => SeasonEpisodesCrew.fromJson(i))
             .toList()
         : null;
-    this.guestStars = (json['guest_stars'] as List) != null
+    this.guestStars = (json['guest_stars'] as List?) != null
         ? (json['guest_stars'] as List)
             .map((i) => SeasonEpisodesGuestStars.fromJson(i))
             .toList()
@@ -119,22 +119,22 @@ class SeasonEpisodes {
     data['show_id'] = this.showId;
     data['vote_count'] = this.voteCount;
     data['crew'] =
-        this.crew != null ? this.crew.map((i) => i.toJson()).toList() : null;
+        this.crew != null ? this.crew!.map((i) => i.toJson()).toList() : null;
     data['guest_stars'] = this.guestStars != null
-        ? this.guestStars.map((i) => i.toJson()).toList()
+        ? this.guestStars!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class SeasonEpisodesCrew {
-  String creditId;
-  String name;
-  String department;
-  String job;
-  String profilePath;
-  int id;
-  int gender;
+  String? creditId;
+  String? name;
+  String? department;
+  String? job;
+  String? profilePath;
+  int? id;
+  int? gender;
 
   SeasonEpisodesCrew(
       {this.creditId,

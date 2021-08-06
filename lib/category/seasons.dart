@@ -1,7 +1,7 @@
 import 'package:tmdb_easy/export/export_all.dart';
 
 class Seasons {
-  Future<Season> details(int tvId, int seasonNumber, {String language}) async {
+  Future<Season> details(int tvId, int seasonNumber, {String? language}) async {
     final response =
         await Utils.fetchData(UrlMaker.season(tvId, seasonNumber, language));
 
@@ -9,8 +9,8 @@ class Seasons {
   }
 
   Future<List<Season>> detailsAllSeason(int tvId, int totalSeasonNumber,
-      {String language}) async {
-    List<Season> temp = List();
+      {String? language}) async {
+    List<Season> temp = [];
 
     for (int seasonNo = 0; seasonNo <= totalSeasonNumber; seasonNo++) {
       final response =

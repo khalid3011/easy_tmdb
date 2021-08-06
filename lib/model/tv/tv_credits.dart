@@ -1,18 +1,18 @@
-import 'package:tmdb_easy/Helper/utils.dart';
+import 'package:tmdb_easy/helper/utils.dart';
 
 class TvCredits {
-  int id;
-  List<TvCreditsCast> cast;
-  List<TvCreditsCrew> crew;
+  int? id;
+  List<TvCreditsCast>? cast;
+  List<TvCreditsCrew>? crew;
 
   TvCredits({this.id, this.cast, this.crew});
 
   TvCredits.fromJson(Map<String, dynamic> json) {
     this.id = json['id'];
-    this.cast = (json['cast'] as List) != null
+    this.cast = (json['cast'] as List?) != null
         ? (json['cast'] as List).map((i) => TvCreditsCast.fromJson(i)).toList()
         : null;
-    this.crew = (json['crew'] as List) != null
+    this.crew = (json['crew'] as List?) != null
         ? (json['crew'] as List).map((i) => TvCreditsCrew.fromJson(i)).toList()
         : null;
   }
@@ -21,22 +21,22 @@ class TvCredits {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['cast'] =
-        this.cast != null ? this.cast.map((i) => i.toJson()).toList() : null;
+        this.cast != null ? this.cast!.map((i) => i.toJson()).toList() : null;
     data['crew'] =
-        this.crew != null ? this.crew.map((i) => i.toJson()).toList() : null;
+        this.crew != null ? this.crew!.map((i) => i.toJson()).toList() : null;
     return data;
   }
 }
 
 class TvCreditsCast {
-  String character;
-  String creditId;
-  String name;
-  String profilePath;
-  int castId;
-  int gender;
-  int id;
-  int order;
+  String? character;
+  String? creditId;
+  String? name;
+  String? profilePath;
+  int? castId;
+  int? gender;
+  int? id;
+  int? order;
 
   TvCreditsCast(
       {this.character,
@@ -75,13 +75,13 @@ class TvCreditsCast {
 }
 
 class TvCreditsCrew {
-  String creditId;
-  String department;
-  String job;
-  String name;
-  String profilePath;
-  int gender;
-  int id;
+  String? creditId;
+  String? department;
+  String? job;
+  String? name;
+  String? profilePath;
+  int? gender;
+  int? id;
 
   TvCreditsCrew(
       {this.creditId,

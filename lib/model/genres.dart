@@ -1,10 +1,10 @@
 class Genres {
-  List<GenreDetails> genres;
+  List<GenreDetails>? genres;
 
   Genres({this.genres});
 
   Genres.fromJson(Map<String, dynamic> json) {
-    this.genres = (json['genres'] as List) != null
+    this.genres = (json['genres'] as List?) != null
         ? (json['genres'] as List).map((i) => GenreDetails.fromJson(i)).toList()
         : null;
   }
@@ -12,15 +12,15 @@ class Genres {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['genres'] = this.genres != null
-        ? this.genres.map((i) => i.toJson()).toList()
+        ? this.genres!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
 }
 
 class GenreDetails {
-  String name;
-  int id;
+  String? name;
+  int? id;
 
   GenreDetails({this.name, this.id});
 

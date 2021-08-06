@@ -1,13 +1,12 @@
-import 'package:tmdb_easy/Helper/utils.dart';
-
-import 'package:tmdb_easy/Model/dates.dart';
+import 'package:tmdb_easy/helper/utils.dart';
+import 'package:tmdb_easy/model/dates.dart';
 
 class MovieUpcoming {
-  int page;
-  int totalResults;
-  int totalPages;
-  MovieUpcomingDates dates;
-  List<MovieUpcomingResults> results;
+  int? page;
+  int? totalResults;
+  int? totalPages;
+  MovieUpcomingDates? dates;
+  List<MovieUpcomingResults>? results;
 
   MovieUpcoming(
       {this.page,
@@ -23,7 +22,7 @@ class MovieUpcoming {
     this.dates = json['dates'] != null
         ? MovieUpcomingDates.fromJson(json['dates'])
         : null;
-    this.results = (json['results'] as List) != null
+    this.results = (json['results'] as List?) != null
         ? (json['results'] as List)
             .map((i) => MovieUpcomingResults.fromJson(i))
             .toList()
@@ -36,10 +35,10 @@ class MovieUpcoming {
     data['total_results'] = this.totalResults;
     data['total_pages'] = this.totalPages;
     if (this.dates != null) {
-      data['dates'] = this.dates.toJson();
+      data['dates'] = this.dates!.toJson();
     }
     data['results'] = this.results != null
-        ? this.results.map((i) => i.toJson()).toList()
+        ? this.results!.map((i) => i.toJson()).toList()
         : null;
     return data;
   }
@@ -50,20 +49,20 @@ class MovieUpcomingDates extends Dates {
 }
 
 class MovieUpcomingResults {
-  String posterPath;
-  String backdropPath;
-  String originalLanguage;
-  String originalTitle;
-  String title;
-  String overview;
-  String releaseDate;
-  bool video;
-  bool adult;
+  String? posterPath;
+  String? backdropPath;
+  String? originalLanguage;
+  String? originalTitle;
+  String? title;
+  String? overview;
+  String? releaseDate;
+  bool? video;
+  bool? adult;
   var popularity;
-  int voteCount;
-  int id;
+  int? voteCount;
+  int? id;
   var voteAverage;
-  List<int> genreIds;
+  List<int?>? genreIds;
 
   MovieUpcomingResults(
       {this.posterPath,
@@ -98,10 +97,10 @@ class MovieUpcomingResults {
     this.id = json['id'];
     this.voteAverage = json['vote_average'];
 
-    List<dynamic> genreIdsList = json['genre_ids'];
-    this.genreIds = new List();
+    List<dynamic>? genreIdsList = json['genre_ids'];
+    this.genreIds = [];
     if (genreIdsList != null) {
-      this.genreIds.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
+      this.genreIds!.addAll(genreIdsList.map((o) => int.tryParse(o.toString())));
     }
   }
 
